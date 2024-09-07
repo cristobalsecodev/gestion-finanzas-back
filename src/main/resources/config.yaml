@@ -1,5 +1,0 @@
-database:
-  url: jdbc:postgresql://localhost:5432/nombre_de_tu_base_de_datos
-  username: tu_usuario
-  password: tu_contraseña
-  driver: org.postgresql.Driver
