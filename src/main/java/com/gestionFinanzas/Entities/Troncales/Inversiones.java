@@ -1,4 +1,4 @@
-package Entities;
+package com.gestionFinanzas.Entities.Troncales;
 
 import jakarta.persistence.*;
 

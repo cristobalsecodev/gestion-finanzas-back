@@ -1,4 +1,4 @@
-package Entities.Tipos;
+package com.gestionFinanzas.Entities.Tipos;
 
 import jakarta.persistence.*;
 
