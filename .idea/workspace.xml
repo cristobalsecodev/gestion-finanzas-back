@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Tipos/TiposInversionesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Tipos/TiposInversionesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposGastos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposGastos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposIngresos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposIngresos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposInversiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposInversiones.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Gastos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Gastos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Ingresos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Ingresos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Inversiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Inversiones.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Repositories/Tipos/TiposInversionesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Repositories/Tipos/TiposInversionesRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposIngresosRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposIngresosService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposInversionesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposInversionesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -122,7 +108,7 @@
       <workItem from="1725798043466" duration="1422000" />
       <workItem from="1725800970262" duration="5036000" />
       <workItem from="1725806019362" duration="68000" />
-      <workItem from="1725900523327" duration="4920000" />
+      <workItem from="1725900523327" duration="5259000" />
     </task>
     <task id="LOCAL-00001" summary="Nuevo proyecto">
       <option name="closed" value="true" />
