@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto" />
+    <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Tipos/TiposInversionesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Tipos/TiposInversionesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposGastos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposGastos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposIngresos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposIngresos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposInversiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Tipos/TiposInversiones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Gastos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Gastos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Ingresos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Ingresos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Inversiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Inversiones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Repositories/Tipos/TiposInversionesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Repositories/Tipos/TiposInversionesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposIngresosRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposIngresosService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposInversionesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposInversionesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,12 +37,9 @@
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;cristobalsecodev&quot;
-  }
-}</component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {}
+}]]></component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/cristobalsecodev/gestion-finanzas-back.git&quot;,
@@ -36,7 +47,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -47,29 +58,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.Gestion Finanzas.executor": "Run",
-    "Maven.gestion-finanzas-back [site:run].executor": "Run",
-    "Maven.gestion-finanzas-back.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.GestionFinanzas.executor": "Run",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/crist/IdeaProjects/gestion-finanzas-back/src/main/java/org/example/Main.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.Gestion Finanzas.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.gestion-finanzas-back [site:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.gestion-finanzas-back.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.GestionFinanzas.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/crist/IdeaProjects/gestion-finanzas-back/src/main/java/org/example/Main.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -110,6 +121,8 @@
       <workItem from="1725726095412" duration="4568000" />
       <workItem from="1725798043466" duration="1422000" />
       <workItem from="1725800970262" duration="5036000" />
+      <workItem from="1725806019362" duration="68000" />
+      <workItem from="1725900523327" duration="4920000" />
     </task>
     <task id="LOCAL-00001" summary="Nuevo proyecto">
       <option name="closed" value="true" />

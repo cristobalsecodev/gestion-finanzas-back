@@ -1,9 +1,11 @@
 package com.gestionFinanzas.Entities.Tipos;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
-@Table(name = "tipo_inversiones")
+@Table(name = "tipos_inversiones")
+@Data
 public class TiposInversiones {
 
     @Id

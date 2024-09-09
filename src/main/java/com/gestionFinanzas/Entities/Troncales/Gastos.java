@@ -1,11 +1,13 @@
 package com.gestionFinanzas.Entities.Troncales;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "gastos")
+@Data
 public class Gastos {
 
     @Id
