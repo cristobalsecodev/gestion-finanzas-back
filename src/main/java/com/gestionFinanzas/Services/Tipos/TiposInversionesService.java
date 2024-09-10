@@ -18,7 +18,8 @@ public class TiposInversionesService {
         this.tiposInversionesRepository = tiposInversionesRepository;
     }
 
-    public List<TiposInversiones> prueba() {
+    public List<TiposInversiones> obtenerTodosTiposInversiones() {
         return tiposInversionesRepository.findAll();
     }
+
 }

@@ -21,9 +21,9 @@ public class TiposInversionesController {
         this.tiposInversionesService = tiposInversionesService;
     }
 
-    @GetMapping("/obtener-todos")
-    public List<TiposInversiones> obtenerInversiones() {
-        return tiposInversionesService.prueba();
+    @GetMapping("/obtener-todos-tipos-inversiones")
+    public List<TiposInversiones> obtenerTodosTiposInversiones() {
+        return tiposInversionesService.obtenerTodosTiposInversiones();
     }
 
 }
