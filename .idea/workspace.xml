@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Extra/RendimientoAnualInversionesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Extra/RendimientoAnualInversiones.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Repositories/Extra/RendimientoAnualInversionesRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Tipos/TiposGastosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Tipos/TiposGastosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Tipos/TiposIngresosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Tipos/TiposIngresosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Tipos/TiposInversionesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Tipos/TiposInversionesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Troncales/GastosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Troncales/GastosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Troncales/IngresosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Controllers/Troncales/IngresosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposGastosService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposGastosService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposIngresosService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposIngresosService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposInversionesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Tipos/TiposInversionesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Troncales/GastosService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Troncales/GastosService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Troncales/IngresosService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Troncales/IngresosService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Troncales/InversionesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Services/Troncales/InversionesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Inversiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Entities/Troncales/Inversiones.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +115,8 @@
       <workItem from="1725800970262" duration="5036000" />
       <workItem from="1725806019362" duration="68000" />
       <workItem from="1725900523327" duration="5408000" />
-      <workItem from="1725988423405" duration="1383000" />
+      <workItem from="1725988423405" duration="1838000" />
+      <workItem from="1726004815292" duration="1918000" />
     </task>
     <task id="LOCAL-00001" summary="Nuevo proyecto">
       <option name="closed" value="true" />

@@ -1,9 +1,11 @@
 package com.gestionFinanzas.Entities.Troncales;
 
+import com.gestionFinanzas.Entities.Extra.RendimientoAnualInversiones;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "inversiones")
@@ -31,6 +33,9 @@ public class Inversiones {
 
     @Column(name = "tipo_inversion_id")
     private Integer tipo_inversion_id;
+
+    @OneToMany(mappedBy = "inversion", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RendimientoAnualInversiones> rendimientosAnuales;
 
 
 }
