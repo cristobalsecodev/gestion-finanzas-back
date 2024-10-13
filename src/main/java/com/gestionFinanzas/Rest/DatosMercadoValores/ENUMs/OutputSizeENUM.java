@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Rest.DatosMercadoValores.DTOs;
+package com.gestionFinanzas.Rest.DatosMercadoValores.ENUMs;
 
 public enum OutputSizeENUM {
     COMPACT("compact"),

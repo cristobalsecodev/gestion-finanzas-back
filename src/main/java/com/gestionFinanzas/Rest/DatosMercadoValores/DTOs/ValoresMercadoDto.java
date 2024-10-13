@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class DailyTradingValuesDto {
+public class ValoresMercadoDto {
     private Date date;
 
     @JsonProperty("1. open")

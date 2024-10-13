@@ -1,7 +1,7 @@
 package com.gestionFinanzas.Rest.DatosMercadoValores;
 
-import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.ActivoPorDiaDTO;
-import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.FiltroActivoPorDiaDTO;
+import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.ActivoDTO;
+import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.FiltroActivoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class DatosMercadoValoresController {
     }
 
     @PostMapping("obtener-info-activo")
-    public ActivoPorDiaDTO obtenerInfoActivo(@RequestBody FiltroActivoPorDiaDTO filtro) {
+    public ActivoDTO obtenerInfoActivo(@RequestBody FiltroActivoDTO filtro) {
         return datosMercadoValoresService.obtenerInfoActivo(filtro);
     }
 

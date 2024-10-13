@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.*;
+import com.gestionFinanzas.Rest.DatosMercadoValores.ENUMs.OutputSizeENUM;
+import com.gestionFinanzas.Rest.DatosMercadoValores.ENUMs.TipoPeriodoENUM;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -22,7 +24,8 @@ public class DatosMercadoValoresService {
     @Value("${alpha.vantage.baseUrl}")
     private String baseUrl;
 
-    public ActivoPorDiaDTO obtenerInfoActivo(FiltroActivoPorDiaDTO filtro) {
+    public ActivoDTO obtenerInfoActivo(FiltroActivoDTO filtro) {
+
         RestTemplate restTemplate = new RestTemplate();
 
         // Comprobamos si el tipo de periodo es correcto
@@ -39,16 +42,19 @@ public class DatosMercadoValoresService {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
+            // Parseamos la información a JSON para poder trabajar con ella
             JsonNode rootNode = objectMapper.readTree(apiInfo);
 
-            ActivoPorDiaDTO activo = new ActivoPorDiaDTO();
+            // Accedemos a los datos y los añadimos al DTO
+            ActivoDTO activo = new ActivoDTO();
             activo.setInformation(rootNode.path("Meta Data").path("1. Information").asText());
             activo.setSymbol(rootNode.path("Meta Data").path("2. Symbol").asText());
             activo.setLastRefreshed(dateFormat.parse(rootNode.path("Meta Data").path("3. Last Refreshed").asText()));
             activo.setOutputSize(rootNode.path("Meta Data").path("4. Output Size").asText());
             activo.setTimeZone(rootNode.path("Meta Data").path("5. Time Zone").asText());
 
-            List<DailyTradingValuesDto> dailyValuesList = new ArrayList<>();
+            // Procedimiento para añadir cada fecha a la lista del DTO
+            List<ValoresMercadoDto> dailyValuesList = new ArrayList<>();
             JsonNode timeSeriesNode = rootNode.path(pathPorTipoPeriodo(filtro.getPeriodType()));
 
             Iterator<String> dates = timeSeriesNode.fieldNames();
@@ -57,17 +63,23 @@ public class DatosMercadoValoresService {
                 String datesString = dates.next();
                 Date date = dateFormat.parse(datesString);
 
-                JsonNode dailyDataNode = timeSeriesNode.path(datesString);
+                // Condición que acota el rango en caso de que alguna de las fechas no sea null
+                if((filtro.getStartDate() == null || !date.before(filtro.getStartDate()))
+                    && (filtro.getEndDate() == null || !date.after(filtro.getEndDate()))) {
 
-                DailyTradingValuesDto dailyValues = new DailyTradingValuesDto();
-                dailyValues.setDate(date);
-                dailyValues.setOpen(new BigDecimal(dailyDataNode.path("1. open").asText()));
-                dailyValues.setHigh(new BigDecimal(dailyDataNode.path("2. high").asText()));
-                dailyValues.setLow(new BigDecimal(dailyDataNode.path("3. low").asText()));
-                dailyValues.setClose(new BigDecimal(dailyDataNode.path("4. close").asText()));
-                dailyValues.setVolume(dailyDataNode.path("5. volume").asLong());
+                    JsonNode dailyDataNode = timeSeriesNode.path(datesString);
 
-                dailyValuesList.add(dailyValues);
+                    ValoresMercadoDto dailyValues = new ValoresMercadoDto();
+                    dailyValues.setDate(date);
+                    dailyValues.setOpen(new BigDecimal(dailyDataNode.path("1. open").asText()));
+                    dailyValues.setHigh(new BigDecimal(dailyDataNode.path("2. high").asText()));
+                    dailyValues.setLow(new BigDecimal(dailyDataNode.path("3. low").asText()));
+                    dailyValues.setClose(new BigDecimal(dailyDataNode.path("4. close").asText()));
+                    dailyValues.setVolume(dailyDataNode.path("5. volume").asLong());
+
+                    dailyValuesList.add(dailyValues);
+
+                }
             }
 
             activo.setDailyValues(dailyValuesList);
@@ -75,13 +87,15 @@ public class DatosMercadoValoresService {
             return activo;
 
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("El parseo a JSON no ha podido realizarse");
         } catch (ParseException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("No se ha podido parsear la fecha de String a Date");
         }
+
     }
 
-    private void comprobarParametros(FiltroActivoPorDiaDTO filtro) {
+    private void comprobarParametros(FiltroActivoDTO filtro) {
+
         if(!filtro.getPeriodType().equalsIgnoreCase(TipoPeriodoENUM.DAILY.getValue())
             && !filtro.getPeriodType().equalsIgnoreCase(TipoPeriodoENUM.WEEKLY.getValue())
             && !filtro.getPeriodType().equalsIgnoreCase(TipoPeriodoENUM.MONTHLY.getValue()))
@@ -95,12 +109,14 @@ public class DatosMercadoValoresService {
         {
             throw new RuntimeException("El tipo de histórico marcado no coincide con los establecidos (COMPACT, FULL)");
         }
+
     }
 
-    private String construirParametrosUrl(FiltroActivoPorDiaDTO filtro) {
-        String outputSize = filtro.getPeriodType().equals(TipoPeriodoENUM.DAILY.getValue()) ?  "&outputsize=" + filtro.getOutputSize().toLowerCase() : "";
+    private String construirParametrosUrl(FiltroActivoDTO filtro) {
 
+        String outputSize = filtro.getPeriodType().equals(TipoPeriodoENUM.DAILY.getValue()) ?  "&outputsize=" + filtro.getOutputSize().toLowerCase() : "";
         return filtro.getPeriodType().toUpperCase() + "&symbol=" + filtro.getSymbol() + outputSize;
+
     }
 
     private String pathPorTipoPeriodo(String periodType) {
@@ -112,7 +128,7 @@ public class DatosMercadoValoresService {
         } else if(periodType.equalsIgnoreCase(TipoPeriodoENUM.MONTHLY.getValue())) {
             return "Monthly Time Series";
         } else {
-            return "Tipo de perido no válido";
+            throw new RuntimeException("Tipo de periodo no válido");
         }
 
     }

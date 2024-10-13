@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class ActivoPorDiaDTO {
+public class ActivoDTO {
     @JsonProperty("1. Information")
     private String information;
 
@@ -23,5 +23,5 @@ public class ActivoPorDiaDTO {
     @JsonProperty("5. Time Zone")
     private String timeZone;
 
-    private List<DailyTradingValuesDto> dailyValues;
+    private List<ValoresMercadoDto> dailyValues;
 }
