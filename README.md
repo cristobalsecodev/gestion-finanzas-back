@@ -8,6 +8,7 @@ Documentación JSON: http://localhost:8080/v3/api-docs
 migracion.sql
 
 # Estructura del application.yaml (Crearlo dentro de la carpeta "resources") #
+```yaml
 spring:
   datasource:
     url: jdbc:postgresql://{URL}:{PUERTO}/{BBDD}
@@ -23,3 +24,4 @@ alpha:
     api:
       key: API_KEY
     baseUrl: https://www.alphavantage.co/query
+```
