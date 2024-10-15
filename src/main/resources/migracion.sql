@@ -48,12 +48,6 @@ alter table ingresos
 alter table inversiones
     rename column monto to cantidad;
 
-comment on table gastos is 'Tabla que registra los gastos con su fecha, cantidad y tipo de gasto.';
-
-comment on table ingresos is 'Tabla que registra los ingresos con su fecha, cantidad y tipo de ingreso.';
-
-comment on table inversiones is 'Tabla que registra las inversiones con su fecha, cantidad y tipo de inversión.';
-
 alter table gastos
     add column descripcion text;
 
@@ -82,10 +76,3 @@ alter table inversiones
 alter table inversiones
     alter column fecha_compra
         set not null;
-
-create table rendimiento_anual_inversiones (
-                                               id bigint primary key generated always as identity,
-                                               inversion_id bigint references inversiones (id),
-                                               anio int not null,
-                                               rendimiento numeric(5, 2) not null
-);

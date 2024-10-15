@@ -19,9 +19,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-alpha:
-  vantage:
-    api:
-      key: API_KEY
-    baseUrl: https://www.alphavantage.co/query
+polygon:
+  api:
+    key: API_KEY
+  baseUrl: https://api.polygon.io
 ```
