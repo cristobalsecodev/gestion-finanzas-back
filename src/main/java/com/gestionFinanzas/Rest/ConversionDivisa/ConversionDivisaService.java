@@ -1,10 +1,10 @@
-package com.gestionFinanzas.Rest.ConversionMoneda;
+package com.gestionFinanzas.Rest.ConversionDivisa;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gestionFinanzas.Rest.ConversionMoneda.DTOs.ConversionMonedaDto;
-import com.gestionFinanzas.Rest.ConversionMoneda.DTOs.RatioConversionDto;
+import com.gestionFinanzas.Rest.ConversionDivisa.DTOs.ConversionDivisaDto;
+import com.gestionFinanzas.Rest.ConversionDivisa.DTOs.RatioConversionDto;
 import com.gestionFinanzas.Shared.ManejoExcepciones.ApiException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ConversionMonedaService {
+public class ConversionDivisaService {
 
     @Value("${exchangeRate.api.key}")
     private String apiKey;
@@ -28,7 +28,7 @@ public class ConversionMonedaService {
     @Value("${exchangeRate.baseUrl}")
     private String baseUrl;
 
-    public ConversionMonedaDto conversionMoneda(String moneda) {
+    public ConversionDivisaDto conversionDivisa(String divisa) {
         RestTemplate restTemplate = new RestTemplate();
 
         // Construimos url de la REST API
@@ -36,7 +36,7 @@ public class ConversionMonedaService {
                 baseUrl + "/v6/"
                         + apiKey
                         + "/latest/"
-                        + moneda;
+                        + divisa;
 
 
         try {
@@ -47,41 +47,41 @@ public class ConversionMonedaService {
             ObjectMapper mapper = new ObjectMapper();
 
             // Convertimos la cadena en un árbol de nodos
-            JsonNode node = mapper.readTree(apiInfo.getBody());
+            JsonNode nodo = mapper.readTree(apiInfo.getBody());
 
             // Verificamos si la respuesta es exitosa (código 2xx)
             if(apiInfo.getStatusCode().is2xxSuccessful()) {
 
                 // Instanciamos el DTO
-                ConversionMonedaDto conversion = new ConversionMonedaDto();
+                ConversionDivisaDto conversion = new ConversionDivisaDto();
 
                 // Rellenamos el DTO con la respuesta del JSON
-                conversion.setResult(node.get("result").asText());
-                conversion.setOriginalCurrency(node.get("base_code").asText());
+                conversion.setResultado(nodo.get("result").asText());
+                conversion.setDivisaOriginal(nodo.get("base_code").asText());
 
                 // Parseamos las fechas a Date
                 SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z");
-                conversion.setTimeLastUpdate(dateFormat.parse(node.get("time_last_update_utc").asText()));
-                conversion.setTimeNextUpdate(dateFormat.parse(node.get("time_next_update_utc").asText()));
+                conversion.setFechaUltimaActualizacion(dateFormat.parse(nodo.get("time_last_update_utc").asText()));
+                conversion.setFechaSiguienteActualizacion(dateFormat.parse(nodo.get("time_next_update_utc").asText()));
 
                 // Mapeamos conversion_rates para convertirlo en el DTO
-                List<RatioConversionDto> rates = new ArrayList<>();
+                List<RatioConversionDto> ratios = new ArrayList<>();
 
-                JsonNode conversionRatesNode = node.get("conversion_rates");
+                JsonNode ratiosConversionNodo = nodo.get("conversion_rates");
 
-                conversionRatesNode.fieldNames().forEachRemaining(currency -> {
+                ratiosConversionNodo.fieldNames().forEachRemaining(divisaNodo -> {
 
-                    if(comprobarSiEsMonedaPrincipal(currency)) {
+                    if(comprobarSiEsDivisaPrincipal(divisaNodo)) {
                         RatioConversionDto ratio = new RatioConversionDto();
-                        ratio.setCurrencyCode(currency);
-                        ratio.setCurrencyName(PrincipalesMonedasENUM.valueOf(currency).getNombre());
-                        ratio.setConversionValue(new BigDecimal(conversionRatesNode.get(currency).asText()));
-                        rates.add(ratio);
+                        ratio.setCodigoDivisa(divisaNodo);
+                        ratio.setNombreDivisa(PrincipalesDivisasENUM.valueOf(divisaNodo).getNombre());
+                        ratio.setValorConversion(new BigDecimal(ratiosConversionNodo.get(divisaNodo).asText()));
+                        ratios.add(ratio);
                     }
 
                 });
 
-                conversion.setConversionRates(rates);
+                conversion.setRatiosConversion(ratios);
 
                 return conversion;
 
@@ -96,13 +96,13 @@ public class ConversionMonedaService {
             throw new RuntimeException("La conversión de la fecha a tipo Date ha fallado");
         }
 
-        return new ConversionMonedaDto();
+        return new ConversionDivisaDto();
 
     }
 
-    private static Boolean comprobarSiEsMonedaPrincipal(String currency) {
+    private static Boolean comprobarSiEsDivisaPrincipal(String divisa) {
         try {
-            PrincipalesMonedasENUM.valueOf(currency);
+            PrincipalesDivisasENUM.valueOf(divisa);
             return true;
         } catch (IllegalArgumentException e) {
             return false;

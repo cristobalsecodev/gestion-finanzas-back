@@ -1,7 +1,7 @@
 package com.gestionFinanzas.Rest;
 
-import com.gestionFinanzas.Rest.ConversionMoneda.ConversionMonedaService;
-import com.gestionFinanzas.Rest.ConversionMoneda.DTOs.ConversionMonedaDto;
+import com.gestionFinanzas.Rest.ConversionDivisa.ConversionDivisaService;
+import com.gestionFinanzas.Rest.ConversionDivisa.DTOs.ConversionDivisaDto;
 import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.ActivoDiaUnicoDto;
 import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.FiltroActivoDiaUnicoDto;
 import com.gestionFinanzas.Rest.DatosMercadoValores.DatosMercadoValoresService;
@@ -14,7 +14,7 @@ public class RestController {
 
     private DatosMercadoValoresService datosMercadoValoresService;
 
-    private ConversionMonedaService conversionMonedaService;
+    private ConversionDivisaService conversionDivisaService;
 
     // Inyección del servicio de datos de mercado de valores
     @Autowired
@@ -24,8 +24,8 @@ public class RestController {
 
     // Inyección del servicio de conversión de moneda
     @Autowired
-    public void setConversionMonedaService(ConversionMonedaService conversionMonedaService) {
-        this.conversionMonedaService = conversionMonedaService;
+    public void setConversionDivisaService(ConversionDivisaService conversionDivisaService) {
+        this.conversionDivisaService = conversionDivisaService;
     }
 
     // Obtener valores de activo solo por un día
@@ -35,9 +35,9 @@ public class RestController {
     }
 
     // Obtener la conversión de todas las monedas a partir de una moneda
-    @PostMapping("conversion-moneda")
-    public ConversionMonedaDto conversionMoneda(@RequestBody String moneda) {
-        return conversionMonedaService.conversionMoneda(moneda);
+    @PostMapping("conversion-divisa")
+    public ConversionDivisaDto conversionDivisa(@RequestBody String divisa) {
+        return conversionDivisaService.conversionDivisa(divisa);
     }
 
 }

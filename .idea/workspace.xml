@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionMoneda/ConversionMonedaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionMoneda/DTOs/ConversionMonedaDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionMoneda/DTOs/RatioConversionDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionMoneda/PrincipalesMonedasENUM.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/DTOs/ConversionDivisaDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/DatosMercadoValores/DatosMercadoValoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/RestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/DatosMercadoValores/ENUMs/OutputSizeENUM.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/DatosMercadoValores/ENUMs/TipoPeriodoENUM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionMoneda/ConversionMonedaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/ConversionDivisaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionMoneda/DTOs/ConversionMonedaDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionMoneda/DTOs/RatioConversionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/DTOs/RatioConversionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionMoneda/PrincipalesMonedasENUM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/PrincipalesDivisasENUM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/RestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/RestController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

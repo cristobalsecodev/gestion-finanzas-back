@@ -23,4 +23,8 @@ polygon:
   api:
     key: API_KEY
   baseUrl: https://api.polygon.io
+exchangeRate:
+  api:
+    key: API_KEY
+  baseUrl: https://v6.exchangerate-api.com
 ```

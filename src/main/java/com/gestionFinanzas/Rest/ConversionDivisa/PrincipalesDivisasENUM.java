@@ -1,6 +1,6 @@
-package com.gestionFinanzas.Rest.ConversionMoneda;
+package com.gestionFinanzas.Rest.ConversionDivisa;
 
-public enum PrincipalesMonedasENUM {
+public enum PrincipalesDivisasENUM {
     USD("Dólar estadounidense"),
     EUR("Euro"),
     JPY("Yen japonés"),
@@ -14,7 +14,7 @@ public enum PrincipalesMonedasENUM {
 
     private final String nombre;
 
-    PrincipalesMonedasENUM(String nombre) {
+    PrincipalesDivisasENUM(String nombre) {
         this.nombre = nombre;
     }
 
