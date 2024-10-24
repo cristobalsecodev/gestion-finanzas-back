@@ -1,12 +1,12 @@
-package com.gestionFinanzas.Tipos.Gastos;
+package com.gestionFinanzas.Categorias.Inversiones;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "tipos_gastos")
+@Table(name = "tipos_inversiones")
 @Data
-public class TiposGastos {
+public class CategoriasInversion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

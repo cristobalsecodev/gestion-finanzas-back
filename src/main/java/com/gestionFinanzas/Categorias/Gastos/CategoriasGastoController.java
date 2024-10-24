@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Tipos.Gastos;
+package com.gestionFinanzas.Categorias.Gastos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,18 +9,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("tipos-gastos")
-public class TiposGastosController {
+public class CategoriasGastoController {
 
-    private TiposGastosService tiposGastosService;
+    private CategoriasGastoService categoriasGastoService;
 
     // Inyección del servicio de tipos gastos
     @Autowired
-    public void setTiposGastosService(TiposGastosService tiposGastosService) {
-        this.tiposGastosService = tiposGastosService;
+    public void setTiposGastosService(CategoriasGastoService categoriasGastoService) {
+        this.categoriasGastoService = categoriasGastoService;
     }
 
     @GetMapping("obtener-todos-tipos-gastos")
-    public List<TiposGastos> obtenerTodosTiposGastos() {
-        return tiposGastosService.obtenerTodosTiposGastos();
+    public List<CategoriasGasto> obtenerTodosTiposGastos() {
+        return categoriasGastoService.obtenerTodosTiposGastos();
     }
 }

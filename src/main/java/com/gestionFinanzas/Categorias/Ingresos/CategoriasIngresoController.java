@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Tipos.Ingresos;
+package com.gestionFinanzas.Categorias.Ingresos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,19 +9,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("tipos-ingresos")
-public class TiposIngresosController {
+public class CategoriasIngresoController {
 
-    private TiposIngresosService tiposIngresosService;
+    private CategoriasIngresoService categoriasIngresoService;
 
     // Inyección del servicio de tipos ingresos
     @Autowired
-    public void setTiposIngresosService(TiposIngresosService tiposIngresosService) {
-        this.tiposIngresosService = tiposIngresosService;
+    public void setTiposIngresosService(CategoriasIngresoService categoriasIngresoService) {
+        this.categoriasIngresoService = categoriasIngresoService;
     }
 
     @GetMapping("/obtener-todos-tipos-ingresos")
-    public List<TiposIngresos> obtenerTodosTiposIngresos() {
-        return tiposIngresosService.obtenerTodosTiposIngresos();
+    public List<CategoriasIngreso> obtenerTodosTiposIngresos() {
+        return categoriasIngresoService.obtenerTodosTiposIngresos();
     }
 
 }
