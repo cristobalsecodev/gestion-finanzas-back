@@ -10,13 +10,13 @@ public class CategoriasInversionService {
 
     private CategoriasInversionRepository categoriasInversionRepository;
 
-    // Inyección del repositorio de tipos inversiones
+    // Inyección del repositorio de categorias de inversión
     @Autowired
-    public void setTiposInversionesRepository(CategoriasInversionRepository categoriasInversionRepository) {
+    public void setCategoriasInversionRepository(CategoriasInversionRepository categoriasInversionRepository) {
         this.categoriasInversionRepository = categoriasInversionRepository;
     }
 
-    public List<CategoriasInversion> obtenerTodosTiposInversiones() {
+    public List<CategoriasInversion> obtenerTodasCategoriasInversion() {
         return categoriasInversionRepository.findAll();
     }
 

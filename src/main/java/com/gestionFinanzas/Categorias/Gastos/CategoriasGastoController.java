@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("tipos-gastos")
+@RequestMapping("categorias-gasto")
 public class CategoriasGastoController {
 
     private CategoriasGastoService categoriasGastoService;
 
-    // Inyección del servicio de tipos gastos
+    // Inyección del servicio de categorías de gasto
     @Autowired
-    public void setTiposGastosService(CategoriasGastoService categoriasGastoService) {
+    public void setCategoriasGastoService(CategoriasGastoService categoriasGastoService) {
         this.categoriasGastoService = categoriasGastoService;
     }
 
-    @GetMapping("obtener-todos-tipos-gastos")
-    public List<CategoriasGasto> obtenerTodosTiposGastos() {
-        return categoriasGastoService.obtenerTodosTiposGastos();
+    @GetMapping("obtener-todas-categorias-gasto")
+    public List<CategoriasGasto> obtenerTodasCategoriasGasto() {
+        return categoriasGastoService.obtenerTodasCategoriasGasto();
     }
 }

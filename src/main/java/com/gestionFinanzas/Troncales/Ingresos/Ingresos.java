@@ -1,9 +1,11 @@
 package com.gestionFinanzas.Troncales.Ingresos;
 
+import com.gestionFinanzas.Usuarios.Usuarios;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "ingresos")
@@ -11,19 +13,26 @@ import java.util.Date;
 public class Ingresos {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fecha")
-    private Date fecha;
+    @Column(nullable = false)
+    private LocalDate fecha;
 
-    @Column(name = "cantidad")
-    private Integer cantidad;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal cantidad;
 
-    @Column(name = "descripcion")
-    private String descripcion;
+    @Column(name = "categoria_descripcion")
+    private String categoriaDescripcion;
 
-    @Column(name = "tipo_ingreso_id")
-    private Integer tipo_ingreso_id;
+    @Column(name = "subcategoria_descripcion")
+    private String subcategoriaDescripcion;
+
+    @Column
+    private String notas;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false, foreignKey = @ForeignKey(name = "fk_usuario_id"))
+    private Usuarios usuario;
 
 }

@@ -1,13 +1,14 @@
-package com.gestionFinanzas.Categorias.Ingresos;
+package com.gestionFinanzas.Categorias.Subcategorias.Gastos;
 
+import com.gestionFinanzas.Categorias.Gastos.CategoriasGasto;
 import com.gestionFinanzas.Usuarios.Usuarios;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "categorias_ingreso")
+@Table(name = "subcategorias_gasto")
 @Data
-public class CategoriasIngreso {
+public class SubcategoriaGasto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +23,9 @@ public class CategoriasIngreso {
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false, foreignKey = @ForeignKey(name = "fk_usuario_id"))
     private Usuarios usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_gasto_id", nullable = false, foreignKey = @ForeignKey(name = "fk_categoria_gasto_id"))
+    private CategoriasGasto categoriaGasto;
 
 }

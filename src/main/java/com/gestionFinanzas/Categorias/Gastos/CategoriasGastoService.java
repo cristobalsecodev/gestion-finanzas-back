@@ -10,13 +10,13 @@ public class CategoriasGastoService {
 
     private CategoriasGastoRepository categoriasGastoRepository;
 
-    // Inyección del repositorio de tipos gastos
+    // Inyección del repositorio de categorias de gasto
     @Autowired
-    public void setTiposGastosRepository(CategoriasGastoRepository categoriasGastoRepository) {
+    public void setCategoriasGastoRepository(CategoriasGastoRepository categoriasGastoRepository) {
         this.categoriasGastoRepository = categoriasGastoRepository;
     }
 
-    public List<CategoriasGasto> obtenerTodosTiposGastos() {
+    public List<CategoriasGasto> obtenerTodasCategoriasGasto() {
         return categoriasGastoRepository.findAll();
     }
 

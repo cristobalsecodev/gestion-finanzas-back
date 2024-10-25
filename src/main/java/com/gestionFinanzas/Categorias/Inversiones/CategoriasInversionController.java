@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("tipos-inversiones")
+@RequestMapping("categorias-inversion")
 public class CategoriasInversionController {
 
     private CategoriasInversionService categoriasInversionService;
 
-    // Inyección del servicio de tipos inversiones
+    // Inyección del servicio de categorias de inversión
     @Autowired
-    public void setTiposInversionesService(CategoriasInversionService categoriasInversionService) {
+    public void setCategoriasInversionService(CategoriasInversionService categoriasInversionService) {
         this.categoriasInversionService = categoriasInversionService;
     }
 
-    @GetMapping("/obtener-todos-tipos-inversiones")
-    public List<CategoriasInversion> obtenerTodosTiposInversiones() {
-        return categoriasInversionService.obtenerTodosTiposInversiones();
+    @GetMapping("/obtener-todas-categorias-inversion")
+    public List<CategoriasInversion> obtenerTodasCategoriasInversion() {
+        return categoriasInversionService.obtenerTodasCategoriasInversion();
     }
 
 }
