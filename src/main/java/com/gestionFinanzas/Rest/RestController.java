@@ -1,10 +1,10 @@
 package com.gestionFinanzas.Rest;
 
-import com.gestionFinanzas.Rest.ConversionDivisa.CurrencyConversionService;
-import com.gestionFinanzas.Rest.ConversionDivisa.DTOs.CurrencyConversionDto;
-import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.StockForDayDto;
-import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.StockForDayFilterDto;
-import com.gestionFinanzas.Rest.DatosMercadoValores.MarketValuesDataService;
+import com.gestionFinanzas.Rest.CurrencyConversion.CurrencyConversionService;
+import com.gestionFinanzas.Rest.CurrencyConversion.DTOs.CurrencyConversionDto;
+import com.gestionFinanzas.Rest.MarketValuesData.DTOs.StockForDayDto;
+import com.gestionFinanzas.Rest.MarketValuesData.DTOs.StockForDayFilterDto;
+import com.gestionFinanzas.Rest.MarketValuesData.MarketValuesDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
