@@ -5,32 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Subcategorias/Gastos/SubcategoriaGasto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Subcategorias/Gastos/SubcategoriaGastoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Subcategorias/Gastos/SubcategoriaGastoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Subcategorias/Ingresos/SubcategoriaIngreso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Subcategorias/Ingresos/SubcategoriaIngresoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Subcategorias/Ingresos/SubcategoriaIngresoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Subcategorias/Inversiones/SubcategoriaInversion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Subcategorias/Inversiones/SubcategoriaInversionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Subcategorias/Inversiones/SubcategoriaInversionRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Usuarios/Usuarios.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Usuarios/UsuariosRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Usuarios/UsuariosService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/DTOs/CurrencyConversionDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/MajorCurrenciesEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Gastos/CategoriasGasto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Gastos/CategoriasGasto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Gastos/CategoriasGastoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Gastos/CategoriasGastoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Gastos/CategoriasGastoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Gastos/CategoriasGastoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Ingresos/CategoriasIngreso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Ingresos/CategoriasIngreso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Ingresos/CategoriasIngresoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Ingresos/CategoriasIngresoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Ingresos/CategoriasIngresoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Ingresos/CategoriasIngresoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Inversiones/CategoriasInversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Inversiones/CategoriasInversion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Inversiones/CategoriasInversionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Inversiones/CategoriasInversionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Inversiones/CategoriasInversionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categorias/Inversiones/CategoriasInversionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/Gastos/Gastos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/Gastos/Gastos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/Ingresos/Ingresos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/Ingresos/Ingresos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/Inversiones/Inversiones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/Inversiones/Inversiones.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/migracion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/migracion.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/ConversionDivisaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/CurrencyConversionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/DTOs/ConversionDivisaDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/DTOs/RatioConversionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/DTOs/ExchangeRatioDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/ConversionDivisa/PrincipalesDivisasENUM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/DatosMercadoValores/DTOs/ActivoDiaUnicoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/DatosMercadoValores/DTOs/StockForDayDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/DatosMercadoValores/DTOs/FiltroActivoDiaUnicoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/DatosMercadoValores/DTOs/StockForDayFilterDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/DatosMercadoValores/DatosMercadoValoresService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/DatosMercadoValores/MarketValuesDataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/RestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/RestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Seguridad/ConfiguradorWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Seguridad/WebConfigurator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

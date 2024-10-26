@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class ManejoExcepcionesGlobal {
+public class GlobalExceptionHandling {
 
      @ExceptionHandler(ApiException.class)
-    public ResponseEntity<String> manejoApiException(ApiException ex) {
+    public ResponseEntity<String> ApiExceptionHandling(ApiException ex) {
          return ResponseEntity.status(ex.getStatusCode()).body(ex.getMessage());
      }
 

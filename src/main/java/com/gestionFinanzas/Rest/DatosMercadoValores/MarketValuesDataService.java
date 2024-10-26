@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
-public class DatosMercadoValoresService {
+public class MarketValuesDataService {
 
     @Value("${polygon.api.key}")
     private String apiKey;
@@ -27,16 +27,16 @@ public class DatosMercadoValoresService {
     @Value("${polygon.baseUrl}")
     private String baseUrl;
 
-    public ActivoDiaUnicoDto obtenerInfoActivo(FiltroActivoDiaUnicoDto filtro) {
+    public StockForDayDto getStockForDay(StockForDayFilterDto filter) {
 
         RestTemplate restTemplate = new RestTemplate();
 
         // Construimos url de la REST API
         String url =
                 baseUrl + "/v1/open-close/"
-                        + filtro.getSymbol().toUpperCase()
+                        + filter.getSymbol().toUpperCase()
                         + "/"
-                        + DateUtils.dateToString(filtro.getDate(), "yyyy-MM-dd")
+                        + DateUtils.dateToString(filter.getDate(), "yyyy-MM-dd")
                         + "?adjusted=true"
                         + "&apikey=" + apiKey;
 
@@ -55,40 +55,40 @@ public class DatosMercadoValoresService {
             if(apiInfo.getStatusCode().is2xxSuccessful()) {
 
                 // Instanciamos el DTO
-                ActivoDiaUnicoDto activo = new ActivoDiaUnicoDto();
+                StockForDayDto stock = new StockForDayDto();
 
                 // Rellenamos el DTO con la respuesta del JSON
-                activo.setAfterHours(node.get("afterHours").asText());
-                activo.setSymbol(node.get("symbol").asText());
-                activo.setStatus(node.get("status").asText());
+                stock.setAfterHours(node.get("afterHours").asText());
+                stock.setSymbol(node.get("symbol").asText());
+                stock.setStatus(node.get("status").asText());
 
-                activo.setClose(BigDecimal.valueOf(node.get("close").asDouble()));
-                activo.setHigh(BigDecimal.valueOf(node.get("high").asDouble()));
-                activo.setLow(BigDecimal.valueOf(node.get("low").asDouble()));
-                activo.setOpen(BigDecimal.valueOf(node.get("open").asDouble()));
-                activo.setPreMarket(BigDecimal.valueOf(node.get("preMarket").asDouble()));
+                stock.setClose(BigDecimal.valueOf(node.get("close").asDouble()));
+                stock.setHigh(BigDecimal.valueOf(node.get("high").asDouble()));
+                stock.setLow(BigDecimal.valueOf(node.get("low").asDouble()));
+                stock.setOpen(BigDecimal.valueOf(node.get("open").asDouble()));
+                stock.setPreMarket(BigDecimal.valueOf(node.get("preMarket").asDouble()));
 
-                activo.setVolume(node.get("volume").asLong());
+                stock.setVolume(node.get("volume").asLong());
 
                 // Convertimos la fecha a un objeto Date
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = sdf.parse(node.get("from").asText());
 
-                activo.setDate(date);
+                stock.setDate(date);
 
-                return activo;
+                return stock;
 
             }
 
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("La conversión de JSON a árbol de nodos ha fallado");
+            throw new RuntimeException("The conversion from JSON to a node tree has failed");
         } catch (ParseException e) {
-            throw new RuntimeException("La conversión de la fecha a tipo Date ha fallado");
+            throw new RuntimeException("The conversion of the date to Date type has failed");
         } catch (HttpClientErrorException | HttpServerErrorException ex) {
             throw new ApiException(ex.getStatusText(), ex.getStatusCode().value());
         }
 
-        return new ActivoDiaUnicoDto();
+        return new StockForDayDto();
 
     }
 }

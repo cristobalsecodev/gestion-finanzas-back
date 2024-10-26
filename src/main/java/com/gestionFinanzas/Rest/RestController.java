@@ -1,10 +1,10 @@
 package com.gestionFinanzas.Rest;
 
-import com.gestionFinanzas.Rest.ConversionDivisa.ConversionDivisaService;
-import com.gestionFinanzas.Rest.ConversionDivisa.DTOs.ConversionDivisaDto;
-import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.ActivoDiaUnicoDto;
-import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.FiltroActivoDiaUnicoDto;
-import com.gestionFinanzas.Rest.DatosMercadoValores.DatosMercadoValoresService;
+import com.gestionFinanzas.Rest.ConversionDivisa.CurrencyConversionService;
+import com.gestionFinanzas.Rest.ConversionDivisa.DTOs.CurrencyConversionDto;
+import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.StockForDayDto;
+import com.gestionFinanzas.Rest.DatosMercadoValores.DTOs.StockForDayFilterDto;
+import com.gestionFinanzas.Rest.DatosMercadoValores.MarketValuesDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,32 +12,32 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("rest")
 public class RestController {
 
-    private DatosMercadoValoresService datosMercadoValoresService;
+    private MarketValuesDataService marketValuesDataService;
 
-    private ConversionDivisaService conversionDivisaService;
+    private CurrencyConversionService currencyConversionService;
 
     // Inyección del servicio de datos de mercado de valores
     @Autowired
-    public void setDatosMercadoValoresService(DatosMercadoValoresService datosMercadoValoresService) {
-        this.datosMercadoValoresService = datosMercadoValoresService;
+    public void setMarketValuesDataService(MarketValuesDataService marketValuesDataService) {
+        this.marketValuesDataService = marketValuesDataService;
     }
 
     // Inyección del servicio de conversión de moneda
     @Autowired
-    public void setConversionDivisaService(ConversionDivisaService conversionDivisaService) {
-        this.conversionDivisaService = conversionDivisaService;
+    public void setCurrencyConversionService(CurrencyConversionService currencyConversionService) {
+        this.currencyConversionService = currencyConversionService;
     }
 
     // Obtener valores de activo solo por un día
-    @PostMapping("obtener-activo-unico-dia")
-    public ActivoDiaUnicoDto obtenerInfoActivo(@RequestBody FiltroActivoDiaUnicoDto filtro) {
-        return datosMercadoValoresService.obtenerInfoActivo(filtro);
+    @PostMapping("get-stock-for-day")
+    public StockForDayDto getStockForDay(@RequestBody StockForDayFilterDto filter) {
+        return marketValuesDataService.getStockForDay(filter);
     }
 
     // Obtener la conversión de todas las monedas a partir de una moneda
-    @PostMapping("conversion-divisa")
-    public ConversionDivisaDto conversionDivisa(@RequestBody String divisa) {
-        return conversionDivisaService.conversionDivisa(divisa);
+    @PostMapping("currency-conversion")
+    public CurrencyConversionDto currencyConversion(@RequestBody String currency) {
+        return currencyConversionService.currencyConversion(currency);
     }
 
 }
