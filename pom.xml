@@ -6,7 +6,7 @@
 
     <groupId>com.gestionFinanzas</groupId>
     <artifactId>gestion-finanzas-back</artifactId>
-    <description>Aplicación para la gestión de finanzas</description>
+    <description>Finance management application</description>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -16,7 +16,7 @@
     </properties>
 
     <dependencies>
-        <!-- PostgreSQL -->
+        <!-- PostgresSQL -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -32,9 +32,9 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>3.3.0</version>
+            <version>3.3.5</version>
         </dependency>
-        <!-- Spring Boot Starter Web -->
+        <!-- Spring boot starter web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -47,6 +47,7 @@
             <version>1.18.34</version>
             <scope>provided</scope>
         </dependency>
+
     </dependencies>
 
 </project>

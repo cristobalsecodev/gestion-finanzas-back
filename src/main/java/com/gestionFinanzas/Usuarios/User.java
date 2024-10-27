@@ -11,19 +11,18 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "surnames")
     private String surnames;
 
     @Column(name = "creation_date")
     private Date creationDate;
+
+    private String password;
 
 }

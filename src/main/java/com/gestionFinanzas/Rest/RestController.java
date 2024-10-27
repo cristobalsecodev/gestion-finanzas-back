@@ -34,7 +34,7 @@ public class RestController {
         return marketValuesDataService.getStockForDay(filter);
     }
 
-    // Obtener la conversión de todas las monedas a partir de una moneda
+    // Obtener la conversión de todas las divisas a partir de una divisa
     @PostMapping("currency-conversion")
     public CurrencyConversionDto currencyConversion(@RequestBody String currency) {
         return currencyConversionService.currencyConversion(currency);
