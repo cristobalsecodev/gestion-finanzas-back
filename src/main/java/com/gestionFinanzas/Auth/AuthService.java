@@ -4,6 +4,9 @@ import com.gestionFinanzas.Shared.ExceptionHandler.ResourceConflictException;
 import com.gestionFinanzas.Usuarios.User;
 import com.gestionFinanzas.Usuarios.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,39 +14,47 @@ import java.util.Date;
 @Service
 public class AuthService {
 
-    private UserRepository userRepository;;
+    private final UserRepository userRepository;
 
-    // Inyección del repositorio de usuario
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
+    private final PasswordEncoder passwordEncoder;
+
+    private final AuthenticationManager authenticationManager;
+
+    public AuthService(
+            UserRepository userRepository,
+            AuthenticationManager authenticationManager,
+            PasswordEncoder passwordEncoder
+    ) {
+        this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public String login(String email, String password) {
+    public User authenticate(String email, String password) {
 
-        User user = userRepository.findUserByEmail(email);
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        email,
+                        password
+                )
+        );
 
-        if (user != null && user.getPassword().equals(password)) {
-            // TODO: Meter la generación del token
-            return "";
-        }
-
-        throw new ResourceConflictException("Invalid credentials", 409);
+        return userRepository.findUserByEmail(email);
 
     }
 
-
-    public void register(User user) {
+    public User signUp(User user) {
 
         if(userRepository.findUserByEmail(user.getEmail()) != null) {
 
-            throw new ResourceConflictException("This email is already registered", 409);
+            throw new ResourceConflictException("The email is already registered", 409);
 
         }
 
         user.setCreationDate(new Date());
-//        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        userRepository.save(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        return userRepository.save(user);
 
     }
 

@@ -15,30 +15,35 @@ public class AuthController {
 
     private AuthService authService;
 
-    // Inyección del servicio de autenticación
-    @Autowired
-    public void setAuthService(AuthService authService) {
+    private final JwtService jwtService;
+
+    public AuthController(JwtService jwtService, AuthService authService) {
+        this.jwtService = jwtService;
         this.authService = authService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<InfoResponse> register(@RequestBody User user) {
+    @PostMapping("/sign-up")
+    public ResponseEntity<User> signUp(@RequestBody User user) {
 
-        authService.register(user);
+        User registeredUser = authService.signUp(user);
 
-        return ResponseEntity.ok(new InfoResponse("Registration successfull", 200));
+        return ResponseEntity.ok(registeredUser);
 
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<TokenResponse> login(@RequestParam String email, @RequestParam String password) {
 
-        Map<String, String> response = new HashMap<>();
+        User authenticatedUser = authService.authenticate(email, password);
 
-        response.put("token", authService.login(email, password));
+        String jwtToken = jwtService.generateTokenUser(authenticatedUser);
 
-        return ResponseEntity.ok(response);
+        TokenResponse tokenResponse = new TokenResponse();
 
+        tokenResponse.setToken(jwtToken);
+        tokenResponse.setExpiresIn(jwtService.getExpirationTime());
+
+        return ResponseEntity.ok(tokenResponse);
     }
 
 }
