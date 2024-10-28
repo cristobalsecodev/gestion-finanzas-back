@@ -3,7 +3,7 @@ package com.gestionFinanzas.Auth;
 import lombok.Data;
 
 @Data
-public class TokenResponse {
+public class TokenResponseDto {
 
     private String token;
 

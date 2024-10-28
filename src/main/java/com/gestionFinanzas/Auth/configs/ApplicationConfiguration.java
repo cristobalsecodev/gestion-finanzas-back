@@ -5,13 +5,13 @@ import com.gestionFinanzas.Usuarios.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.util.Optional;
 
 @Configuration
 public class ApplicationConfiguration {
@@ -23,6 +23,7 @@ public class ApplicationConfiguration {
         this.userRepository = userRepository;
     }
 
+    // Define cómo devolver el usuario
     @Bean
     UserDetailsService userDetailsService() {
         return username -> {
@@ -40,7 +41,13 @@ public class ApplicationConfiguration {
         return new BCryptPasswordEncoder();
     }
 
-    // Procede a la autenticación del usuario
+    // Configura la gestión de la autenticación
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    // Setea la lógica para realizar la autenticación
     @Bean
     AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();

@@ -16,13 +16,13 @@
     </properties>
 
     <dependencies>
-        <!-- PostgresSQL -->
+        <!-- POSTGRESQL -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.7.2</version>
         </dependency>
-        <!-- Swagger -->
+        <!-- SWAGGER -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -34,20 +34,20 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>3.3.5</version>
         </dependency>
-        <!-- Spring boot starter web -->
+        <!-- SPRING WEB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>3.3.4</version>
         </dependency>
-        <!-- Lombok -->
+        <!-- LOMBOK -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.34</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Spring boot security -->
+        <!-- SPRING SECURITY -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -71,11 +71,17 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.12.6</version>
         </dependency>
-        <!-- ACKSON DATABIND -->
+        <!-- JACKSON DATABIND -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.18.0</version>
+        </dependency>
+        <!-- SPRING MAIL -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>3.3.5</version>
         </dependency>
 
     </dependencies>

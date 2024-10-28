@@ -1,5 +1,6 @@
 package com.gestionFinanzas.Usuarios;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,6 +29,10 @@ public class User implements UserDetails {
     private Date creationDate;
 
     private String password;
+
+    @JsonIgnore
+    @Column(name = "account_activation_code")
+    private String accountActivacionCode;
 
     // Parte del UserDetails
 

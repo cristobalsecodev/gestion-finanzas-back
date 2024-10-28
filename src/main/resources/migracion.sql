@@ -4,7 +4,8 @@ create table users (
   email text not null unique,
   surnames text,
   creation_date date not null default now(),
-  password varchar(60)
+  account_activation_code text,
+  password varchar(255)
 );
 
 create table expense_categories (
