@@ -3,7 +3,7 @@ package com.gestionFinanzas.Rest;
 import com.gestionFinanzas.Rest.CurrencyConversion.CurrencyConversionService;
 import com.gestionFinanzas.Rest.CurrencyConversion.DTOs.CurrencyConversionDto;
 import com.gestionFinanzas.Rest.MarketValuesData.DTOs.StockForDayDto;
-import com.gestionFinanzas.Rest.MarketValuesData.DTOs.StockForDayFilterDto;
+import com.gestionFinanzas.Rest.MarketValuesData.DTOs.TwelveDataResponseDto;
 import com.gestionFinanzas.Rest.MarketValuesData.MarketValuesDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class RestController {
 
     // Obtener valores de activo solo por un día
     @PostMapping("get-stock-for-day")
-    public StockForDayDto getStockForDay(@RequestBody StockForDayFilterDto filter) {
+    public StockForDayDto getStockForDay(@RequestBody TwelveDataResponseDto filter) {
         return marketValuesDataService.getStockForDay(filter);
     }
 

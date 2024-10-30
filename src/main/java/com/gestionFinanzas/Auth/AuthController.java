@@ -1,6 +1,8 @@
 package com.gestionFinanzas.Auth;
 
 import com.gestionFinanzas.Usuarios.User;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +14,7 @@ public class AuthController {
 
     private final AuthService authService;
 
-    private final JwtService jwtService;
-
-    public AuthController(JwtService jwtService, AuthService authService) {
-        this.jwtService = jwtService;
+    public AuthController(AuthService authService) {
         this.authService = authService;
     }
 
@@ -25,7 +24,7 @@ public class AuthController {
         // Procedemos a la lógica de registro de usuario
         User registeredUser = authService.signUp(user);
 
-        return ResponseEntity.ok(manageToken(registeredUser));
+        return ResponseEntity.ok(authService.manageToken(registeredUser));
 
     }
 
@@ -35,22 +34,26 @@ public class AuthController {
         // Autenticamos el usuario
         User authenticatedUser = authService.authenticate(loginInfo.getEmail(), loginInfo.getPassword());
 
-        return ResponseEntity.ok(manageToken(authenticatedUser));
+        return ResponseEntity.ok(authService.manageToken(authenticatedUser));
 
     }
 
-    // Gestionamos las claims, la generación del token y su respuesta
-    private TokenResponseDto manageToken(User user) {
+    @GetMapping("/refresh-token")
+    public ResponseEntity<TokenResponseDto> refreshToken(HttpServletRequest request) {
 
-        // Le añadimos las claims pertinentes
-        Map<String, Object> extraClaims = authService.manageClaims(user);
+        String authorizationHeader = request.getHeader("Authorization");
 
-        // Generamos el token
-        String jwtToken = jwtService.generateTokenWithClaims(extraClaims, user);
+        TokenResponseDto newToken = authService.refreshToken(authorizationHeader);
 
-        // Creamos el objeto del token y lo devolvemos
-        return authService.createTokenResponse(jwtToken, jwtService.getExpirationTime());
+        if(newToken != null) {
+
+            return ResponseEntity.ok(newToken);
+
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 
     }
+
 
 }

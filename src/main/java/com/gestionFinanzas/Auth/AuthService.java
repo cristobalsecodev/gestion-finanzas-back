@@ -3,6 +3,7 @@ package com.gestionFinanzas.Auth;
 import com.gestionFinanzas.Shared.ExceptionHandler.ResourceConflictException;
 import com.gestionFinanzas.Usuarios.User;
 import com.gestionFinanzas.Usuarios.UserRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,14 +23,18 @@ public class AuthService {
 
     private final AuthenticationManager authenticationManager;
 
+    private final JwtService jwtService;
+
     public AuthService(
             UserRepository userRepository,
             AuthenticationManager authenticationManager,
-            PasswordEncoder passwordEncoder
+            PasswordEncoder passwordEncoder,
+            JwtService jwtService
     ) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     // Autenticamos el login del usuario
@@ -70,8 +75,53 @@ public class AuthService {
 
     }
 
+    public TokenResponseDto refreshToken(String authorizationHeader) {
+
+        String token = null;
+
+        // Verificamos el token en el header
+        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+
+            token = authorizationHeader.substring(7);
+
+        }
+
+        // Validamos el token y generamos uno nuevo
+        if(token != null) {
+
+            String email = jwtService.extractEmail(token);
+
+            User user = userRepository.findUserByEmail(email);
+
+            if(jwtService.isTokenValid(token, user)) {
+
+                return manageToken(user);
+
+            }
+
+        }
+
+        return null;
+
+    }
+
+    // Gestionamos las claims, la generación del token y su respuesta
+    public TokenResponseDto manageToken(User user) {
+
+        // Le añadimos las claims pertinentes
+        Map<String, Object> extraClaims = manageClaims(user);
+
+        TokenResponseDto tokenResponse = new TokenResponseDto();
+
+        tokenResponse.setToken(jwtService.generateTokenWithClaims(extraClaims, user));
+
+        // Generamos el token
+        return tokenResponse;
+
+    }
+
     // Maneja las variables extra a meter en el token
-    public Map<String, Object> manageClaims(User user) {
+    private Map<String, Object> manageClaims(User user) {
 
         Map<String, Object> extraClaims = new HashMap<>();
 
@@ -81,18 +131,6 @@ public class AuthService {
         extraClaims.put("isAccountActivated", isActivated);
 
         return extraClaims;
-
-    }
-
-    // Generamos el objeto de respuesta del token
-    public TokenResponseDto createTokenResponse(String jwtToken, long expirationTime) {
-
-        TokenResponseDto tokenResponseDto = new TokenResponseDto();
-
-        tokenResponseDto.setToken(jwtToken);
-        tokenResponseDto.setExpiresIn(expirationTime);
-
-        return tokenResponseDto;
 
     }
 

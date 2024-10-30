@@ -7,6 +7,4 @@ public class TokenResponseDto {
 
     private String token;
 
-    private long expiresIn;
-
 }
