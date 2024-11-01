@@ -1,9 +1,10 @@
 package com.gestionFinanzas.Auth;
 
 import com.gestionFinanzas.Shared.ExceptionHandler.ResourceConflictException;
+import com.gestionFinanzas.Shared.ExceptionHandler.TokenNotFoundException;
 import com.gestionFinanzas.Usuarios.User;
 import com.gestionFinanzas.Usuarios.UserRepository;
-import org.springframework.http.ResponseEntity;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -57,7 +58,7 @@ public class AuthService {
         // Comprobamos que el email no existe
         if(userRepository.findUserByEmail(user.getEmail()) != null) {
 
-            throw new ResourceConflictException("The email is already registered", 409);
+            throw new ResourceConflictException("The email is already registered");
 
         }
 
@@ -120,6 +121,27 @@ public class AuthService {
 
     }
 
+    // Función que extrae el token del encabezado
+    public String extractTokenFromHeader(HttpServletRequest request) {
+
+        // Extraer el token del encabezado
+        String authorizationHeader = request.getHeader("Authorization");
+        String jwtToken = null;
+
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            jwtToken = authorizationHeader.substring(7); // Extraer el token sin "Bearer "
+        }
+
+        if(jwtToken == null) {
+
+            throw new TokenNotFoundException("JWT token is missing");
+
+        }
+
+        return jwtToken;
+
+    }
+
     // Maneja las variables extra a meter en el token
     private Map<String, Object> manageClaims(User user) {
 
@@ -136,7 +158,13 @@ public class AuthService {
 
     // Generamos código de activación del usuario
     private String generateActivationCode() {
-        return UUID.randomUUID().toString().replace("-", "").substring(0, 6);
+
+        // Generamos un identificador aleatorio
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+
+        // Cogemos los 6 primeros dígitos (excluyendo letras)
+        return uuid.replaceAll("[^0-9]", "").substring(0, 6);
+
     }
 
 }

@@ -13,4 +13,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             @Param("email") String email
     );
 
+    @Query(value = "SELECT account_activation_code FROM users WHERE email = :email", nativeQuery = true)
+    String findActivationCodeByEmail(
+            @Param("email") String email
+    );
+
 }

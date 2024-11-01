@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/TokenNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Usuarios/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/RestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/RestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Auth/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/CurrencyConversion/CurrencyConversionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/CurrencyConversion/CurrencyConversionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/MarketValuesData/MarketValuesDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Rest/MarketValuesData/MarketValuesDataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/ApiException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/ApiException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/GlobalExceptionHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/GlobalExceptionHandling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/ResourceConflictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/ResourceConflictException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Usuarios/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Usuarios/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Usuarios/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Usuarios/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +29,8 @@
         <option value="package-info" />
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Exception" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>

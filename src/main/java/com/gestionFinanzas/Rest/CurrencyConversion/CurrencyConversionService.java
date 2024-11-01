@@ -91,7 +91,7 @@ public class CurrencyConversionService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException("The conversion from JSON to a node tree has failed");
         } catch (HttpClientErrorException | HttpServerErrorException ex) {
-            throw new ApiException(ex.getStatusText(), ex.getStatusCode().value());
+            throw new ApiException(ex.getStatusText(), ex.getStatusCode());
         } catch (ParseException e) {
             throw new RuntimeException("The conversion of the date to Date type has failed");
         }

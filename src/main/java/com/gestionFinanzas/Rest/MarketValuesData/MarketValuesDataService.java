@@ -85,7 +85,7 @@ public class MarketValuesDataService {
         } catch (ParseException e) {
             throw new RuntimeException("The conversion of the date to Date type has failed");
         } catch (HttpClientErrorException | HttpServerErrorException ex) {
-            throw new ApiException(ex.getStatusText(), ex.getStatusCode().value());
+            throw new ApiException(ex.getStatusText(), ex.getStatusCode());
         }
 
         return new StockForDayDto();
