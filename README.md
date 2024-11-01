@@ -11,7 +11,7 @@ migracion.sql
 ```yaml
 spring:
   datasource:
-    url: jdbc:postgresql://{URL}:{PUERTO}/{BBDD}
+    url: jdbc:postgresql://{URL}:{PORT}/{BBDD}
     username: USER_NAME
     password: PASSWORD
     driver-class-name: org.postgresql.Driver
@@ -19,6 +19,17 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: YOUR_EMAIL
+    password: YOUR_PASSWORD
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 polygon:
   api:
     key: API_KEY
@@ -27,4 +38,8 @@ exchangeRate:
   api:
     key: API_KEY
   baseUrl: https://v6.exchangerate-api.com
+security:
+  jwt:
+    secret-key: SECRET_KEY
+    expiration-time: EXP_TIME_IN_MS
 ```
