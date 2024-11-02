@@ -7,6 +7,8 @@ import com.gestionFinanzas.Usuarios.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -76,16 +78,10 @@ public class AuthService {
 
     }
 
-    public TokenResponseDto refreshToken(String authorizationHeader) {
-
-        String token = null;
+    public TokenResponseDto refreshToken(HttpServletRequest request) {
 
         // Verificamos el token en el header
-        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-
-            token = authorizationHeader.substring(7);
-
-        }
+        String token = extractTokenFromHeader(request);
 
         // Validamos el token y generamos uno nuevo
         if(token != null) {
@@ -139,6 +135,19 @@ public class AuthService {
         }
 
         return jwtToken;
+
+    }
+
+    // Recuperamos la información del usuario del security context
+    public User getInfoUser() {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return (User) principal;
+        } else {
+            throw new RuntimeException("User not found in security context");
+        }
 
     }
 

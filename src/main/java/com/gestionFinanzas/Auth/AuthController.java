@@ -39,9 +39,7 @@ public class AuthController {
     @GetMapping("/refresh-token")
     public ResponseEntity<TokenResponseDto> refreshToken(HttpServletRequest request) {
 
-        String authorizationHeader = request.getHeader("Authorization");
-
-        TokenResponseDto newToken = authService.refreshToken(authorizationHeader);
+        TokenResponseDto newToken = authService.refreshToken(request);
 
         if(newToken != null) {
 
