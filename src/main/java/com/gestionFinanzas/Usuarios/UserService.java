@@ -4,11 +4,8 @@ import com.gestionFinanzas.Auth.AuthService;
 import com.gestionFinanzas.Auth.JwtService;
 
 import com.gestionFinanzas.Auth.TokenResponseDto;
-import com.gestionFinanzas.Shared.ExceptionHandler.ResourceConflictException;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 

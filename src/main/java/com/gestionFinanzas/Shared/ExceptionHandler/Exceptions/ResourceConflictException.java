@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Shared.ExceptionHandler;
+package com.gestionFinanzas.Shared.ExceptionHandler.Exceptions;
 
 public class ResourceConflictException extends RuntimeException {
   public ResourceConflictException(String message) {

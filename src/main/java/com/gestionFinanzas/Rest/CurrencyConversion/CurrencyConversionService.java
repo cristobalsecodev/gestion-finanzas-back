@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gestionFinanzas.Rest.CurrencyConversion.DTOs.CurrencyConversionDto;
 import com.gestionFinanzas.Rest.CurrencyConversion.DTOs.ExchangeRatioDto;
-import com.gestionFinanzas.Shared.ExceptionHandler.ApiException;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ApiException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

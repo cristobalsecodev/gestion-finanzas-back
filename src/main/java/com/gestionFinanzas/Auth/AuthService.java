@@ -1,9 +1,11 @@
 package com.gestionFinanzas.Auth;
 
-import com.gestionFinanzas.Shared.ExceptionHandler.ResourceConflictException;
-import com.gestionFinanzas.Shared.ExceptionHandler.TokenNotFoundException;
+import com.gestionFinanzas.Shared.Email.EmailService;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.TokenNotFoundException;
 import com.gestionFinanzas.Usuarios.User;
 import com.gestionFinanzas.Usuarios.UserRepository;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,21 +30,26 @@ public class AuthService {
 
     private final JwtService jwtService;
 
+    private final EmailService emailService;
+
     public AuthService(
             UserRepository userRepository,
             AuthenticationManager authenticationManager,
             PasswordEncoder passwordEncoder,
-            JwtService jwtService
+            JwtService jwtService,
+            EmailService emailService
     ) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+        this.emailService = emailService;
     }
 
     // Autenticamos el login del usuario
-    public User authenticate(String email, String password) {
+    public TokenResponseDto authenticate(String email, String password) {
 
+        // Autenticamos
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         email,
@@ -50,12 +57,16 @@ public class AuthService {
                 )
         );
 
-        return userRepository.findUserByEmail(email);
+        // Recuperamos al usuario
+        User user = userRepository.findUserByEmail(email);
+
+        // Devolvemos el token
+        return manageToken(user);
 
     }
 
     // Registramos al usuario
-    public User signUp(User user) {
+    public TokenResponseDto signUp(User user) {
 
         // Comprobamos que el email no existe
         if(userRepository.findUserByEmail(user.getEmail()) != null) {
@@ -74,7 +85,13 @@ public class AuthService {
         user.setAccountActivacionCode(generateActivationCode());
 
         // Guardamos el usuario
-        return userRepository.save(user);
+        User registeredUser = userRepository.save(user);
+
+        // Mandamos el email de activación de cuenta
+        emailService.sendActivacionEmail(registeredUser);
+
+        // Devolvemos el token
+        return manageToken(registeredUser);
 
     }
 

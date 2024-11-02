@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Shared;
+package com.gestionFinanzas.Shared.Utils;
 
 import java.time.LocalDate;
 import java.time.ZoneId;

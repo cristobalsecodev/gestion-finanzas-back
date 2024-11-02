@@ -1,10 +1,13 @@
 package com.gestionFinanzas.Shared.ExceptionHandler;
 
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ApiException;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.EmailException;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.TokenNotFoundException;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -36,6 +39,16 @@ public class GlobalExceptionHandling {
 
     }
 
+    @ExceptionHandler(EmailException.class)
+    public ProblemDetail handleEmailException(EmailException exception) {
+
+        ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+        errorDetail.setProperty("description", exception.getMessage());
+
+        return errorDetail;
+
+    }
+
     @ExceptionHandler(ResourceConflictException.class)
     public ProblemDetail ResourceConflictExceptionHandling(ResourceConflictException exception) {
 
@@ -44,10 +57,6 @@ public class GlobalExceptionHandling {
 
         return errorDetail;
 
-    }
-
-    private ResponseEntity<InfoResponse> buildResponse(String message, Integer statusCode) {
-        return ResponseEntity.status(statusCode).body(new InfoResponse(message, statusCode));
     }
 
     @ExceptionHandler(Exception.class)

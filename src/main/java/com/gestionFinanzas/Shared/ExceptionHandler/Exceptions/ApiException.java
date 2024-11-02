@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Shared.ExceptionHandler;
+package com.gestionFinanzas.Shared.ExceptionHandler.Exceptions;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatusCode;
