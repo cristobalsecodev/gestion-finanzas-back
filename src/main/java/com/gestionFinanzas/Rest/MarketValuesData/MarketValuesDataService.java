@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gestionFinanzas.Rest.MarketValuesData.DTOs.*;
-import com.gestionFinanzas.Shared.Utils.DateUtils;
+import com.gestionFinanzas.Shared.Utils.DateFormat;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ApiException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,6 @@ import org.springframework.web.client.RestTemplate;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Service
 public class MarketValuesDataService {
@@ -36,7 +35,7 @@ public class MarketValuesDataService {
                 baseUrl + "/v1/open-close/"
                         + filter.getSymbol().toUpperCase()
                         + "/"
-                        + DateUtils.dateToString(filter.getDate(), "yyyy-MM-dd")
+                        + DateFormat.dateToString(filter.getDate(), "yyyy-MM-dd")
                         + "?adjusted=true"
                         + "&apikey=" + apiKey;
 
@@ -72,7 +71,7 @@ public class MarketValuesDataService {
 
                 // Convertimos la fecha a un objeto Date
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = sdf.parse(node.get("from").asText());
+                java.util.Date date = sdf.parse(node.get("from").asText());
 
                 stock.setDate(date);
 

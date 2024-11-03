@@ -3,11 +3,10 @@ package com.gestionFinanzas.Shared.Utils;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
-public class DateUtils {
+public class DateFormat {
 
-    public static String dateToString(Date date, String formato) {
+    public static String dateToString(java.util.Date date, String formato) {
         if(date == null || formato.isEmpty()) {
             throw new IllegalArgumentException("La Fecha y el formato son obligatorios");
         }

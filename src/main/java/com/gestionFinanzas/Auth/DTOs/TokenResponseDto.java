@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Auth;
+package com.gestionFinanzas.Auth.DTOs;
 
 import lombok.Data;
 

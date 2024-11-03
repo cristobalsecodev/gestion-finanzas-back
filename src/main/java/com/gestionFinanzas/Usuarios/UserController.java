@@ -1,6 +1,6 @@
 package com.gestionFinanzas.Usuarios;
 
-import com.gestionFinanzas.Auth.TokenResponseDto;
+import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

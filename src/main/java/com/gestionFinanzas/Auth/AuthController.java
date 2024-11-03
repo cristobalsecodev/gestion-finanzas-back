@@ -1,6 +1,10 @@
 package com.gestionFinanzas.Auth;
 
-import com.gestionFinanzas.OneTimeUrl.OneTimeUrl;
+import com.gestionFinanzas.Auth.DTOs.ResetPasswordDto;
+import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
+import com.gestionFinanzas.Auth.DTOs.UrlTokenDto;
+import com.gestionFinanzas.Auth.DTOs.WantsResetPasswordDto;
+import com.gestionFinanzas.OneTimeUrl.OneTimeUrlService;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -13,8 +17,11 @@ public class AuthController {
 
     private final AuthService authService;
 
-    public AuthController(AuthService authService) {
+    private final OneTimeUrlService oneTimeUrlService;
+
+    public AuthController(AuthService authService, OneTimeUrlService oneTimeUrlService) {
         this.authService = authService;
+        this.oneTimeUrlService = oneTimeUrlService;
     }
 
     @PostMapping("/sign-up")
@@ -48,10 +55,24 @@ public class AuthController {
 
     }
 
-    @GetMapping("/use-url/{token}")
-    public ResponseEntity<String> useOneTimeUrl(@PathVariable String token) {
+    @PostMapping("/want-reset-password")
+    public ResponseEntity<String> wantResetPassword(@RequestBody WantsResetPasswordDto wantResetInfo) {
 
-        return ResponseEntity.ok(authService.useOneTimeUrl(token));
+        return ResponseEntity.ok(authService.wantResetPassword(wantResetInfo));
+
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(@RequestBody ResetPasswordDto resetPasswordInfo) {
+
+        return ResponseEntity.ok(authService.resetPassword(resetPasswordInfo));
+
+    }
+
+    @PostMapping("/check-one-time-url")
+    public ResponseEntity<String> checkOneTimeUrl(@RequestBody UrlTokenDto token) {
+
+        return ResponseEntity.ok(oneTimeUrlService.checkOneTimeUrl(token.getToken()));
 
     }
 

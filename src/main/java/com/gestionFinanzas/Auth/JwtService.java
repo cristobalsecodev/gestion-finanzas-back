@@ -92,7 +92,7 @@ public class JwtService {
     }
 
     // Genera una clave secreta para firmar y verificar el token
-    private SecretKey getSignInKey() {
+    public SecretKey getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }

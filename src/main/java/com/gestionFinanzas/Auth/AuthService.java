@@ -1,7 +1,11 @@
 package com.gestionFinanzas.Auth;
 
+import com.gestionFinanzas.Auth.DTOs.ResetPasswordDto;
+import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
+import com.gestionFinanzas.Auth.DTOs.WantsResetPasswordDto;
+import com.gestionFinanzas.Auth.ENUMs.OneTimeUrlTypeEnum;
 import com.gestionFinanzas.OneTimeUrl.OneTimeUrl;
-import com.gestionFinanzas.OneTimeUrl.OneTimeUrlRepository;
+import com.gestionFinanzas.OneTimeUrl.OneTimeUrlService;
 import com.gestionFinanzas.Shared.Email.EmailService;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
@@ -17,7 +21,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.*;
 
 @Service
@@ -33,7 +36,7 @@ public class AuthService {
 
     private final EmailService emailService;
 
-    private final OneTimeUrlRepository oneTimeUrlRepository;
+    private final OneTimeUrlService oneTimeUrlService;
 
     public AuthService(
             UserRepository userRepository,
@@ -41,14 +44,14 @@ public class AuthService {
             PasswordEncoder passwordEncoder,
             JwtService jwtService,
             EmailService emailService,
-            OneTimeUrlRepository oneTimeUrlRepository
+            OneTimeUrlService oneTimeUrlService
     ) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.emailService = emailService;
-        this.oneTimeUrlRepository = oneTimeUrlRepository;
+        this.oneTimeUrlService = oneTimeUrlService;
     }
 
     // Autenticamos el login del usuario
@@ -173,46 +176,55 @@ public class AuthService {
 
     }
 
-    // Uso de url única (El token es el código de la url, no del usuario)
-    public String useOneTimeUrl(String token) {
+    // Usuario quiere resetear la contraseña
+    public String wantResetPassword(WantsResetPasswordDto wantResetInfo) {
 
-        OneTimeUrl oneTimeUrl = oneTimeUrlRepository.findOneTimeUrlByToken(token);
+        // Creamos una one time url para ello
+        OneTimeUrl oneTimeUrlSaved = oneTimeUrlService.createOneTimeUrl(
+            wantResetInfo.getUrl(),
+            wantResetInfo.getEmail(),
+            15,
+            OneTimeUrlTypeEnum.RESET_PASS.getName()
+        );
 
-        if(oneTimeUrl == null || oneTimeUrl.getUsed()) {
+        User user = userRepository.findUserByEmail(wantResetInfo.getEmail());
 
-            throw new NotFoundException("The specified URL could not be found or is currently unavailable");
+//        emailService.sendResetPasswordEmail(user, oneTimeUrlSaved);
 
-        }
-
-        oneTimeUrl.setUsed(true);
-
-        oneTimeUrlRepository.save(oneTimeUrl);
-
-        return "URL OK";
+        return "Email sent";
 
     }
 
-    // Crea una URL única de un uso con expiración a X minutos
-    public String createOneTimeUrl(String url, long expirationTimeInMinutes) {
+    // Resetear contraseña (el token es el código de la url, no del usuario)
+    public String resetPassword(ResetPasswordDto resetPasswordInfo) {
 
-        // Generamos el token id
-        String token = UUID.randomUUID().toString();
+        // Buscamos la oneTimeUrl por su token
+        OneTimeUrl oneTimeUrl = oneTimeUrlService.findOneTimeUrlByToken(resetPasswordInfo.getToken());
 
-        // Convertimos la fecha y hora de ahora en milisegundos
-        long currentTimeMillis = Instant.now().toEpochMilli();
+        if(oneTimeUrl == null) {
 
-        // Convertimos X minutos en milisegundos
-        long fifteenMinutesInMillis = expirationTimeInMinutes * 60 * 1000;
+            throw new NotFoundException("URL not found");
 
-        // Sumamos los milisegundos
-        long newTimeMillis = currentTimeMillis + fifteenMinutesInMillis;
+        }
 
-        OneTimeUrl oneTimeUrl = new OneTimeUrl(token, false, newTimeMillis);
+        // Sacamos el usuario del email
+        User user = userRepository.findUserByEmail(oneTimeUrl.getEmail());
 
-        // Guardamos la url
-        oneTimeUrlRepository.save(oneTimeUrl);
+        if(user == null) {
 
-        return url + "/" + token;
+            throw new NotFoundException("User not found");
+
+        }
+
+        // Codificación de la contraseña
+        user.setPassword(passwordEncoder.encode(resetPasswordInfo.getNewPassword()));
+
+        // Guardamos el usuario
+        userRepository.save(user);
+
+        oneTimeUrlService.markOneTimeUrlAsUsed(resetPasswordInfo.getToken());
+
+        return "Your new password has been successfully confirmed. You may now log in";
 
     }
 
