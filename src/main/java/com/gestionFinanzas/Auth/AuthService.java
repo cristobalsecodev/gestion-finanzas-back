@@ -1,11 +1,14 @@
 package com.gestionFinanzas.Auth;
 
+import com.gestionFinanzas.OneTimeUrl.OneTimeUrl;
+import com.gestionFinanzas.OneTimeUrl.OneTimeUrlRepository;
 import com.gestionFinanzas.Shared.Email.EmailService;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.TokenNotFoundException;
 import com.gestionFinanzas.Usuarios.User;
 import com.gestionFinanzas.Usuarios.UserRepository;
-import jakarta.mail.MessagingException;
+
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,10 +17,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.time.Instant;
+import java.util.*;
 
 @Service
 public class AuthService {
@@ -32,18 +33,22 @@ public class AuthService {
 
     private final EmailService emailService;
 
+    private final OneTimeUrlRepository oneTimeUrlRepository;
+
     public AuthService(
             UserRepository userRepository,
             AuthenticationManager authenticationManager,
             PasswordEncoder passwordEncoder,
             JwtService jwtService,
-            EmailService emailService
+            EmailService emailService,
+            OneTimeUrlRepository oneTimeUrlRepository
     ) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.emailService = emailService;
+        this.oneTimeUrlRepository = oneTimeUrlRepository;
     }
 
     // Autenticamos el login del usuario
@@ -165,6 +170,49 @@ public class AuthService {
         } else {
             throw new RuntimeException("User not found in security context");
         }
+
+    }
+
+    // Uso de url única (El token es el código de la url, no del usuario)
+    public String useOneTimeUrl(String token) {
+
+        OneTimeUrl oneTimeUrl = oneTimeUrlRepository.findOneTimeUrlByToken(token);
+
+        if(oneTimeUrl == null || oneTimeUrl.getUsed()) {
+
+            throw new NotFoundException("The specified URL could not be found or is currently unavailable");
+
+        }
+
+        oneTimeUrl.setUsed(true);
+
+        oneTimeUrlRepository.save(oneTimeUrl);
+
+        return "URL OK";
+
+    }
+
+    // Crea una URL única de un uso con expiración a X minutos
+    public String createOneTimeUrl(String url, long expirationTimeInMinutes) {
+
+        // Generamos el token id
+        String token = UUID.randomUUID().toString();
+
+        // Convertimos la fecha y hora de ahora en milisegundos
+        long currentTimeMillis = Instant.now().toEpochMilli();
+
+        // Convertimos X minutos en milisegundos
+        long fifteenMinutesInMillis = expirationTimeInMinutes * 60 * 1000;
+
+        // Sumamos los milisegundos
+        long newTimeMillis = currentTimeMillis + fifteenMinutesInMillis;
+
+        OneTimeUrl oneTimeUrl = new OneTimeUrl(token, false, newTimeMillis);
+
+        // Guardamos la url
+        oneTimeUrlRepository.save(oneTimeUrl);
+
+        return url + "/" + token;
 
     }
 

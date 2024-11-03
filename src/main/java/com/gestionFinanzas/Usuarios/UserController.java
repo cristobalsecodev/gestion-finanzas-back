@@ -1,7 +1,6 @@
 package com.gestionFinanzas.Usuarios;
 
 import com.gestionFinanzas.Auth.TokenResponseDto;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,10 +18,10 @@ public class UserController {
     }
 
     @PostMapping("/activate-account")
-    public ResponseEntity<TokenResponseDto> activateAccount(@RequestBody String activationCode, HttpServletRequest request) {
+    public ResponseEntity<TokenResponseDto> activateAccount(@RequestBody String activationCode) {
 
         // Procedemos a la lógica de activación de cuenta
-        return ResponseEntity.ok(userService.activateAccount(activationCode, request));
+        return ResponseEntity.ok(userService.activateAccount(activationCode));
 
     }
 

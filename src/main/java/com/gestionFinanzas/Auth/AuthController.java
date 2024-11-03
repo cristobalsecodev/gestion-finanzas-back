@@ -1,7 +1,7 @@
 package com.gestionFinanzas.Auth;
 
+import com.gestionFinanzas.OneTimeUrl.OneTimeUrl;
 import com.gestionFinanzas.Usuarios.User;
-import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,5 +48,11 @@ public class AuthController {
 
     }
 
+    @GetMapping("/use-url/{token}")
+    public ResponseEntity<String> useOneTimeUrl(@PathVariable String token) {
+
+        return ResponseEntity.ok(authService.useOneTimeUrl(token));
+
+    }
 
 }

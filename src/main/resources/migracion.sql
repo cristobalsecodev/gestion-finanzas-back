@@ -1,3 +1,9 @@
+create table one_time_url (
+  token text primary key,
+  used boolean not null default false,
+  expiration_time bigint;
+);
+
 create table users (
   id bigint primary key generated always as identity,
   name text,

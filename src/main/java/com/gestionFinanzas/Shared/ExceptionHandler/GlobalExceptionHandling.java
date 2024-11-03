@@ -1,9 +1,6 @@
 package com.gestionFinanzas.Shared.ExceptionHandler;
 
-import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ApiException;
-import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.EmailException;
-import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
-import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.TokenNotFoundException;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.*;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -22,91 +19,144 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(ApiException.class)
     public ProblemDetail ApiExceptionHandling(ApiException exception) {
 
-        ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(exception.getStatusCode(), exception.getMessage());
-        errorDetail.setProperty("description", "The JWT token is missing from the request header");
+        String description = "An error occurred while communicating with the external API. Please check the service status or try again later";
 
-        return errorDetail;
+        return buildErrorDetail(
+                HttpStatus.valueOf(exception.getStatusCode().value()),
+                exception.getMessage(),
+                description
+        );
 
     }
 
     @ExceptionHandler(TokenNotFoundException.class)
     public ProblemDetail handleTokenNotFoundException(TokenNotFoundException exception) {
 
-        ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, exception.getMessage());
-        errorDetail.setProperty("description", "The JWT token is missing from the request header");
+        String description = "The JWT token is missing from the request header";
 
-        return errorDetail;
+        return buildErrorDetail(
+                HttpStatus.BAD_REQUEST,
+                exception.getMessage(),
+                description
+        );
 
     }
 
     @ExceptionHandler(EmailException.class)
     public ProblemDetail handleEmailException(EmailException exception) {
 
-        ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
-        errorDetail.setProperty("description", exception.getMessage());
-
-        return errorDetail;
+        return buildErrorDetail(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                exception.getMessage(),
+                exception.getMessage()
+        );
 
     }
 
     @ExceptionHandler(ResourceConflictException.class)
     public ProblemDetail ResourceConflictExceptionHandling(ResourceConflictException exception) {
 
-        ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, exception.getMessage());
-        errorDetail.setProperty("description", "A conflict occurred: " + exception.getMessage());
+        String description = "A conflict occurred: The requested operation could not be completed due to a resource conflict";
 
-        return errorDetail;
+        return buildErrorDetail(
+                HttpStatus.CONFLICT,
+                exception.getMessage(),
+                description
+        );
+
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ProblemDetail handleNotFoundException(NotFoundException exception) {
+
+        String description = "The requested resource could not be found. Please verify the input and try again";
+
+        ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
+        errorDetail.setProperty("description", exception.getMessage());
+
+        return buildErrorDetail(
+                HttpStatus.NOT_FOUND,
+                exception.getMessage(),
+                description
+        );
 
     }
 
     @ExceptionHandler(Exception.class)
     public ProblemDetail handleSecurityException(Exception exception) {
+
         ProblemDetail errorDetail = null;
 
         if (exception instanceof BadCredentialsException) {
 
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(401), exception.getMessage());
-            errorDetail.setProperty("description", "The username or password is incorrect");
+            errorDetail = buildErrorDetail(
+                    HttpStatus.UNAUTHORIZED,
+                    exception.getMessage(),
+                    "The username or password is incorrect"
+            );
 
-            return errorDetail;
         }
 
         if (exception instanceof AccountStatusException) {
 
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
-            errorDetail.setProperty("description", "The account is locked");
+            errorDetail = buildErrorDetail(
+                    HttpStatus.FORBIDDEN,
+                    exception.getMessage(),
+                    "The account is locked"
+            );
 
         }
 
         if (exception instanceof AccessDeniedException) {
 
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
-            errorDetail.setProperty("description", "You are not authorized to access this resource");
+            errorDetail = buildErrorDetail(
+                    HttpStatus.FORBIDDEN,
+                    exception.getMessage(),
+                    "You are not authorized to access this resource"
+            );
 
         }
 
         if (exception instanceof SignatureException) {
 
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
-            errorDetail.setProperty("description", "The JWT signature is invalid");
+            errorDetail = buildErrorDetail(
+                    HttpStatus.FORBIDDEN,
+                    exception.getMessage(),
+                    "The JWT signature is invalid"
+            );
 
         }
 
         if (exception instanceof ExpiredJwtException) {
 
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
-            errorDetail.setProperty("description", "The JWT token has expired");
+            errorDetail = buildErrorDetail(
+                    HttpStatus.FORBIDDEN,
+                    exception.getMessage(),
+                    "The JWT token has expired"
+            );
 
         }
 
         if (errorDetail == null) {
 
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(500), exception.getMessage());
-            errorDetail.setProperty("description", "Unknown internal server error.");
+            errorDetail = buildErrorDetail(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    exception.getMessage(),
+                    "Unknown internal server error"
+            );
 
         }
 
         return errorDetail;
+    }
+
+    private ProblemDetail buildErrorDetail(HttpStatus statusCode, String message, String description) {
+
+        ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(statusCode, message);
+        errorDetail.setProperty("description", description);
+
+        return errorDetail;
+
     }
 
 }
