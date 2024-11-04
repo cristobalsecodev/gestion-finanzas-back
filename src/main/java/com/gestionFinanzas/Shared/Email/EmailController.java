@@ -2,8 +2,7 @@ package com.gestionFinanzas.Shared.Email;
 
 import com.gestionFinanzas.Auth.AuthService;
 import com.gestionFinanzas.Usuarios.User;
-import jakarta.mail.MessagingException;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +19,7 @@ public class EmailController {
         this.authService = authService;
     }
 
-    @PostMapping("/send-activation-email")
+    @GetMapping("/send-activation-email")
     public void sendActivacionEmail() {
 
         // Recogemos el usuario del security context

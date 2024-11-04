@@ -1,6 +1,5 @@
 package com.gestionFinanzas.Shared.Email;
 
-import com.gestionFinanzas.Auth.JwtService;
 import com.gestionFinanzas.OneTimeUrl.OneTimeUrl;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.EmailException;
 import com.gestionFinanzas.Usuarios.User;
@@ -24,11 +23,8 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
-    private final JwtService jwtService;
-
-    public EmailService(JavaMailSender mailSender, JwtService jwtService) {
+    public EmailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
-        this.jwtService = jwtService;
     }
 
     public void sendActivacionEmail(User user) {

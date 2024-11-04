@@ -3,7 +3,6 @@ package com.gestionFinanzas.Shared.ExceptionHandler;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.*;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
 import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.authentication.BadCredentialsException;

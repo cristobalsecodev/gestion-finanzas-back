@@ -189,7 +189,7 @@ public class AuthService {
 
         User user = userRepository.findUserByEmail(wantResetInfo.getEmail());
 
-//        emailService.sendResetPasswordEmail(user, oneTimeUrlSaved);
+        emailService.sendResetPasswordEmail(user, oneTimeUrlSaved);
 
         return "Email sent";
 

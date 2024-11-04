@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -56,23 +59,41 @@ public class AuthController {
     }
 
     @PostMapping("/want-reset-password")
-    public ResponseEntity<String> wantResetPassword(@RequestBody WantsResetPasswordDto wantResetInfo) {
+    public ResponseEntity<Map<String, Object>> wantResetPassword(@RequestBody WantsResetPasswordDto wantResetInfo) {
 
-        return ResponseEntity.ok(authService.wantResetPassword(wantResetInfo));
+        String result = authService.wantResetPassword(wantResetInfo);
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("message", result);
+
+        return ResponseEntity.ok(response);
 
     }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<String> resetPassword(@RequestBody ResetPasswordDto resetPasswordInfo) {
+    public ResponseEntity<Map<String, Object>> resetPassword(@RequestBody ResetPasswordDto resetPasswordInfo) {
 
-        return ResponseEntity.ok(authService.resetPassword(resetPasswordInfo));
+        String result = authService.resetPassword(resetPasswordInfo);
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("message", result);
+
+        return ResponseEntity.ok(response);
 
     }
 
     @PostMapping("/check-one-time-url")
-    public ResponseEntity<String> checkOneTimeUrl(@RequestBody UrlTokenDto token) {
+    public ResponseEntity<Map<String, Object>> checkOneTimeUrl(@RequestBody UrlTokenDto token) {
 
-        return ResponseEntity.ok(oneTimeUrlService.checkOneTimeUrl(token.getToken()));
+        String result = oneTimeUrlService.checkOneTimeUrl(token.getToken());
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("message", result);
+
+        return ResponseEntity.ok(response);
 
     }
 
