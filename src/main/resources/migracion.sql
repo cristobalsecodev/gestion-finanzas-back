@@ -1,95 +1,90 @@
+-- Tabla de URLs de uso único / expirables
 create table one_time_url (
-  token text primary key,
-  used boolean not null default false,
-  expiration_time bigint,
-  email text,
-  type text,
-  url text
+    token text primary key,
+    used boolean not null default false,
+    expiration_time bigint,
+    email text,
+    type text,
+    url text
 );
 
+-- Tabla de usuarios
 create table users (
-  id bigint primary key generated always as identity,
-  name text,
-  email text not null unique,
-  surnames text,
-  creation_date date not null default now(),
-  account_activation_code text,
-  password varchar(255)
+    id bigint primary key generated always as identity,
+    name varchar(255),
+    email text not null unique,
+    surnames varchar(255),
+    creation_date date not null default now(),
+    account_activation_code varchar(10),
+    password varchar(255)
 );
 
-create table expense_categories (
-  id bigint primary key generated always as identity,
-  code text not null unique,
-  name text not null,
-  user_id bigint not null references users (id) on delete cascade
+-- Tabla de categorías de ingresos / gastos
+create table income_or_expense_category (
+    id bigint primary key generated always as identity,
+    name varchar(50) not null unique,
+    type varchar(10) check (type in ('income', 'expense')) not null,
+    user_id bigint not null references users (id) on delete cascade
 );
 
-create table expense_subcategories (
-  id bigint primary key generated always as identity,
-  code text not null unique,
-  name text not null,
-  user_id bigint not null references users (id) on delete cascade,
-  expense_category_id bigint not null references expense_categories (id) on delete cascade
+-- Tabla de subcategorías de ingresos / gastos
+create table income_or_expense_subcategory (
+    id bigint primary key generated always as identity,
+    name varchar(50) not null unique,
+    type varchar(10) check (type in ('income', 'expense')) not null,
+    user_id bigint not null references users (id) on delete cascade,
+    income_category_id bigint not null references income_or_expense_category (id) on delete cascade
 );
 
-create table income_categories (
-  id bigint primary key generated always as identity,
-  code text not null unique,
-  name text not null,
-  user_id bigint not null references users (id) on delete cascade
+-- Tabla de recurrencias
+create table recurrence_details (
+    id bigint primary key generated always as identity,
+    recurrence_type varchar(10) check (recurrence_type in ('daily', 'weekly', 'monthly', 'yearly')) not null,
+    frecuency integer not null,
+    end_date date,
+    occurrences integer,
+    days_of_week text[],
+    day_of_month integer check (day_of_month between 1 and 31)
 );
 
-create table income_subcategories (
-  id bigint primary key generated always as identity,
-  code text not null unique,
-  name text not null,
-  user_id bigint not null references users (id) on delete cascade,
-  income_category_id bigint not null references income_categories (id) on delete cascade
+-- Tabla de ingresos / gastos
+create table income_or_expense (
+    id bigint primary key generated always as identity,
+    date date not null,
+    amount numeric(15, 2) not null,
+    category varchar(40),
+    sub_category varchar(40),
+    currency varchar(10) not null,
+    type varchar(10) check (type in ('income', 'expense')) not null,
+    notes text,
+    user_id bigint not null references users (id) on delete cascade,
+    rcurrence_details_id bigint references recurrence_details(id)
 );
 
-create table investment_categories (
-  id bigint primary key generated always as identity,
-  code text not null unique,
-  name text not null,
-  user_id bigint not null references users (id) on delete cascade
+-- Tabla de categorías de inversiones
+create table investment_category (
+    id bigint primary key generated always as identity,
+    name text not null unique,
+    user_id bigint not null references users (id) on delete cascade
 );
 
-create table investment_subcategories (
-  id bigint primary key generated always as identity,
-  code text not null unique,
-  name text not null,
-  user_id bigint not null references users (id) on delete cascade,
-  investment_category_id bigint not null references investment_categories (id) on delete cascade
+-- Tabla de subcategorías de inversiones
+create table investment_subcategory (
+    id bigint primary key generated always as identity,
+    name text not null unique,
+    user_id bigint not null references users (id) on delete cascade,
+    investment_category_id bigint not null references investment_category (id) on delete cascade
 );
 
-create table expenses (
-  id bigint primary key generated always as identity,
-  date date not null,
-  amount numeric(10, 2) not null,
-  category_description text,
-  subcategory_description text,
-  notes text,
-  user_id bigint not null references users (id) on delete cascade
-);
-
-create table incomes (
-  id bigint primary key generated always as identity,
-  date date not null,
-  amount numeric(10, 2) not null,
-  category_description text,
-  subcategory_description text,
-  notes text,
-  user_id bigint not null references users (id) on delete cascade
-);
-
-create table investments (
+-- Tabla de inversiones
+create table investment (
   id bigint primary key generated always as identity,
   purchase_date date not null,
-  purchase_amount numeric(10, 2) not null,
-  category_description text,
-  subcategory_description text,
+  purchase_amount numeric(15, 2) not null,
+  category varchar(40),
+  subcategory varchar(40),
   notes text,
-  sale_amount numeric(10, 2),
+  sale_amount numeric(15, 2),
   sale_date date,
   user_id bigint not null references users (id) on delete cascade
 );

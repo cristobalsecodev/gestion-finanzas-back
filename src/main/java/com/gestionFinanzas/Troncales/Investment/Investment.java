@@ -19,19 +19,19 @@ public class Investment {
     @Column(name = "purchase_date", nullable = false)
     private LocalDate purchaseDate;
 
-    @Column(name = "purchase_amount", nullable = false, precision = 10, scale = 2)
+    @Column(name = "purchase_amount", nullable = false, precision = 15, scale = 2)
     private BigDecimal purchaseAmount;
 
-    @Column(name = "category_description")
-    private String categoryDescription;
+    @Column(name = "category", length = 40)
+    private String category;
 
-    @Column(name = "subcategory_description")
-    private String subcategoryDescription;
+    @Column(name = "subcategory", length = 40)
+    private String subcategory;
 
-    @Column
+    @Column(name = "notes", columnDefinition = "TEXT")
     private String notes;
 
-    @Column(name = "sale_amount", precision = 10, scale = 2)
+    @Column(name = "sale_amount", precision = 15, scale = 2)
     private BigDecimal saleAmount;
 
     @Column(name = "sale_date")

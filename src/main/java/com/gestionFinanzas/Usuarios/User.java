@@ -6,8 +6,8 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,17 +21,19 @@ public class User implements UserDetails {
 
     private String name;
 
+    @Column(nullable = false, unique = true, columnDefinition = "TEXT")
     private String email;
 
     private String surnames;
 
-    @Column(name = "creation_date")
-    private Date creationDate;
+    @Column(name = "creation_date", nullable = false)
+    private LocalDate creationDate;
 
+    @Column(nullable = false)
     private String password;
 
     @JsonIgnore
-    @Column(name = "account_activation_code")
+    @Column(name = "account_activation_code", length = 10)
     private String accountActivacionCode;
 
     // Parte del UserDetails

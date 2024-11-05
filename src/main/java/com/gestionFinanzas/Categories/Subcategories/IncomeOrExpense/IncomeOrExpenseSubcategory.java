@@ -1,24 +1,24 @@
-package com.gestionFinanzas.Categories.Subcategories.Income;
+package com.gestionFinanzas.Categories.Subcategories.IncomeOrExpense;
 
-import com.gestionFinanzas.Categories.Income.IncomeCategory;
+import com.gestionFinanzas.Categories.IncomeOrExpense.IncomeOrExpenseCategory;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "subcategorias_ingreso")
+@Table(name = "income_or_expense_subcategory")
 @Data
-public class IncomeSubcategory {
+public class IncomeOrExpenseSubcategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String code;
-
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 50)
     private String name;
+
+    @Column(nullable = false, length = 10)
+    private String type;  // "income" or "expense"
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_id"))
@@ -26,7 +26,7 @@ public class IncomeSubcategory {
 
     @ManyToOne
     @JoinColumn(name = "income_category_id", nullable = false, foreignKey = @ForeignKey(name = "fk_income_category_id"))
-    private IncomeCategory incomeCategory;
+    private IncomeOrExpenseCategory incomeOrExpenseCategory;
 
 
 }

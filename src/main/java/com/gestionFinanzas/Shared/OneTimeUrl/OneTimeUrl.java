@@ -1,4 +1,4 @@
-package com.gestionFinanzas.OneTimeUrl;
+package com.gestionFinanzas.Shared.OneTimeUrl;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,19 +12,22 @@ import lombok.Data;
 public class OneTimeUrl {
 
     @Id
+    @Column(name = "token", columnDefinition = "TEXT")
     private String token;
 
-    @Column(nullable = false)
+    @Column(name = "used", nullable = false)
     private Boolean used;
 
     @Column(name = "expiration_time")
     private Long expirationTime;
 
+    @Column(name = "email", columnDefinition = "TEXT")
     private String email;
 
+    @Column(name = "type", columnDefinition = "TEXT")
     private String type;
 
-    @Column(nullable = false)
+    @Column(name = "url", columnDefinition = "TEXT")
     private String url;
 
 }

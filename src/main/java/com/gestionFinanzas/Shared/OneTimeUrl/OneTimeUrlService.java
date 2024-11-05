@@ -1,4 +1,4 @@
-package com.gestionFinanzas.OneTimeUrl;
+package com.gestionFinanzas.Shared.OneTimeUrl;
 
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
 import org.springframework.stereotype.Service;

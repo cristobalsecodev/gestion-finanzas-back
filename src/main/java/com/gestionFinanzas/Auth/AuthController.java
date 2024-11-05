@@ -4,7 +4,7 @@ import com.gestionFinanzas.Auth.DTOs.ResetPasswordDto;
 import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
 import com.gestionFinanzas.Auth.DTOs.UrlTokenDto;
 import com.gestionFinanzas.Auth.DTOs.WantsResetPasswordDto;
-import com.gestionFinanzas.OneTimeUrl.OneTimeUrlService;
+import com.gestionFinanzas.Shared.OneTimeUrl.OneTimeUrlService;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

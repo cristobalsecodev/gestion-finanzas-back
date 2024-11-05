@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "subcategorias_inversion")
+@Table(name = "investment_subcategory")
 @Data
 public class InvestmentSubcategory {
 
@@ -14,10 +14,7 @@ public class InvestmentSubcategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String code;
-
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @ManyToOne

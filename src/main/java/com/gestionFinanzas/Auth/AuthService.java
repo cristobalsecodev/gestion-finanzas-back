@@ -4,8 +4,8 @@ import com.gestionFinanzas.Auth.DTOs.ResetPasswordDto;
 import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
 import com.gestionFinanzas.Auth.DTOs.WantsResetPasswordDto;
 import com.gestionFinanzas.Auth.ENUMs.OneTimeUrlTypeEnum;
-import com.gestionFinanzas.OneTimeUrl.OneTimeUrl;
-import com.gestionFinanzas.OneTimeUrl.OneTimeUrlService;
+import com.gestionFinanzas.Shared.OneTimeUrl.OneTimeUrl;
+import com.gestionFinanzas.Shared.OneTimeUrl.OneTimeUrlService;
 import com.gestionFinanzas.Shared.Email.EmailService;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
@@ -21,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -84,7 +85,7 @@ public class AuthService {
         }
 
         // Fecha de creación
-        user.setCreationDate(new Date());
+        user.setCreationDate(LocalDate.now());
 
         // Codificación de la contraseña
         user.setPassword(passwordEncoder.encode(user.getPassword()));

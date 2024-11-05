@@ -35,7 +35,7 @@ public class MarketValuesDataService {
                 baseUrl + "/v1/open-close/"
                         + filter.getSymbol().toUpperCase()
                         + "/"
-                        + DateFormat.dateToString(filter.getDate(), "yyyy-MM-dd")
+                        + DateFormat.localDateFormatter(filter.getDate(), "yyyy-MM-dd")
                         + "?adjusted=true"
                         + "&apikey=" + apiKey;
 

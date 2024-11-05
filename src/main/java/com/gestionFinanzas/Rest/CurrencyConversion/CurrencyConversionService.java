@@ -93,7 +93,7 @@ public class CurrencyConversionService {
         } catch (HttpClientErrorException | HttpServerErrorException ex) {
             throw new ApiException(ex.getStatusText(), ex.getStatusCode());
         } catch (ParseException e) {
-            throw new RuntimeException("The conversion of the date to Date type has failed");
+            throw new RuntimeException("The conversion of the date to LocalDate type has failed");
         }
 
         return new CurrencyConversionDto();

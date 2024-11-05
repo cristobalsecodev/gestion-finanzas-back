@@ -1,4 +1,4 @@
-package com.gestionFinanzas.OneTimeUrl;
+package com.gestionFinanzas.Shared.OneTimeUrl;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

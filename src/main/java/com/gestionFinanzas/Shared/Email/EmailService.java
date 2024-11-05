@@ -1,6 +1,6 @@
 package com.gestionFinanzas.Shared.Email;
 
-import com.gestionFinanzas.OneTimeUrl.OneTimeUrl;
+import com.gestionFinanzas.Shared.OneTimeUrl.OneTimeUrl;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.EmailException;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.mail.MessagingException;

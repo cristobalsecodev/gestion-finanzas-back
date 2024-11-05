@@ -1,22 +1,23 @@
 package com.gestionFinanzas.Shared.Utils;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class DateFormat {
 
-    public static String dateToString(java.util.Date date, String formato) {
-        if(date == null || formato.isEmpty()) {
-            throw new IllegalArgumentException("La Fecha y el formato son obligatorios");
-        }
+    public static String localDateFormatter(LocalDate date, String formato) {
 
-        // Convertimos Date a LocalDate
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        if(date == null || formato.isEmpty()) {
+
+            throw new IllegalArgumentException("La Fecha y el formato son obligatorios");
+
+        }
 
         // Definimos el formato
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
 
-        return localDate.format(formatter);
+        // Convertimos la fecha a string
+        return date.format(formatter);
+
     }
 }

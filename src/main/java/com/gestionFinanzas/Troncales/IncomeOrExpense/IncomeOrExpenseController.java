@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Troncales.Income;
+package com.gestionFinanzas.Troncales.IncomeOrExpense;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,19 +9,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("incomes")
-public class IncomeController {
+public class IncomeOrExpenseController {
 
-    private IncomeService incomeService;
+    private IncomeOrExpenseService incomeOrExpenseService;
 
     // Inyección del servicio de ingresos
     @Autowired
-    public void setIncomeService(IncomeService incomeService) {
-        this.incomeService = incomeService;
+    public void setIncomeService(IncomeOrExpenseService incomeOrExpenseService) {
+        this.incomeOrExpenseService = incomeOrExpenseService;
     }
 
     @GetMapping("/get-all-incomes")
-    public List<Income> getAllIncomes() {
-        return incomeService.getAllIncomes();
+    public List<IncomeOrExpense> getAllIncomes() {
+        return incomeOrExpenseService.getAllIncomes();
     }
 
 }
