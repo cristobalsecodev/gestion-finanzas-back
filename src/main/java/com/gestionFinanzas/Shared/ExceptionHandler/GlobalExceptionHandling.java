@@ -1,6 +1,7 @@
 package com.gestionFinanzas.Shared.ExceptionHandler;
 
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.*;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.IllegalArgumentException;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -75,6 +76,19 @@ public class GlobalExceptionHandling {
 
         return buildErrorDetail(
                 HttpStatus.NOT_FOUND,
+                exception.getMessage(),
+                description
+        );
+
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ProblemDetail handleIllegalArgumentException(IllegalArgumentException exception) {
+
+        String description = "Invalid argument provided: The value does not meet the required format or constraints expected by the service";
+
+        return buildErrorDetail(
+                HttpStatus.BAD_REQUEST,
                 exception.getMessage(),
                 description
         );

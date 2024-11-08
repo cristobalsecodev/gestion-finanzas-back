@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "recurrence_details")
@@ -19,20 +18,12 @@ public class RecurrenceDetails {
     private String recurrenceType;  // "daily", "weekly", "monthly", "yearly"
 
     @Column(nullable = false)
-    private Integer frequency;
+    private Integer frequency; // Cada X días/semanas/meses/años
 
     @Column
-    private LocalDate endDate;
+    private LocalDate endDate; // Fecha de fin del proceso
 
     @Column
-    private Integer occurrences;
-
-    @ElementCollection
-    @CollectionTable(name = "recurrence_days_of_week", joinColumns = @JoinColumn(name = "recurrence_id"))
-    @Column(name = "day_of_week")
-    private List<String> daysOfWeek;  // ["Monday", "Wednesday"], etc.
-
-    @Column
-    private Integer dayOfMonth;  // 1-31
+    private Integer occurrences; // Número de veces que ocurre la operación
 
 }

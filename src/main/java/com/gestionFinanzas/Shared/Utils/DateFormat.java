@@ -9,7 +9,7 @@ public class DateFormat {
 
         if(date == null || formato.isEmpty()) {
 
-            throw new IllegalArgumentException("La Fecha y el formato son obligatorios");
+            throw new IllegalArgumentException("Date and format are mandatory");
 
         }
 

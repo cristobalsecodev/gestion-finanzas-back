@@ -1,27 +1,27 @@
 package com.gestionFinanzas.Troncales.IncomeOrExpense;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("incomes")
+@RequestMapping("income-or-expense")
 public class IncomeOrExpenseController {
 
-    private IncomeOrExpenseService incomeOrExpenseService;
+    private final IncomeOrExpenseService incomeOrExpenseService;
 
-    // Inyección del servicio de ingresos
-    @Autowired
-    public void setIncomeService(IncomeOrExpenseService incomeOrExpenseService) {
+    public IncomeOrExpenseController(
+            IncomeOrExpenseService incomeOrExpenseService
+    ) {
         this.incomeOrExpenseService = incomeOrExpenseService;
     }
 
-    @GetMapping("/get-all-incomes")
-    public List<IncomeOrExpense> getAllIncomes() {
-        return incomeOrExpenseService.getAllIncomes();
+    @PostMapping("/save")
+    public ResponseEntity<IncomeOrExpense> saveIncomeOrExpense(@RequestBody IncomeOrExpense incomeOrExpense) {
+
+        return ResponseEntity.ok(incomeOrExpenseService.saveIncomeOrExpense(incomeOrExpense));
+
     }
 
 }
