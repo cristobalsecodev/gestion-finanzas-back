@@ -42,9 +42,7 @@ create table recurrence_details (
     recurrence_type varchar(10) check (recurrence_type in ('daily', 'weekly', 'monthly', 'yearly')) not null,
     frecuency integer not null,
     end_date date,
-    occurrences integer,
-    days_of_week text[],
-    day_of_month integer check (day_of_month between 1 and 31)
+    occurrences integer
 );
 
 -- Tabla de ingresos / gastos
