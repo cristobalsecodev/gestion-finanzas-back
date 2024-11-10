@@ -56,7 +56,7 @@ create table income_or_expense (
     type varchar(10) check (type in ('income', 'expense')) not null,
     notes text,
     user_id bigint not null references users (id) on delete cascade,
-    rcurrence_details_id bigint references recurrence_details(id)
+    rcurrence_details_id bigint references recurrence_details(id) on delete cascade
 );
 
 -- Tabla de categorías de inversiones

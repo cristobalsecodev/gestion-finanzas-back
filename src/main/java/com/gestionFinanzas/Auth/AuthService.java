@@ -190,9 +190,13 @@ public class AuthService {
 
         User user = userRepository.findUserByEmail(wantResetInfo.getEmail());
 
-        emailService.sendResetPasswordEmail(user, oneTimeUrlSaved);
+        if(user != null) {
 
-        return "Email sent";
+            emailService.sendResetPasswordEmail(user, oneTimeUrlSaved);
+
+        }
+
+        return "If the email address is correct, please check the instructions to reset your password";
 
     }
 

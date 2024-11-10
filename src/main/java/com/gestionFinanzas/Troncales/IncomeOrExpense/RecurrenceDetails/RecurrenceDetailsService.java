@@ -54,7 +54,9 @@ public class RecurrenceDetailsService {
                 }
 
             } else {
+
                 throw new ResourceConflictException("The recurrence does not have a related income or expense record");
+
             }
 
         }
@@ -75,6 +77,7 @@ public class RecurrenceDetailsService {
         newEntry.setRecurrenceDetails(recurrence);
 
         return newEntry;
+
     }
 
     private Boolean verifyDay(LocalDate today, RecurrenceDetails recurrence, IncomeOrExpense lastEntry) {
