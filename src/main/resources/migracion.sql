@@ -40,7 +40,7 @@ create table income_or_expense_subcategory (
 create table recurrence_details (
     id bigint primary key generated always as identity,
     recurrence_type varchar(10) check (recurrence_type in ('daily', 'weekly', 'monthly', 'yearly')) not null,
-    frecuency integer not null,
+    frequency integer not null,
     end_date date,
     occurrences integer
 );
@@ -50,26 +50,26 @@ create table income_or_expense (
     id bigint primary key generated always as identity,
     date date not null,
     amount numeric(15, 2) not null,
-    category varchar(40),
-    sub_category varchar(40),
+    category varchar(50),
+    sub_category varchar(50),
     currency varchar(10) not null,
     type varchar(10) check (type in ('income', 'expense')) not null,
     notes text,
     user_id bigint not null references users (id) on delete cascade,
-    rcurrence_details_id bigint references recurrence_details(id) on delete cascade
+    recurrence_details_id bigint references recurrence_details(id) on delete cascade
 );
 
 -- Tabla de categorías de inversiones
 create table investment_category (
     id bigint primary key generated always as identity,
-    name text not null unique,
+    name varchar(50) not null unique,
     user_id bigint not null references users (id) on delete cascade
 );
 
 -- Tabla de subcategorías de inversiones
 create table investment_subcategory (
     id bigint primary key generated always as identity,
-    name text not null unique,
+    name varchar(50) not null unique,
     user_id bigint not null references users (id) on delete cascade,
     investment_category_id bigint not null references investment_category (id) on delete cascade
 );
@@ -79,8 +79,8 @@ create table investment (
   id bigint primary key generated always as identity,
   purchase_date date not null,
   purchase_amount numeric(15, 2) not null,
-  category varchar(40),
-  subcategory varchar(40),
+  category varchar(50),
+  subcategory varchar(50),
   notes text,
   sale_amount numeric(15, 2),
   sale_date date,

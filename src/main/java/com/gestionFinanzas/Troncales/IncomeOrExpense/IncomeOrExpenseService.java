@@ -25,7 +25,7 @@ public class IncomeOrExpenseService {
         this.authService = authService;
     }
 
-    public IncomeOrExpense saveIncomeOrExpense(IncomeOrExpense incomeOrExpense) {
+    public Long saveIncomeOrExpense(IncomeOrExpense incomeOrExpense) {
 
         // Obtenemos el usuario
         User user = this.authService.getInfoUser();
@@ -40,7 +40,7 @@ public class IncomeOrExpenseService {
         incomeOrExpense.setUser(user);
 
         // Guardamos y devolvemos el objeto
-        return incomeOrExpenseRepository.save(incomeOrExpense);
+        return incomeOrExpenseRepository.save(incomeOrExpense).getId();
 
     }
 

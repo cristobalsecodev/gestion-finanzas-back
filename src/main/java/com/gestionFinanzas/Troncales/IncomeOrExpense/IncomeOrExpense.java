@@ -37,7 +37,7 @@ public class IncomeOrExpense {
     @Column(columnDefinition = "TEXT")
     private String notes;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "recurrence_details_id")
     private RecurrenceDetails recurrenceDetails;
 

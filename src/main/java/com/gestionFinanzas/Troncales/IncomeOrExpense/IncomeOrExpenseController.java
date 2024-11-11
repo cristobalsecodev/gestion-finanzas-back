@@ -18,7 +18,7 @@ public class IncomeOrExpenseController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<IncomeOrExpense> saveIncomeOrExpense(@RequestBody IncomeOrExpense incomeOrExpense) {
+    public ResponseEntity<Long> saveIncomeOrExpense(@RequestBody IncomeOrExpense incomeOrExpense) {
 
         return ResponseEntity.ok(incomeOrExpenseService.saveIncomeOrExpense(incomeOrExpense));
 

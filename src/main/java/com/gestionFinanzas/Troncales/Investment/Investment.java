@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "inversiones")
+@Table(name = "investment")
 @Data
 public class Investment {
 
@@ -22,10 +22,10 @@ public class Investment {
     @Column(name = "purchase_amount", nullable = false, precision = 15, scale = 2)
     private BigDecimal purchaseAmount;
 
-    @Column(name = "category", length = 40)
+    @Column(name = "category", length = 50)
     private String category;
 
-    @Column(name = "subcategory", length = 40)
+    @Column(name = "subcategory", length = 50)
     private String subcategory;
 
     @Column(name = "notes", columnDefinition = "TEXT")

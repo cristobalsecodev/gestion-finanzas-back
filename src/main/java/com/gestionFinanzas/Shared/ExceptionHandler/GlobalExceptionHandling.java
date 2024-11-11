@@ -3,6 +3,7 @@ package com.gestionFinanzas.Shared.ExceptionHandler;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.*;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.IllegalArgumentException;
 import io.jsonwebtoken.ExpiredJwtException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.security.authentication.AccountStatusException;
@@ -91,6 +92,19 @@ public class GlobalExceptionHandling {
                 HttpStatus.BAD_REQUEST,
                 exception.getMessage(),
                 description
+        );
+
+    }
+
+    @ExceptionHandler(DataAccessException.class)
+    public ProblemDetail handleIllegalArgumentException(DataAccessException exception) {
+
+        String message = "An error occurred while trying to connect with the database. Please try again later";
+
+        return buildErrorDetail(
+                HttpStatus.BAD_REQUEST,
+                message,
+                exception.getMessage()
         );
 
     }
