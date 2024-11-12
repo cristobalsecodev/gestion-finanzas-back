@@ -4,8 +4,11 @@ import com.gestionFinanzas.Auth.AuthService;
 import com.gestionFinanzas.Shared.Email.EmailService;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
+import com.gestionFinanzas.Troncales.IncomeOrExpense.DTOs.FilterIncomeOrExpense;
 import com.gestionFinanzas.Usuarios.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,6 +44,23 @@ public class IncomeOrExpenseService {
 
         // Guardamos y devolvemos el objeto
         return incomeOrExpenseRepository.save(incomeOrExpense).getId();
+
+    }
+
+    public Page<IncomeOrExpense> getFilteredIncomeOrExpenses(FilterIncomeOrExpense filter, Pageable pageable) {
+
+        return incomeOrExpenseRepository.findByFilters(
+                filter.getNotes(),
+                filter.getCategories(),
+                filter.getSubCategories(),
+                filter.getStartDate(),
+                filter.getEndDate(),
+                filter.getRecurrences(),
+                filter.getType(),
+                filter.getStartAmount(),
+                filter.getEndAmount(),
+                pageable
+        );
 
     }
 
