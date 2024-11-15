@@ -1,8 +1,14 @@
 package com.gestionFinanzas.Categories.IncomeOrExpense;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.gestionFinanzas.Categories.Subcategories.IncomeOrExpense.IncomeOrExpenseSubcategory;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "income_or_expense_category")
@@ -20,7 +26,12 @@ public class IncomeOrExpenseCategory {
     private String type;  // "income" or "expense"
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_id"))
     private User user;
+
+    @OneToMany(mappedBy = "incomeOrExpenseCategory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<IncomeOrExpenseSubcategory> subcategories = new ArrayList<>();
 
 }

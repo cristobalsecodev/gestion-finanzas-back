@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/DTOs/FilterIncomeOrExpense.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/Subcategories/IncomeOrExpense/IncomeOrExpenseSubCategoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/IncomeOrExpense/IncomeOrExpenseCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/IncomeOrExpense/IncomeOrExpenseCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/IncomeOrExpense/IncomeOrExpenseCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/IncomeOrExpense/IncomeOrExpenseCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/IncomeOrExpense/IncomeOrExpenseCategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/IncomeOrExpense/IncomeOrExpenseCategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/IncomeOrExpense/IncomeOrExpenseCategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/IncomeOrExpense/IncomeOrExpenseCategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/Subcategories/IncomeOrExpense/IncomeOrExpenseSubcategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/Subcategories/IncomeOrExpense/IncomeOrExpenseSubcategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/Subcategories/IncomeOrExpense/IncomeOrExpenseSubcategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/Subcategories/IncomeOrExpense/IncomeOrExpenseSubcategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/Subcategories/IncomeOrExpense/IncomeOrExpenseSubcategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/Subcategories/IncomeOrExpense/IncomeOrExpenseSubcategoryRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

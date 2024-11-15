@@ -1,5 +1,7 @@
 package com.gestionFinanzas.Categories.Subcategories.IncomeOrExpense;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gestionFinanzas.Categories.IncomeOrExpense.IncomeOrExpenseCategory;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.persistence.*;
@@ -21,12 +23,14 @@ public class IncomeOrExpenseSubcategory {
     private String type;  // "income" or "expense"
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_id"))
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "income_category_id", nullable = false, foreignKey = @ForeignKey(name = "fk_income_category_id"))
-    private IncomeOrExpenseCategory incomeOrExpenseCategory;
+    @JsonBackReference
+    private IncomeOrExpenseCategory category;
 
 
 }
