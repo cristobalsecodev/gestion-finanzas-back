@@ -30,7 +30,7 @@ public class IncomeOrExpenseCategory {
     @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_id"))
     private User user;
 
-    @OneToMany(mappedBy = "incomeOrExpenseCategory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<IncomeOrExpenseSubcategory> subcategories = new ArrayList<>();
 
