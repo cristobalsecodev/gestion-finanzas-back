@@ -22,7 +22,7 @@ create table users (
 -- Tabla de categorías de ingresos / gastos
 create table income_or_expense_category (
     id bigint primary key generated always as identity,
-    name varchar(50) not null unique,
+    name varchar(30) not null unique,
     type varchar(10) check (type in ('income', 'expense')) not null,
     user_id bigint not null references users (id) on delete cascade
 );
@@ -30,7 +30,7 @@ create table income_or_expense_category (
 -- Tabla de subcategorías de ingresos / gastos
 create table income_or_expense_subcategory (
     id bigint primary key generated always as identity,
-    name varchar(50) not null unique,
+    name varchar(30) not null unique,
     type varchar(10) check (type in ('income', 'expense')) not null,
     user_id bigint not null references users (id) on delete cascade,
     income_category_id bigint not null references income_or_expense_category (id) on delete cascade
@@ -53,6 +53,7 @@ create table income_or_expense (
     category varchar(50),
     sub_category varchar(50),
     currency varchar(10) not null,
+    exchange_rate_to_usd numeric(10, 4) not null,
     type varchar(10) check (type in ('income', 'expense')) not null,
     notes text,
     user_id bigint not null references users (id) on delete cascade,
@@ -62,14 +63,14 @@ create table income_or_expense (
 -- Tabla de categorías de inversiones
 create table investment_category (
     id bigint primary key generated always as identity,
-    name varchar(50) not null unique,
+    name varchar(30) not null unique,
     user_id bigint not null references users (id) on delete cascade
 );
 
 -- Tabla de subcategorías de inversiones
 create table investment_subcategory (
     id bigint primary key generated always as identity,
-    name varchar(50) not null unique,
+    name varchar(30) not null unique,
     user_id bigint not null references users (id) on delete cascade,
     investment_category_id bigint not null references investment_category (id) on delete cascade
 );

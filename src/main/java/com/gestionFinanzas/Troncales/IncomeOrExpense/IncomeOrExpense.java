@@ -31,6 +31,9 @@ public class IncomeOrExpense {
     @Column(nullable = false, length = 10)
     private String currency;
 
+    @Column(name = "exchange_rate_to_usd", nullable = false, precision = 10, scale = 4)
+    private BigDecimal exchangeRateToUsd;
+
     @Column(nullable = false, length = 10)
     private String type;  // "income" or "expense"
 
