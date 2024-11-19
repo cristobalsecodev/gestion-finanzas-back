@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Rest.CurrencyConversion;
+package com.gestionFinanzas.Rest.CurrencyExchangeAPI;
 
 public enum MajorCurrenciesEnum {
     USD("US Dollar"),

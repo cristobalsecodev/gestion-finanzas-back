@@ -28,6 +28,9 @@ public class Investment {
     @Column(name = "subcategory", length = 50)
     private String subcategory;
 
+    @Column(name = "exchange_rate_to_usd", nullable = false, precision = 10, scale = 4)
+    private BigDecimal exchangeRateToUsd;
+
     @Column(name = "notes", columnDefinition = "TEXT")
     private String notes;
 

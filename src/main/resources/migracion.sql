@@ -8,6 +8,12 @@ create table one_time_url (
     url text
 );
 
+create table currency_exchange_ratio (
+    currency_code varchar(3) primary key,
+    currency_name varchar(100) not null unique,
+    exchange_rate_to_usd numeric(10, 4) not null,
+)
+
 -- Tabla de usuarios
 create table users (
     id bigint primary key generated always as identity,
@@ -82,6 +88,7 @@ create table investment (
   purchase_amount numeric(15, 2) not null,
   category varchar(50),
   subcategory varchar(50),
+  exchange_rate_to_usd numeric(10, 4) not null,
   notes text,
   sale_amount numeric(15, 2),
   sale_date date,

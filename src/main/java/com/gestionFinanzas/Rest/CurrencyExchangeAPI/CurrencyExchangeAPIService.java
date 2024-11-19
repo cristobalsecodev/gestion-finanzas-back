@@ -1,10 +1,10 @@
-package com.gestionFinanzas.Rest.CurrencyConversion;
+package com.gestionFinanzas.Rest.CurrencyExchangeAPI;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gestionFinanzas.Rest.CurrencyConversion.DTOs.CurrencyConversionDto;
-import com.gestionFinanzas.Rest.CurrencyConversion.DTOs.ExchangeRatioDto;
+import com.gestionFinanzas.Rest.CurrencyExchangeAPI.DTOs.CurrencyExchangeAPIDto;
+import com.gestionFinanzas.Rest.CurrencyExchangeAPI.DTOs.ExchangeRatioDto;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ApiException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CurrencyConversionService {
+public class CurrencyExchangeAPIService {
 
     @Value("${exchangeRate.api.key}")
     private String apiKey;
@@ -28,7 +28,7 @@ public class CurrencyConversionService {
     @Value("${exchangeRate.baseUrl}")
     private String baseUrl;
 
-    public CurrencyConversionDto currencyConversion(String currency) {
+    public CurrencyExchangeAPIDto currencyConversion(String currency) {
         RestTemplate restTemplate = new RestTemplate();
 
         // Construimos url de la REST API
@@ -53,7 +53,7 @@ public class CurrencyConversionService {
             if(apiInfo.getStatusCode().is2xxSuccessful()) {
 
                 // Instanciamos el DTO
-                CurrencyConversionDto currencyConversion = new CurrencyConversionDto();
+                CurrencyExchangeAPIDto currencyConversion = new CurrencyExchangeAPIDto();
 
                 // Rellenamos el DTO con la respuesta del JSON
                 currencyConversion.setResult(node.get("result").asText());
@@ -96,7 +96,7 @@ public class CurrencyConversionService {
             throw new RuntimeException("The conversion of the date to LocalDate type has failed");
         }
 
-        return new CurrencyConversionDto();
+        return new CurrencyExchangeAPIDto();
 
     }
 

@@ -1,9 +1,9 @@
-package com.gestionFinanzas.Rest.MarketValuesData;
+package com.gestionFinanzas.Rest.MarketValuesAPI;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gestionFinanzas.Rest.MarketValuesData.DTOs.*;
+import com.gestionFinanzas.Rest.MarketValuesAPI.DTOs.*;
 import com.gestionFinanzas.Shared.Utils.DateFormat;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ApiException;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 @Service
-public class MarketValuesDataService {
+public class MarketValuesAPIService {
 
     @Value("${polygon.api.key}")
     private String apiKey;

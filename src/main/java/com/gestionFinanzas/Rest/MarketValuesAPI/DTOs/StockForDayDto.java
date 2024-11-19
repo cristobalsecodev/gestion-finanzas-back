@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Rest.MarketValuesData.DTOs;
+package com.gestionFinanzas.Rest.MarketValuesAPI.DTOs;
 
 import lombok.Data;
 

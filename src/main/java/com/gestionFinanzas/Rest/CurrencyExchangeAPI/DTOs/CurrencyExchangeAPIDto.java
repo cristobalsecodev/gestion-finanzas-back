@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Rest.CurrencyConversion.DTOs;
+package com.gestionFinanzas.Rest.CurrencyExchangeAPI.DTOs;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class CurrencyConversionDto {
+public class CurrencyExchangeAPIDto {
     private String result;
     private Date lastUpdatedDate;
     private Date nextUpdateDate;
