@@ -31,9 +31,9 @@ public class IncomeOrExpenseController {
 
     @GetMapping("/filter")
     public ResponseEntity<Page<IncomeOrExpense>> filterIncomeOrExpense(
-            FilterIncomeOrExpense filter,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+//            FilterIncomeOrExpense filter,
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(defaultValue = "date") String sortBy,
             @RequestParam(defaultValue = "asc") String sortDir
     ) {
@@ -41,7 +41,10 @@ public class IncomeOrExpenseController {
         Sort sort = sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        return ResponseEntity.ok(incomeOrExpenseService.getFilteredIncomeOrExpenses(filter, pageable));
+        return ResponseEntity.ok(incomeOrExpenseService.getFilteredIncomeOrExpenses(
+//                filter,
+                pageable
+        ));
 
     }
 

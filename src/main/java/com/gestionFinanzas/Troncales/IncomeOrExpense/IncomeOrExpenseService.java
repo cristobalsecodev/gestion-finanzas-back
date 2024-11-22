@@ -47,18 +47,21 @@ public class IncomeOrExpenseService {
 
     }
 
-    public Page<IncomeOrExpense> getFilteredIncomeOrExpenses(FilterIncomeOrExpense filter, Pageable pageable) {
+    public Page<IncomeOrExpense> getFilteredIncomeOrExpenses(
+//            FilterIncomeOrExpense filter,
+            Pageable pageable
+    ) {
 
         return incomeOrExpenseRepository.findByFilters(
-                filter.getNotes(),
-                filter.getCategories(),
-                filter.getSubCategories(),
-                filter.getStartDate(),
-                filter.getEndDate(),
-                filter.getRecurrences(),
-                filter.getType(),
-                filter.getStartAmount(),
-                filter.getEndAmount(),
+//                filter.getNotes(),
+//                filter.getCategories(),
+//                filter.getSubCategories(),
+//                filter.getStartDate(),
+//                filter.getEndDate(),
+//                filter.getRecurrences(),
+//                filter.getType(),
+//                filter.getStartAmount(),
+//                filter.getEndAmount(),
                 pageable
         );
 
