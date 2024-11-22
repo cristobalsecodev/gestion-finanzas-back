@@ -4,11 +4,11 @@ import com.gestionFinanzas.Troncales.IncomeOrExpense.DTOs.FilterIncomeOrExpense;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("income-or-expense")
@@ -29,24 +29,30 @@ public class IncomeOrExpenseController {
 
     }
 
-    @GetMapping("/filter")
-    public ResponseEntity<Page<IncomeOrExpense>> filterIncomeOrExpense(
-//            FilterIncomeOrExpense filter,
-            @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "10") Integer size,
-            @RequestParam(defaultValue = "date") String sortBy,
-            @RequestParam(defaultValue = "asc") String sortDir
+    @PostMapping("/filter")
+    public ResponseEntity<PagedModel<IncomeOrExpense>> filterIncomeOrExpense(
+            @RequestBody FilterIncomeOrExpense filter,
+            PagedResourcesAssembler<IncomeOrExpense> assembler
     ) {
 
-        Sort sort = sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
-        Pageable pageable = PageRequest.of(page, size, sort);
+        Pageable pageable = PageRequest.of(filter.getPage(), filter.getSize());
 
-        return ResponseEntity.ok(incomeOrExpenseService.getFilteredIncomeOrExpenses(
-//                filter,
-                pageable
-        ));
+        Page<IncomeOrExpense> resultPage = incomeOrExpenseService.getFilteredIncomeOrExpenses(filter, pageable);
+
+        // Convierte la página en un PagedModel<EntityModel<IncomeOrExpense>>
+        PagedModel<EntityModel<IncomeOrExpense>> pagedEntityModel = assembler.toModel(resultPage);
+
+        // Transforma PagedModel<EntityModel<IncomeOrExpense>> a PagedModel<IncomeOrExpense>
+        PagedModel<IncomeOrExpense> pagedModel = PagedModel.of(
+                pagedEntityModel.getContent().stream()
+                        .map(EntityModel::getContent)
+                        .toList(),
+                pagedEntityModel.getMetadata(),
+                pagedEntityModel.getLinks()
+        );
+
+        return ResponseEntity.ok(pagedModel);
 
     }
-
 
 }

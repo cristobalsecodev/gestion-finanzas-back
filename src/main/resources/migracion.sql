@@ -61,7 +61,7 @@ create table income_or_expense (
     currency varchar(10) not null,
     exchange_rate_to_usd numeric(10, 4) not null,
     type varchar(10) check (type in ('income', 'expense')) not null,
-    notes text,
+    notes varchar(150),
     user_id bigint not null references users (id) on delete cascade,
     recurrence_details_id bigint references recurrence_details(id) on delete cascade
 );

@@ -1,5 +1,6 @@
 package com.gestionFinanzas.Troncales.IncomeOrExpense;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gestionFinanzas.Troncales.IncomeOrExpense.RecurrenceDetails.RecurrenceDetails;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.persistence.*;
@@ -37,7 +38,7 @@ public class IncomeOrExpense {
     @Column(nullable = false, length = 10)
     private String type;  // "income" or "expense"
 
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 150)
     private String notes;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -45,6 +46,7 @@ public class IncomeOrExpense {
     private RecurrenceDetails recurrenceDetails;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_id"))
     private User user;
 

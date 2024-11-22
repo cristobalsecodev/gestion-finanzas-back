@@ -30,7 +30,7 @@ public class IncomeOrExpenseService {
 
     public Long saveIncomeOrExpense(IncomeOrExpense incomeOrExpense) {
 
-        // Obtenemos el usuario
+        // Obtiene el usuario
         User user = this.authService.getInfoUser();
 
         if(user == null) {
@@ -39,29 +39,32 @@ public class IncomeOrExpenseService {
 
         }
 
-        // Asignamos el usuario al objeto
+        // Asigna el usuario al objeto
         incomeOrExpense.setUser(user);
 
-        // Guardamos y devolvemos el objeto
         return incomeOrExpenseRepository.save(incomeOrExpense).getId();
 
     }
 
     public Page<IncomeOrExpense> getFilteredIncomeOrExpenses(
-//            FilterIncomeOrExpense filter,
+            FilterIncomeOrExpense filter,
             Pageable pageable
     ) {
 
+        // Obtiene el usuario
+        User user = this.authService.getInfoUser();
+
         return incomeOrExpenseRepository.findByFilters(
-//                filter.getNotes(),
-//                filter.getCategories(),
-//                filter.getSubCategories(),
-//                filter.getStartDate(),
-//                filter.getEndDate(),
-//                filter.getRecurrences(),
-//                filter.getType(),
-//                filter.getStartAmount(),
-//                filter.getEndAmount(),
+                filter.getNotes(),
+                filter.getCategories(),
+                filter.getSubCategories(),
+                filter.getStartDate(),
+                filter.getEndDate(),
+                filter.getRecurrences(),
+                filter.getType(),
+                filter.getStartAmount(),
+                filter.getEndAmount(),
+                user.getId(),
                 pageable
         );
 
