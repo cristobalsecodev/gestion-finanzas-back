@@ -5,6 +5,7 @@ import com.gestionFinanzas.Shared.Email.EmailService;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
 import com.gestionFinanzas.Troncales.IncomeOrExpense.DTOs.FilterIncomeOrExpense;
+import com.gestionFinanzas.Troncales.IncomeOrExpense.RecurrenceDetails.RecurrenceDetailsRepository;
 import com.gestionFinanzas.Usuarios.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,14 +19,18 @@ public class IncomeOrExpenseService {
 
     private final IncomeOrExpenseRepository incomeOrExpenseRepository;
 
+    private final RecurrenceDetailsRepository recurrenceDetailsRepository;
+
     private final AuthService authService;
 
     public IncomeOrExpenseService(
             IncomeOrExpenseRepository incomeOrExpenseRepository,
+            RecurrenceDetailsRepository recurrenceDetailsRepository,
             AuthService authService
     ) {
         this.incomeOrExpenseRepository = incomeOrExpenseRepository;
         this.authService = authService;
+        this.recurrenceDetailsRepository = recurrenceDetailsRepository;
     }
 
     public Long saveIncomeOrExpense(IncomeOrExpense incomeOrExpense) {
@@ -43,6 +48,40 @@ public class IncomeOrExpenseService {
         incomeOrExpense.setUser(user);
 
         return incomeOrExpenseRepository.save(incomeOrExpense).getId();
+
+    }
+
+    public String deleteIncomeOrExpense(Long id) {
+
+        IncomeOrExpense incomeOrExpense = incomeOrExpenseRepository.findIncomeOrExpenseById(id);
+
+        if(incomeOrExpense == null) {
+
+            throw new ResourceConflictException("The income or expense with id: " + id + " does not exist");
+
+        }
+
+        String recurrenceDeleted = "";
+
+        // Busca cuántos registros hay asignados a esa recurrencia
+        if(incomeOrExpense.getRecurrenceDetails() != null) {
+
+            Long howManyIncomeOrExpenses = incomeOrExpenseRepository.countByRecurrenceId(incomeOrExpense.getRecurrenceDetails().getId());
+
+            // Si solo hay uno, elimina la recurrencia
+            if(howManyIncomeOrExpenses == 1) {
+
+                recurrenceDeleted = " and the recurrence associated";
+
+                recurrenceDetailsRepository.deleteById(incomeOrExpense.getRecurrenceDetails().getId());
+
+            }
+
+        }
+
+        incomeOrExpenseRepository.deleteById(id);
+
+        return "The " + incomeOrExpense.getType() + recurrenceDeleted + " were successfully deleted";
 
     }
 

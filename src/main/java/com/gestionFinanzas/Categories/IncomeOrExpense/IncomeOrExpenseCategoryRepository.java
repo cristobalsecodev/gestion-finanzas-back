@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IncomeOrExpenseCategoryRepository extends JpaRepository<IncomeOrExpenseCategory, Integer> {
+public interface IncomeOrExpenseCategoryRepository extends JpaRepository<IncomeOrExpenseCategory, Long> {
 
     @Query(value = "SELECT iec FROM IncomeOrExpenseCategory iec WHERE iec.user.email = :email")
     List<IncomeOrExpenseCategory> findByUser(@Param("email") String email);

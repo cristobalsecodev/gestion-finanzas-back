@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CurrencyExchangeRatioRepository extends JpaRepository<CurrencyExchangeRatio, Integer> {
+public interface CurrencyExchangeRatioRepository extends JpaRepository<CurrencyExchangeRatio, Long> {
 
     @Query(value = "SELECT cer FROM CurrencyExchangeRatio cer WHERE cer.currencyCode = :currencyCode")
     CurrencyExchangeRatio findByCurrencyCode(@Param("currencyCode") String currencyCode);

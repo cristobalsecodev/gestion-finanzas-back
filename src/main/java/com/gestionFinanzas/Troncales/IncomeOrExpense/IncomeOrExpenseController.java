@@ -11,6 +11,9 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("income-or-expense")
 public class IncomeOrExpenseController {
@@ -27,6 +30,19 @@ public class IncomeOrExpenseController {
     public ResponseEntity<Long> saveIncomeOrExpense(@RequestBody IncomeOrExpense incomeOrExpense) {
 
         return ResponseEntity.ok(incomeOrExpenseService.saveIncomeOrExpense(incomeOrExpense));
+
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Map<String, Object>> deleteIncomeOrExpense(@PathVariable("id") Long id) {
+
+        String message = incomeOrExpenseService.deleteIncomeOrExpense(id);
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("message", message);
+
+        return ResponseEntity.ok(response);
 
     }
 
