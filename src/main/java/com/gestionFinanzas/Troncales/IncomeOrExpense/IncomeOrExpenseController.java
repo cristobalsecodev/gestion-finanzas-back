@@ -4,6 +4,7 @@ import com.gestionFinanzas.Troncales.IncomeOrExpense.DTOs.FilterIncomeOrExpense;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
@@ -35,7 +36,11 @@ public class IncomeOrExpenseController {
             PagedResourcesAssembler<IncomeOrExpense> assembler
     ) {
 
-        Pageable pageable = PageRequest.of(filter.getPage(), filter.getSize());
+        Sort sort = filter.getSortDir().equalsIgnoreCase("desc")
+                ? Sort.by(Sort.Order.desc("date"))
+                : Sort.by(Sort.Order.asc("date"));
+
+        Pageable pageable = PageRequest.of(filter.getPage(), filter.getSize(), sort);
 
         Page<IncomeOrExpense> resultPage = incomeOrExpenseService.getFilteredIncomeOrExpenses(filter, pageable);
 

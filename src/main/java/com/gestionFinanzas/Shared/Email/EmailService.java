@@ -5,18 +5,13 @@ import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.EmailException;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import org.slf4j.Logger;
-
 @Service
 public class EmailService {
-
-    private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
     @Value("${spring.mail.username}")
     private String fromEmail;
@@ -107,13 +102,10 @@ public class EmailService {
 
             mailSender.send(message);
 
-        } catch(MessagingException e) {
-
-            throw new EmailException("Email sender failed");
-
         } catch (Exception e) {
-            logger.error("An unexpected error occurred: {}", e.getMessage());
-            throw new EmailException("Unexpected error while sending activation account email");
+
+            throw new EmailException(e.getMessage());
+
         }
 
 

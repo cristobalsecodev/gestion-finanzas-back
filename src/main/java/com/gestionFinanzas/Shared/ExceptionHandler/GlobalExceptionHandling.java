@@ -3,6 +3,7 @@ package com.gestionFinanzas.Shared.ExceptionHandler;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.*;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.IllegalArgumentException;
 import io.jsonwebtoken.ExpiredJwtException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -14,18 +15,20 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.nio.file.AccessDeniedException;
 import java.security.SignatureException;
 
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandling {
 
     @ExceptionHandler(ApiException.class)
     public ProblemDetail ApiExceptionHandling(ApiException exception) {
 
-        String description = "An error occurred while communicating with the external API. Please check the service status or try again later";
+        // Mensaje que se muestra en el front
+        String messageForUser = "An error occurred while communicating with the external API";
 
         return buildErrorDetail(
                 HttpStatus.valueOf(exception.getStatusCode().value()),
-                exception.getMessage(),
-                description
+                messageForUser,
+                exception.getMessage()
         );
 
     }
@@ -33,12 +36,13 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(TokenNotFoundException.class)
     public ProblemDetail handleTokenNotFoundException(TokenNotFoundException exception) {
 
-        String description = "The JWT token is missing from the request header";
+        // Mensaje que se muestra en el front
+        String messageForUser = "The JWT token is missing from the request header";
 
         return buildErrorDetail(
                 HttpStatus.BAD_REQUEST,
-                exception.getMessage(),
-                description
+                messageForUser,
+                exception.getMessage()
         );
 
     }
@@ -46,9 +50,11 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(EmailException.class)
     public ProblemDetail handleEmailException(EmailException exception) {
 
+        String messageForUser = "An error occurred while sending an email";
+
         return buildErrorDetail(
                 HttpStatus.INTERNAL_SERVER_ERROR,
-                exception.getMessage(),
+                messageForUser,
                 exception.getMessage()
         );
 
@@ -57,12 +63,12 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(ResourceConflictException.class)
     public ProblemDetail ResourceConflictExceptionHandling(ResourceConflictException exception) {
 
-        String description = "A conflict occurred: The requested operation could not be completed due to a resource conflict";
+        String messageForUser = "A conflict occurred: The requested operation could not be completed due to a resource conflict";
 
         return buildErrorDetail(
                 HttpStatus.CONFLICT,
-                exception.getMessage(),
-                description
+                messageForUser,
+                exception.getMessage()
         );
 
     }
@@ -70,15 +76,12 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(NotFoundException.class)
     public ProblemDetail handleNotFoundException(NotFoundException exception) {
 
-        String description = "The requested resource could not be found. Please verify the input and try again";
-
-        ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
-        errorDetail.setProperty("description", exception.getMessage());
+        String messageForUser = "The requested resource could not be found";
 
         return buildErrorDetail(
                 HttpStatus.NOT_FOUND,
-                exception.getMessage(),
-                description
+                messageForUser,
+                exception.getMessage()
         );
 
     }
@@ -86,12 +89,12 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(IllegalArgumentException.class)
     public ProblemDetail handleIllegalArgumentException(IllegalArgumentException exception) {
 
-        String description = "Invalid argument provided: The value does not meet the required format or constraints expected by the service";
+        String messageForUser = "Invalid argument provided: The value does not meet the required format or constraints expected by the service";
 
         return buildErrorDetail(
                 HttpStatus.BAD_REQUEST,
-                exception.getMessage(),
-                description
+                messageForUser,
+                exception.getMessage()
         );
 
     }
@@ -99,11 +102,11 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(DataAccessException.class)
     public ProblemDetail handleIllegalArgumentException(DataAccessException exception) {
 
-        String message = "An error occurred while trying to connect with the database. Please try again later";
+        String messageForUser = "An error occurred while trying to connect with the database. Please try again later";
 
         return buildErrorDetail(
                 HttpStatus.BAD_REQUEST,
-                message,
+                messageForUser,
                 exception.getMessage()
         );
 
@@ -118,8 +121,9 @@ public class GlobalExceptionHandling {
 
             errorDetail = buildErrorDetail(
                     HttpStatus.UNAUTHORIZED,
-                    exception.getMessage(),
-                    "The username or password is incorrect"
+                    "The username or password is incorrect",
+                    exception.getMessage()
+
             );
 
         }
@@ -128,8 +132,9 @@ public class GlobalExceptionHandling {
 
             errorDetail = buildErrorDetail(
                     HttpStatus.FORBIDDEN,
-                    exception.getMessage(),
-                    "The account is locked"
+                    "The account is locked",
+                    exception.getMessage()
+
             );
 
         }
@@ -138,8 +143,9 @@ public class GlobalExceptionHandling {
 
             errorDetail = buildErrorDetail(
                     HttpStatus.FORBIDDEN,
-                    exception.getMessage(),
-                    "You are not authorized to access this resource"
+                    "You are not authorized to access this resource",
+                    exception.getMessage()
+
             );
 
         }
@@ -148,8 +154,8 @@ public class GlobalExceptionHandling {
 
             errorDetail = buildErrorDetail(
                     HttpStatus.FORBIDDEN,
-                    exception.getMessage(),
-                    "The JWT signature is invalid"
+                    "The JWT signature is invalid",
+                    exception.getMessage()
             );
 
         }
@@ -158,8 +164,8 @@ public class GlobalExceptionHandling {
 
             errorDetail = buildErrorDetail(
                     HttpStatus.FORBIDDEN,
-                    exception.getMessage(),
-                    "The JWT token has expired"
+                    "The JWT token has expired",
+                    exception.getMessage()
             );
 
         }
@@ -168,8 +174,8 @@ public class GlobalExceptionHandling {
 
             errorDetail = buildErrorDetail(
                     HttpStatus.INTERNAL_SERVER_ERROR,
-                    exception.getMessage(),
-                    "Unknown internal server error"
+                    "Unknown internal server error",
+                    exception.getMessage()
             );
 
         }
@@ -177,10 +183,13 @@ public class GlobalExceptionHandling {
         return errorDetail;
     }
 
-    private ProblemDetail buildErrorDetail(HttpStatus statusCode, String message, String description) {
+    private ProblemDetail buildErrorDetail(HttpStatus statusCode, String messageForUser, String descriptionError) {
 
-        ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(statusCode, message);
-        errorDetail.setProperty("description", description);
+        ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(statusCode, messageForUser);
+        errorDetail.setProperty("description", descriptionError);
+
+        // Registramos el error en la consola
+        log.error(descriptionError);
 
         return errorDetail;
 

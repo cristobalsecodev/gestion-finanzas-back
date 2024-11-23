@@ -21,17 +21,17 @@ public interface IncomeOrExpenseRepository extends JpaRepository<IncomeOrExpense
     Long countByRecurrenceId(@Param("recurrenceId") Long recurrenceId);
 
     @Query("SELECT i FROM IncomeOrExpense i " +
-            "LEFT JOIN i.recurrenceDetails r " +
             "WHERE (:notes IS NULL OR (i.notes = :notes)) " +
             "AND (:categories IS NULL OR i.category IN :categories) " +
             "AND (:subCategories IS NULL OR i.subCategory IN :subCategories) " +
             "AND (:startDate IS NULL OR i.date >= :startDate) " +
             "AND (:endDate IS NULL OR i.date <= :endDate) " +
-            "AND (:recurrences IS NULL OR r.id IN :recurrences) " +
+            "AND (:recurrences IS NULL OR i.recurrenceDetails.id IN :recurrences) " +
             "AND (:type IS NULL OR i.type = :type) " +
             "AND (:startAmount IS NULL OR i.amount >= :startAmount) " +
             "AND (:endAmount IS NULL OR i.amount <= :endAmount) " +
-            "AND (:userId IS NULL OR i.user.id = :userId)")
+            "AND (:userId IS NULL OR i.user.id = :userId) "
+    )
     Page<IncomeOrExpense> findByFilters(
             @Param("notes") String notes,
             @Param("categories") List<String> categories,
