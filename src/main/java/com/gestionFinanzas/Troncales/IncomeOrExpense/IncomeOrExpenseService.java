@@ -61,7 +61,7 @@ public class IncomeOrExpenseService {
 
         }
 
-        String recurrenceDeleted = "";
+        String messageDeletion = "The " + incomeOrExpense.getType() + " was successfully deleted";
 
         // Busca cuántos registros hay asignados a esa recurrencia
         if(incomeOrExpense.getRecurrenceDetails() != null) {
@@ -71,7 +71,7 @@ public class IncomeOrExpenseService {
             // Si solo hay uno, elimina la recurrencia
             if(howManyIncomeOrExpenses == 1) {
 
-                recurrenceDeleted = " and the recurrence associated";
+                messageDeletion = "The associated recurrence and the " + incomeOrExpense.getType() + " were successfully deleted";
 
                 recurrenceDetailsRepository.deleteById(incomeOrExpense.getRecurrenceDetails().getId());
 
@@ -81,7 +81,7 @@ public class IncomeOrExpenseService {
 
         incomeOrExpenseRepository.deleteById(id);
 
-        return "The " + incomeOrExpense.getType() + recurrenceDeleted + " were successfully deleted";
+        return messageDeletion;
 
     }
 
