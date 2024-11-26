@@ -69,7 +69,7 @@ public class RecurrenceDetailsService {
 
         newEntry.setDate(today);
         newEntry.setCategory(lastEntry.getCategory());
-        newEntry.setSubCategory(lastEntry.getSubCategory());
+        newEntry.setSubcategory(lastEntry.getSubcategory());
         newEntry.setAmount(lastEntry.getAmount());
         newEntry.setCurrency(lastEntry.getCurrency());
         newEntry.setType(lastEntry.getType());

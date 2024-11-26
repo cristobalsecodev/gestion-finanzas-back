@@ -12,9 +12,9 @@ public class FilterIncomeOrExpense extends PaginationData {
 
     private String notes;
 
-    private List<String> categories;
+    private List<Long> categories;
 
-    private List<String> subCategories;
+    private List<Long> subcategories;
 
     private LocalDate startDate;
 

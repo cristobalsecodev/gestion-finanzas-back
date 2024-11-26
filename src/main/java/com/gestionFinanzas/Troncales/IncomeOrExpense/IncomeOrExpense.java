@@ -1,6 +1,8 @@
 package com.gestionFinanzas.Troncales.IncomeOrExpense;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gestionFinanzas.Categories.IncomeOrExpense.IncomeOrExpenseCategory;
+import com.gestionFinanzas.Categories.Subcategories.IncomeOrExpense.IncomeOrExpenseSubcategory;
 import com.gestionFinanzas.Troncales.IncomeOrExpense.RecurrenceDetails.RecurrenceDetails;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.persistence.*;
@@ -21,11 +23,6 @@ public class IncomeOrExpense {
     @Column(nullable = false)
     private LocalDate date;
 
-    @Column(nullable = false)
-    private String category;
-
-    private String subCategory;
-
     @Column(nullable = false, precision = 15, scale = 2)
     private BigDecimal amount;
 
@@ -44,6 +41,14 @@ public class IncomeOrExpense {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "recurrence_details_id")
     private RecurrenceDetails recurrenceDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private IncomeOrExpenseCategory category;
+
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id", nullable = false)
+    private IncomeOrExpenseSubcategory subcategory;
 
     @ManyToOne
     @JsonIgnore

@@ -25,8 +25,8 @@ public interface IncomeOrExpenseRepository extends JpaRepository<IncomeOrExpense
 
     @Query("SELECT i FROM IncomeOrExpense i " +
             "WHERE (:notes IS NULL OR (i.notes = :notes)) " +
-            "AND (:categories IS NULL OR i.category IN :categories) " +
-            "AND (:subCategories IS NULL OR i.subCategory IN :subCategories) " +
+            "AND (:categories IS NULL OR i.category.id IN :categories) " +
+            "AND (:subcategories IS NULL OR i.subcategory.id IN :subcategories) " +
             "AND (:startDate IS NULL OR i.date >= :startDate) " +
             "AND (:endDate IS NULL OR i.date <= :endDate) " +
             "AND (:recurrences IS NULL OR i.recurrenceDetails.id IN :recurrences) " +
@@ -37,8 +37,8 @@ public interface IncomeOrExpenseRepository extends JpaRepository<IncomeOrExpense
     )
     Page<IncomeOrExpense> findByFilters(
             @Param("notes") String notes,
-            @Param("categories") List<String> categories,
-            @Param("subCategories") List<String> subCategories,
+            @Param("categories") List<Long> categories,
+            @Param("subcategories") List<Long> subcategories,
             @Param("startDate") LocalDate startDate,
             @Param("endDate") LocalDate endDate,
             @Param("recurrences") List<Long> recurrences,

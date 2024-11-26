@@ -96,7 +96,7 @@ public class IncomeOrExpenseService {
         return incomeOrExpenseRepository.findByFilters(
                 filter.getNotes(),
                 filter.getCategories(),
-                filter.getSubCategories(),
+                filter.getSubcategories(),
                 filter.getStartDate(),
                 filter.getEndDate(),
                 filter.getRecurrences(),

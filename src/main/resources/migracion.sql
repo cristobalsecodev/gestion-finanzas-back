@@ -56,14 +56,14 @@ create table income_or_expense (
     id bigint primary key generated always as identity,
     date date not null,
     amount numeric(15, 2) not null,
-    category varchar(50),
-    sub_category varchar(50),
     currency varchar(10) not null,
     exchange_rate_to_usd numeric(10, 4) not null,
     type varchar(10) check (type in ('income', 'expense')) not null,
     notes varchar(150),
     user_id bigint not null references users (id) on delete cascade,
-    recurrence_details_id bigint references recurrence_details(id) on delete cascade
+    recurrence_details_id bigint references recurrence_details(id) on delete cascade,
+    category_id bigint references income_or_expense_category(id),
+    subcategory_id bigint references income_or_expense_subcategory(id)
 );
 
 -- Tabla de categorías de inversiones
