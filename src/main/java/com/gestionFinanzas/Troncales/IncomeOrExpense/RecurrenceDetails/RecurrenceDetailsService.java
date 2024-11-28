@@ -1,7 +1,7 @@
 package com.gestionFinanzas.Troncales.IncomeOrExpense.RecurrenceDetails;
 
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.IllegalArgumentException;
-import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.UnprocessableEntityException;
 import com.gestionFinanzas.Troncales.IncomeOrExpense.IncomeOrExpense;
 import com.gestionFinanzas.Troncales.IncomeOrExpense.IncomeOrExpenseRepository;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -55,7 +55,7 @@ public class RecurrenceDetailsService {
 
             } else {
 
-                throw new ResourceConflictException("The recurrence does not have a related income or expense record");
+                throw new UnprocessableEntityException("The recurrence does not have a related income or expense record");
 
             }
 

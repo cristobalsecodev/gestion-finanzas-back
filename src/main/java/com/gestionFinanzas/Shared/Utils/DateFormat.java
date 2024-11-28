@@ -1,5 +1,7 @@
 package com.gestionFinanzas.Shared.Utils;
 
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.BadRequestException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -9,7 +11,7 @@ public class DateFormat {
 
         if(date == null || formato.isEmpty()) {
 
-            throw new IllegalArgumentException("Date and format are mandatory");
+            throw new BadRequestException("Date and format are mandatory");
 
         }
 

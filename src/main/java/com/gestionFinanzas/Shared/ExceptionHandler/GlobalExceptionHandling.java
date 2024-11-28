@@ -20,10 +20,10 @@ import java.security.SignatureException;
 public class GlobalExceptionHandling {
 
     @ExceptionHandler(ApiException.class)
-    public ProblemDetail ApiExceptionHandling(ApiException exception) {
+    public ProblemDetail handleApiException(ApiException exception) {
 
         // Mensaje que se muestra en el front
-        String messageForUser = "An error occurred while communicating with the external API";
+        String messageForUser = "An error occurred while communicating with an external API";
 
         return buildErrorDetail(
                 HttpStatus.valueOf(exception.getStatusCode().value()),
@@ -61,7 +61,7 @@ public class GlobalExceptionHandling {
     }
 
     @ExceptionHandler(ResourceConflictException.class)
-    public ProblemDetail ResourceConflictExceptionHandling(ResourceConflictException exception) {
+    public ProblemDetail handleResourceConflictException(ResourceConflictException exception) {
 
         String messageForUser = "A conflict occurred: The requested operation could not be completed due to a resource conflict";
 
@@ -88,6 +88,32 @@ public class GlobalExceptionHandling {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ProblemDetail handleIllegalArgumentException(IllegalArgumentException exception) {
+
+        String messageForUser = "Invalid argument provided: The value does not meet the required format or constraints expected by the service";
+
+        return buildErrorDetail(
+                HttpStatus.BAD_REQUEST,
+                messageForUser,
+                exception.getMessage()
+        );
+
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ProblemDetail handleBadRequestException(BadRequestException exception) {
+
+        String messageForUser = "The request could not be processed due to invalid input";
+
+        return buildErrorDetail(
+                HttpStatus.BAD_REQUEST,
+                messageForUser,
+                exception.getMessage()
+        );
+
+    }
+
+    @ExceptionHandler(UnprocessableEntityException.class)
+    public ProblemDetail handleUnprocessableEntityException(UnprocessableEntityException exception) {
 
         String messageForUser = "Invalid argument provided: The value does not meet the required format or constraints expected by the service";
 

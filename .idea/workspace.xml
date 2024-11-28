@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/Exceptions/BadRequestException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/Exceptions/UnprocessableEntityException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/DTOs/FilterIncomeOrExpense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/DTOs/FilterIncomeOrExpense.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpense.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/CurrencyExchangeRatio/CurrencyExchangeRatioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/CurrencyExchangeRatio/CurrencyExchangeRatioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/GlobalExceptionHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/GlobalExceptionHandling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/Utils/DateFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/Utils/DateFormat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/RecurrenceDetails/RecurrenceDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/RecurrenceDetails/RecurrenceDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/migracion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/migracion.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Usuarios/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Usuarios/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +25,9 @@
       <list>
         <option value="package-info" />
         <option value="Enum" />
-        <option value="Exception" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>

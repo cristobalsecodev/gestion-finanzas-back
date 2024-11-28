@@ -4,6 +4,7 @@ import com.gestionFinanzas.Auth.AuthService;
 
 import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.UnprocessableEntityException;
 import org.springframework.stereotype.Service;
 
 
@@ -35,7 +36,7 @@ public class UserService {
 
         } else {
 
-            throw new ResourceConflictException("Code mismatch: the provided code doesn't match the expected one for the email");
+            throw new UnprocessableEntityException("Code mismatch: the provided code doesn't match the expected one for the email");
 
         }
 

@@ -1,13 +1,8 @@
 package com.gestionFinanzas.Shared.CurrencyExchangeRatio;
 
-import com.gestionFinanzas.Auth.AuthService;
-import com.gestionFinanzas.Categories.IncomeOrExpense.IncomeOrExpenseCategory;
-import com.gestionFinanzas.Categories.IncomeOrExpense.IncomeOrExpenseCategoryRepository;
 import com.gestionFinanzas.Rest.CurrencyExchangeAPI.CurrencyExchangeAPIService;
 import com.gestionFinanzas.Rest.CurrencyExchangeAPI.DTOs.CurrencyExchangeAPIDto;
 import com.gestionFinanzas.Rest.CurrencyExchangeAPI.DTOs.ExchangeRatioDto;
-import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
-import com.gestionFinanzas.Usuarios.User;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -73,7 +68,7 @@ public class CurrencyExchangeRatioService {
 
         } catch (Exception e) {
 
-            throw new ResourceConflictException("The update of the currency exchange ratio has failed");
+            throw new RuntimeException("The update of the currency exchange ratio has failed: " + e.getMessage());
 
         }
 

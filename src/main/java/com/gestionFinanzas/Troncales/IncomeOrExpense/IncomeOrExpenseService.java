@@ -1,18 +1,13 @@
 package com.gestionFinanzas.Troncales.IncomeOrExpense;
 
 import com.gestionFinanzas.Auth.AuthService;
-import com.gestionFinanzas.Shared.Email.EmailService;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
-import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
 import com.gestionFinanzas.Troncales.IncomeOrExpense.DTOs.FilterIncomeOrExpense;
 import com.gestionFinanzas.Troncales.IncomeOrExpense.RecurrenceDetails.RecurrenceDetailsRepository;
 import com.gestionFinanzas.Usuarios.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class IncomeOrExpenseService {
@@ -57,7 +52,7 @@ public class IncomeOrExpenseService {
 
         if(incomeOrExpense == null) {
 
-            throw new ResourceConflictException("The income or expense with id: " + id + " does not exist");
+            throw new NotFoundException("The income or expense with id: " + id + " does not exist");
 
         }
 
