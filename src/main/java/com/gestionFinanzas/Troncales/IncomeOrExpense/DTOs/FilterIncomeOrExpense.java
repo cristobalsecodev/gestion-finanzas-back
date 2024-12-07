@@ -10,22 +10,20 @@ import java.util.List;
 @Data
 public class FilterIncomeOrExpense extends PaginationData {
 
-    private String notes;
-
     private List<Long> categories;
 
     private List<Long> subcategories;
 
-    private LocalDate startDate;
+    private LocalDate fromDate;
 
-    private LocalDate endDate;
+    private LocalDate toDate;
 
-    private List<Long> recurrences;
+    private Boolean recurrences;
 
     private String type;
 
-    private BigDecimal startAmount;
+    private BigDecimal fromAmount;
 
-    private BigDecimal endAmount;
+    private BigDecimal toAmount;
 
 }
