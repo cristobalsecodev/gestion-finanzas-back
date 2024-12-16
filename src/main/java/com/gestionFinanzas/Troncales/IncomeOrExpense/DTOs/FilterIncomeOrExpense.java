@@ -2,17 +2,18 @@ package com.gestionFinanzas.Troncales.IncomeOrExpense.DTOs;
 
 import com.gestionFinanzas.Shared.DTOs.PaginationData;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class FilterIncomeOrExpense extends PaginationData {
 
-    private List<Long> categories;
-
-    private List<Long> subcategories;
+    private Map<Long, List<Long>> categorySubcategoryMap;
 
     private LocalDate fromDate;
 

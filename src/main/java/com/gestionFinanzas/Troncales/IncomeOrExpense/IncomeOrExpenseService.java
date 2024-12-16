@@ -89,15 +89,12 @@ public class IncomeOrExpenseService {
         User user = this.authService.getInfoUser();
 
         return incomeOrExpenseRepository.findByFilters(
-                filter.getNotes(),
-                filter.getCategories(),
-                filter.getSubcategories(),
-                filter.getStartDate(),
-                filter.getEndDate(),
+                filter.getFromDate(),
+                filter.getToDate(),
                 filter.getRecurrences(),
                 filter.getType(),
-                filter.getStartAmount(),
-                filter.getEndAmount(),
+                filter.getFromAmount(),
+                filter.getToAmount(),
                 user.getId(),
                 pageable
         );

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface IncomeOrExpenseRepository extends JpaRepository<IncomeOrExpense, Long> {
@@ -23,28 +24,22 @@ public interface IncomeOrExpenseRepository extends JpaRepository<IncomeOrExpense
     @Query(value = "SELECT COUNT (i) FROM IncomeOrExpense i WHERE i.recurrenceDetails.id = :recurrenceId")
     Long countByRecurrenceId(@Param("recurrenceId") Long recurrenceId);
 
-    @Query("SELECT i FROM IncomeOrExpense i " +
-            "WHERE (:notes IS NULL OR (i.notes = :notes)) " +
-            "AND (:categories IS NULL OR i.category.id IN :categories) " +
-            "AND (:subcategories IS NULL OR i.subcategory.id IN :subcategories) " +
-            "AND (:startDate IS NULL OR i.date >= :startDate) " +
-            "AND (:endDate IS NULL OR i.date <= :endDate) " +
-            "AND (:recurrences IS NULL OR i.recurrenceDetails.id IN :recurrences) " +
-            "AND (:type IS NULL OR i.type = :type) " +
-            "AND (:startAmount IS NULL OR i.amount >= :startAmount) " +
-            "AND (:endAmount IS NULL OR i.amount <= :endAmount) " +
-            "AND (:userId IS NULL OR i.user.id = :userId) "
+    @Query(value = "SELECT ioe FROM IncomeOrExpense ioe " +
+      " WHERE ioe.user.id = :userId " +
+      "     AND (:fromDate IS NULL OR ioe.date >= :fromDate) " +
+      "     AND (:toDate IS NULL OR ioe.date <= :toDate) " +
+      "     AND (:recurrences IS NULL OR (:recurrences = TRUE AND ioe.recurrenceDetails IS NOT NULL)) " +
+      "     AND (:type IS NULL OR ioe.type = :type) " +
+      "     AND (:fromAmount IS NULL OR ioe.amount >= :fromAmount) " +
+      "     AND (:toAmount IS NULL OR ioe.amount <= :toAmount) "
     )
     Page<IncomeOrExpense> findByFilters(
-            @Param("notes") String notes,
-            @Param("categories") List<Long> categories,
-            @Param("subcategories") List<Long> subcategories,
-            @Param("startDate") LocalDate startDate,
-            @Param("endDate") LocalDate endDate,
-            @Param("recurrences") List<Long> recurrences,
+            @Param("fromDate") LocalDate fromDate,
+            @Param("toDate") LocalDate toDate,
+            @Param("recurrences") Boolean recurrences,
             @Param("type") String type,
-            @Param("startAmount") BigDecimal startAmount,
-            @Param("endAmount") BigDecimal endAmount,
+            @Param("fromAmount") BigDecimal fromAmount,
+            @Param("toAmount") BigDecimal toAmount,
             @Param("userId") Long userId,
             Pageable pageable
     );
