@@ -1,5 +1,6 @@
 package com.gestionFinanzas.Troncales.IncomeOrExpense;
 
+import com.gestionFinanzas.Troncales.IncomeOrExpense.DTOs.CategorySubcategoriesAssociated;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -40,6 +41,7 @@ public interface IncomeOrExpenseRepository extends JpaRepository<IncomeOrExpense
             @Param("type") String type,
             @Param("fromAmount") BigDecimal fromAmount,
             @Param("toAmount") BigDecimal toAmount,
+            @Param("categorySubcategoryList") List<CategorySubcategoriesAssociated> categorySubcategoryList,
             @Param("userId") Long userId,
             Pageable pageable
     );

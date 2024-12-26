@@ -95,6 +95,7 @@ public class IncomeOrExpenseService {
                 filter.getType(),
                 filter.getFromAmount(),
                 filter.getToAmount(),
+                filter.getCategorySubcategoryMap(),
                 user.getId(),
                 pageable
         );

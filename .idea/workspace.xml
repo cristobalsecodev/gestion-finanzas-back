@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/DTOs/CategorySubcategoriesAssociated.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/DTOs/FilterIncomeOrExpense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/DTOs/FilterIncomeOrExpense.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncales/IncomeOrExpense/IncomeOrExpenseRepository.java" afterDir="false" />
@@ -21,8 +22,8 @@
         <option value="package-info" />
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
