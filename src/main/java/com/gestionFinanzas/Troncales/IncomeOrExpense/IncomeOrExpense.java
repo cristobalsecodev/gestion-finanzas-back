@@ -47,7 +47,7 @@ public class IncomeOrExpense {
     private IncomeOrExpenseCategory category;
 
     @ManyToOne
-    @JoinColumn(name = "subcategory_id", nullable = false)
+    @JoinColumn(name = "subcategory_id")
     private IncomeOrExpenseSubcategory subcategory;
 
     @ManyToOne

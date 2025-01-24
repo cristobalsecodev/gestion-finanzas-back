@@ -93,9 +93,10 @@ public class IncomeOrExpenseService {
                 filter.getToDate(),
                 filter.getRecurrences(),
                 filter.getType(),
+                filter.getCategories(),
+                filter.getSubcategories(),
                 filter.getFromAmount(),
                 filter.getToAmount(),
-                filter.getCategorySubcategoryMap(),
                 user.getId(),
                 pageable
         );

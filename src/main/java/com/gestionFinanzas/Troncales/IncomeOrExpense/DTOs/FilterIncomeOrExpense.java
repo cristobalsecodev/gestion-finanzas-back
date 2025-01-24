@@ -12,7 +12,9 @@ import java.util.List;
 @Data
 public class FilterIncomeOrExpense extends PaginationData {
 
-    private List<CategorySubcategoriesAssociated> categorySubcategoryMap;
+    private List<Long> categories;
+
+    private List<Long> subcategories;
 
     private LocalDate fromDate;
 
