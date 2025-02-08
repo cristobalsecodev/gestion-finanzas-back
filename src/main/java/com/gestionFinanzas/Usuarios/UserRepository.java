@@ -22,5 +22,14 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             @Param("email") String email
     );
 
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE users SET favorite_currency = :favoriteCurrency WHERE email = :email", nativeQuery = true)
+    void updateFavoriteCurrency(
+            @Param("email") String email,
+            @Param("favoriteCurrency") String favoriteCurrency
+    );
+
+
 
 }

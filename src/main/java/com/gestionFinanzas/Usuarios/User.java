@@ -26,6 +26,9 @@ public class User implements UserDetails {
 
     private String surnames;
 
+    @Column(name = "favorite_currency", nullable = false)
+    private String favoriteCurrency;
+
     @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;
 

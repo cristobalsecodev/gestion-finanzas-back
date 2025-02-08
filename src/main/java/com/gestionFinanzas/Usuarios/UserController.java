@@ -1,11 +1,9 @@
 package com.gestionFinanzas.Usuarios;
 
 import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
+import com.gestionFinanzas.Usuarios.DTOs.UserInfoDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -22,6 +20,20 @@ public class UserController {
 
         // Procedemos a la lógica de activación de cuenta
         return ResponseEntity.ok(userService.activateAccount(activationCode));
+
+    }
+
+    @GetMapping("/user-info")
+    public UserInfoDto getUserInfo() {
+
+        return userService.getUserInfo();
+
+    }
+
+    @PostMapping("/save-favorite-currency")
+    public void saveFavoriteCurrency(@RequestBody String favoriteCurrency) {
+
+        userService.saveFavoriteCurrency(favoriteCurrency);
 
     }
 

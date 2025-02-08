@@ -20,6 +20,7 @@ create table users (
     name varchar(255),
     email text not null unique,
     surnames varchar(255),
+    favorite_currency varchar(3) not null default 'USD',
     creation_date date not null default now(),
     account_activation_code varchar(10),
     password varchar(255)

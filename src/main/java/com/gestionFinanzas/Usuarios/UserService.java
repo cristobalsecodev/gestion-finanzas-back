@@ -5,6 +5,7 @@ import com.gestionFinanzas.Auth.AuthService;
 import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.UnprocessableEntityException;
+import com.gestionFinanzas.Usuarios.DTOs.UserInfoDto;
 import org.springframework.stereotype.Service;
 
 
@@ -47,6 +48,30 @@ public class UserService {
         // Generamos un nuevo token y lo devolvemos
         return authService.manageToken(user);
 
+    }
+
+    public UserInfoDto getUserInfo() {
+
+        // Recogemos el usuario del security context
+        User user = authService.getInfoUser();
+
+        UserInfoDto userInfo = new UserInfoDto();
+
+        userInfo.setFavoriteCurrency(user.getFavoriteCurrency());
+
+        return userInfo;
+
+    }
+
+    public void saveFavoriteCurrency(String favoriteCurrency) {
+
+        // Recogemos el usuario del security context
+        User user = authService.getInfoUser();
+
+        userRepository.updateFavoriteCurrency(
+                user.getEmail(),
+                favoriteCurrency
+        );
 
     }
 
