@@ -242,6 +242,7 @@ public class AuthService {
         boolean isActivated = (user.getAccountActivacionCode() == null || user.getAccountActivacionCode().isEmpty());
 
         extraClaims.put("isAccountActivated", isActivated);
+        extraClaims.put("favoriteCurrency", user.getFavoriteCurrency());
 
         return extraClaims;
 

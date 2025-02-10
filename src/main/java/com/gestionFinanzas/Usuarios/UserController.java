@@ -23,13 +23,6 @@ public class UserController {
 
     }
 
-    @GetMapping("/user-info")
-    public UserInfoDto getUserInfo() {
-
-        return userService.getUserInfo();
-
-    }
-
     @PostMapping("/save-favorite-currency")
     public void saveFavoriteCurrency(@RequestBody String favoriteCurrency) {
 

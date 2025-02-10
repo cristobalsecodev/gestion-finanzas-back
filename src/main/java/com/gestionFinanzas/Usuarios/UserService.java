@@ -50,19 +50,6 @@ public class UserService {
 
     }
 
-    public UserInfoDto getUserInfo() {
-
-        // Recogemos el usuario del security context
-        User user = authService.getInfoUser();
-
-        UserInfoDto userInfo = new UserInfoDto();
-
-        userInfo.setFavoriteCurrency(user.getFavoriteCurrency());
-
-        return userInfo;
-
-    }
-
     public void saveFavoriteCurrency(String favoriteCurrency) {
 
         // Recogemos el usuario del security context
