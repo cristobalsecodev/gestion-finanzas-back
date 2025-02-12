@@ -4,7 +4,6 @@ import com.gestionFinanzas.Shared.DTOs.PaginationData;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,8 +23,6 @@ public class FilterIncomeOrExpense extends PaginationData {
 
     private String type;
 
-    private BigDecimal fromAmount;
-
-    private BigDecimal toAmount;
+    private List<String> currencies;
 
 }

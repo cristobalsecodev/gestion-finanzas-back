@@ -7,6 +7,7 @@ import com.gestionFinanzas.Auth.DTOs.WantsResetPasswordDto;
 import com.gestionFinanzas.Shared.OneTimeUrl.OneTimeUrlService;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
+    @Value("${testUser.email}")
+    private String testEmail;
+
+    @Value("${testUser.pass}")
+    private String testPass;
 
     private final AuthService authService;
 
@@ -40,6 +47,14 @@ public class AuthController {
 
         // Autenticamos el usuario
         return ResponseEntity.ok(authService.authenticate(loginInfo.getEmail(), loginInfo.getPassword()));
+
+    }
+
+    @GetMapping("/test-login")
+    public ResponseEntity<TokenResponseDto> testLogin() {
+
+        // Autenticamos el usuario de TEST
+        return ResponseEntity.ok(authService.authenticate(testEmail, testPass));
 
     }
 

@@ -31,8 +31,7 @@ public interface IncomeOrExpenseRepository extends JpaRepository<IncomeOrExpense
         "     AND (:type IS NULL OR ioe.type = :type) " +
         "     AND (:categories IS NULL OR ioe.category.id IN :categories) " +
         "     AND (:subcategories IS NULL OR ioe.subcategory.id IN :subcategories)" +
-        "     AND (:fromAmount IS NULL OR ioe.amount >= :fromAmount) " +
-        "     AND (:toAmount IS NULL OR ioe.amount <= :toAmount) "
+        "     AND (:currencies IS NULL OR ioe.currency IN :currencies) "
     )
     Page<IncomeOrExpense> findByFilters(
             @Param("fromDate") LocalDate fromDate,
@@ -41,8 +40,7 @@ public interface IncomeOrExpenseRepository extends JpaRepository<IncomeOrExpense
             @Param("type") String type,
             @Param("categories") List<Long> categories,
             @Param("subcategories") List<Long> subcategories,
-            @Param("fromAmount") BigDecimal fromAmount,
-            @Param("toAmount") BigDecimal toAmount,
+            @Param("currencies") List<String> currencies,
             @Param("userId") Long userId,
             Pageable pageable
     );

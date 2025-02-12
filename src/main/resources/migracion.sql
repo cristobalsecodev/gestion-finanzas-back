@@ -26,11 +26,16 @@ create table users (
     password varchar(255)
 );
 
+-- Insertar usuario TEST
+INSERT INTO users (name, email, surnames, favorite_currency, creation_date, account_activation_code, password)
+VALUES ('Test', 'test@example.com', 'User', 'EUR', now(), null, '$2a$10$wHh/xs0uPZb7hA6BGxyHveRJh/s5htHK1QGcglhD8I9YV3T1Ow5vC');
+
 -- Tabla de categorías de ingresos / gastos
 create table income_or_expense_category (
     id bigint primary key generated always as identity,
     name varchar(30) not null unique,
     type varchar(10) check (type in ('income', 'expense')) not null,
+    color varchar(7) not null,
     user_id bigint not null references users (id) on delete cascade
 );
 

@@ -4,6 +4,7 @@ import com.gestionFinanzas.Auth.DTOs.ResetPasswordDto;
 import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
 import com.gestionFinanzas.Auth.DTOs.WantsResetPasswordDto;
 import com.gestionFinanzas.Auth.ENUMs.OneTimeUrlTypeEnum;
+import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.UnprocessableEntityException;
 import com.gestionFinanzas.Shared.OneTimeUrl.OneTimeUrl;
 import com.gestionFinanzas.Shared.OneTimeUrl.OneTimeUrlService;
 import com.gestionFinanzas.Shared.Email.EmailService;
@@ -14,6 +15,7 @@ import com.gestionFinanzas.Usuarios.User;
 import com.gestionFinanzas.Usuarios.UserRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +28,9 @@ import java.util.*;
 
 @Service
 public class AuthService {
+
+    @Value("${testUser.email}")
+    private String testEmail;
 
     private final UserRepository userRepository;
 
@@ -180,23 +185,31 @@ public class AuthService {
     // Usuario quiere resetear la contraseña
     public String wantResetPassword(WantsResetPasswordDto wantResetInfo) {
 
-        // Creamos una one time url para ello
-        OneTimeUrl oneTimeUrlSaved = oneTimeUrlService.createOneTimeUrl(
-            wantResetInfo.getUrl(),
-            wantResetInfo.getEmail(),
-            15,
-            OneTimeUrlTypeEnum.RESET_PASS.getName()
-        );
+        if(wantResetInfo.getEmail().equals(testEmail)) {
 
-        User user = userRepository.findUserByEmail(wantResetInfo.getEmail());
+            throw new UnprocessableEntityException("You cannot modify the password for the test user");
 
-        if(user != null) {
+        } else {
 
-            emailService.sendResetPasswordEmail(user, oneTimeUrlSaved);
+            // Creamos una one time url para ello
+            OneTimeUrl oneTimeUrlSaved = oneTimeUrlService.createOneTimeUrl(
+                    wantResetInfo.getUrl(),
+                    wantResetInfo.getEmail(),
+                    15,
+                    OneTimeUrlTypeEnum.RESET_PASS.getName()
+            );
+
+            User user = userRepository.findUserByEmail(wantResetInfo.getEmail());
+
+            if(user != null) {
+
+                emailService.sendResetPasswordEmail(user, oneTimeUrlSaved);
+
+            }
+
+            return "If the email address is correct, please check the instructions to reset your password";
 
         }
-
-        return "If the email address is correct, please check the instructions to reset your password";
 
     }
 
