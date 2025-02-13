@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Categories.Subcategories.IncomeOrExpense;
+package com.gestionFinanzas.Categories.Subcategories;
 
 import com.gestionFinanzas.Auth.AuthService;
 import com.gestionFinanzas.Usuarios.User;

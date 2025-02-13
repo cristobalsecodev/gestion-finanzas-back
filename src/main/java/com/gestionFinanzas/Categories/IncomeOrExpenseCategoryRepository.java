@@ -1,7 +1,5 @@
-package com.gestionFinanzas.Categories.IncomeOrExpense;
+package com.gestionFinanzas.Categories;
 
-import com.gestionFinanzas.Troncales.IncomeOrExpense.IncomeOrExpense;
-import com.gestionFinanzas.Usuarios.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

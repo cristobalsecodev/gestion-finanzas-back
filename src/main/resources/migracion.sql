@@ -71,32 +71,3 @@ create table income_or_expense (
     category_id bigint references income_or_expense_category(id),
     subcategory_id bigint references income_or_expense_subcategory(id)
 );
-
--- Tabla de categorías de inversiones
-create table investment_category (
-    id bigint primary key generated always as identity,
-    name varchar(30) not null unique,
-    user_id bigint not null references users (id) on delete cascade
-);
-
--- Tabla de subcategorías de inversiones
-create table investment_subcategory (
-    id bigint primary key generated always as identity,
-    name varchar(30) not null unique,
-    user_id bigint not null references users (id) on delete cascade,
-    investment_category_id bigint not null references investment_category (id) on delete cascade
-);
-
--- Tabla de inversiones
-create table investment (
-  id bigint primary key generated always as identity,
-  purchase_date date not null,
-  purchase_amount numeric(15, 2) not null,
-  category varchar(50),
-  subcategory varchar(50),
-  exchange_rate_to_usd numeric(10, 4) not null,
-  notes text,
-  sale_amount numeric(15, 2),
-  sale_date date,
-  user_id bigint not null references users (id) on delete cascade
-);

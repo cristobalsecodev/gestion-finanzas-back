@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Troncales.IncomeOrExpense.RecurrenceDetails;
+package com.gestionFinanzas.Troncal.RecurrenceDetails;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

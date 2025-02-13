@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Troncales.IncomeOrExpense.RecurrenceDetails;
+package com.gestionFinanzas.Troncal.RecurrenceDetails;
 
 import jakarta.persistence.*;
 import lombok.Data;

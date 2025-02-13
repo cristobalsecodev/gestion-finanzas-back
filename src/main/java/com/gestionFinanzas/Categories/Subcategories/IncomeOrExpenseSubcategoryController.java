@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Categories.Subcategories.IncomeOrExpense;
+package com.gestionFinanzas.Categories.Subcategories;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

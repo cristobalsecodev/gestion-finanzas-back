@@ -1,6 +1,6 @@
-package com.gestionFinanzas.Troncales.IncomeOrExpense;
+package com.gestionFinanzas.Troncal;
 
-import com.gestionFinanzas.Troncales.IncomeOrExpense.DTOs.FilterIncomeOrExpense;
+import com.gestionFinanzas.Troncal.DTOs.FilterIncomeOrExpense;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

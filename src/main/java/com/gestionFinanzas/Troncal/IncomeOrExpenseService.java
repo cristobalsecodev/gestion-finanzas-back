@@ -1,9 +1,9 @@
-package com.gestionFinanzas.Troncales.IncomeOrExpense;
+package com.gestionFinanzas.Troncal;
 
 import com.gestionFinanzas.Auth.AuthService;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
-import com.gestionFinanzas.Troncales.IncomeOrExpense.DTOs.FilterIncomeOrExpense;
-import com.gestionFinanzas.Troncales.IncomeOrExpense.RecurrenceDetails.RecurrenceDetailsRepository;
+import com.gestionFinanzas.Troncal.DTOs.FilterIncomeOrExpense;
+import com.gestionFinanzas.Troncal.RecurrenceDetails.RecurrenceDetailsRepository;
 import com.gestionFinanzas.Usuarios.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,8 +1,8 @@
-package com.gestionFinanzas.Categories.IncomeOrExpense;
+package com.gestionFinanzas.Categories;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.gestionFinanzas.Categories.Subcategories.IncomeOrExpense.IncomeOrExpenseSubcategory;
+import com.gestionFinanzas.Categories.Subcategories.IncomeOrExpenseSubcategory;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.persistence.*;
 import lombok.Data;

@@ -1,9 +1,9 @@
-package com.gestionFinanzas.Troncales.IncomeOrExpense;
+package com.gestionFinanzas.Troncal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gestionFinanzas.Categories.IncomeOrExpense.IncomeOrExpenseCategory;
-import com.gestionFinanzas.Categories.Subcategories.IncomeOrExpense.IncomeOrExpenseSubcategory;
-import com.gestionFinanzas.Troncales.IncomeOrExpense.RecurrenceDetails.RecurrenceDetails;
+import com.gestionFinanzas.Categories.IncomeOrExpenseCategory;
+import com.gestionFinanzas.Categories.Subcategories.IncomeOrExpenseSubcategory;
+import com.gestionFinanzas.Troncal.RecurrenceDetails.RecurrenceDetails;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.persistence.*;
 import lombok.Data;

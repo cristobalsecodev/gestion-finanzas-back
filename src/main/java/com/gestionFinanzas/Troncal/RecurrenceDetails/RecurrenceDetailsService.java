@@ -1,9 +1,9 @@
-package com.gestionFinanzas.Troncales.IncomeOrExpense.RecurrenceDetails;
+package com.gestionFinanzas.Troncal.RecurrenceDetails;
 
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.IllegalArgumentException;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.UnprocessableEntityException;
-import com.gestionFinanzas.Troncales.IncomeOrExpense.IncomeOrExpense;
-import com.gestionFinanzas.Troncales.IncomeOrExpense.IncomeOrExpenseRepository;
+import com.gestionFinanzas.Troncal.IncomeOrExpense;
+import com.gestionFinanzas.Troncal.IncomeOrExpenseRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 

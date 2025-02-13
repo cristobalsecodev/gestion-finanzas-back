@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Troncales.IncomeOrExpense.DTOs;
+package com.gestionFinanzas.Troncal.DTOs;
 
 import com.gestionFinanzas.Shared.DTOs.PaginationData;
 import lombok.Data;

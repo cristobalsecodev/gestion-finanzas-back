@@ -1,8 +1,7 @@
-package com.gestionFinanzas.Categories.IncomeOrExpense;
+package com.gestionFinanzas.Categories;
 
 import com.gestionFinanzas.Auth.AuthService;
 import com.gestionFinanzas.Usuarios.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
