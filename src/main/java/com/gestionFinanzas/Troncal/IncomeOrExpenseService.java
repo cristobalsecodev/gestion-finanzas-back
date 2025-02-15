@@ -15,13 +15,9 @@ import org.springframework.stereotype.Service;
 public class IncomeOrExpenseService {
 
     private final IncomeOrExpenseRepository incomeOrExpenseRepository;
-
     private final RecurrenceDetailsRepository recurrenceDetailsRepository;
-
     private final AuthService authService;
-
     private final IncomeOrExpenseCategoryRepository incomeOrExpenseCategoryRepository;
-
     private final IncomeOrExpenseSubcategoryRepository incomeOrExpenseSubcategoryRepository;
 
     public IncomeOrExpenseService(

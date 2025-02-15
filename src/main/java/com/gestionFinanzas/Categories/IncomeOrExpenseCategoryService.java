@@ -2,6 +2,7 @@ package com.gestionFinanzas.Categories;
 
 import com.gestionFinanzas.Auth.AuthService;
 import com.gestionFinanzas.Categories.Subcategories.IncomeOrExpenseSubcategory;
+import com.gestionFinanzas.Categories.Subcategories.IncomeOrExpenseSubcategoryRepository;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
 import com.gestionFinanzas.Troncal.IncomeOrExpense;
 import com.gestionFinanzas.Usuarios.User;
@@ -14,13 +15,16 @@ public class IncomeOrExpenseCategoryService {
 
     private final IncomeOrExpenseCategoryRepository incomeOrExpenseCategoryRepository;
     private final AuthService authService;
+    private final IncomeOrExpenseSubcategoryRepository incomeOrExpenseSubcategoryRepository;
 
     public IncomeOrExpenseCategoryService(
             IncomeOrExpenseCategoryRepository incomeOrExpenseCategoryRepository,
-            AuthService authService
+            AuthService authService,
+            IncomeOrExpenseSubcategoryRepository incomeOrExpenseSubcategoryRepository
     ) {
         this.incomeOrExpenseCategoryRepository = incomeOrExpenseCategoryRepository;
         this.authService = authService;
+        this.incomeOrExpenseSubcategoryRepository = incomeOrExpenseSubcategoryRepository;
     }
 
     public IncomeOrExpenseCategory saveCategory(IncomeOrExpenseCategory category) {
@@ -48,6 +52,22 @@ public class IncomeOrExpenseCategoryService {
 
             category.setActive(true);
             category.setLinked(false);
+
+        }
+
+        // Recoge los ids de las subcategorías
+        List<Long> currentSubcategoryIds = category.getSubcategories().stream()
+                .map(IncomeOrExpenseSubcategory::getId)
+                .toList();
+
+        List<IncomeOrExpenseSubcategory> existingSubcategories = incomeOrExpenseSubcategoryRepository.findByCategoryId(category.getId());
+
+        // Elimina las subcategorías que no coincidan entre el nuevo objeto y la BBDD
+        for (IncomeOrExpenseSubcategory subcategory : existingSubcategories) {
+
+            if (!currentSubcategoryIds.contains(subcategory.getId())) {
+                incomeOrExpenseSubcategoryRepository.delete(subcategory);
+            }
 
         }
 

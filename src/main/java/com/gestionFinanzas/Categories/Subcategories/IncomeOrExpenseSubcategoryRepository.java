@@ -24,4 +24,6 @@ public interface IncomeOrExpenseSubcategoryRepository extends JpaRepository<Inco
             @Param("subcategoryId") Long subcategoryId
     );
 
+    List<IncomeOrExpenseSubcategory> findByCategoryId(Long categoryId);
+
 }
