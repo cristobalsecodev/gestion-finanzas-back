@@ -28,6 +28,10 @@ public class IncomeOrExpenseCategory {
     @Column(nullable = false, length = 7)
     private String color;
 
+    private Boolean linked;
+
+    private Boolean active;
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_id"))

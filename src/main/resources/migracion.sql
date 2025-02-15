@@ -36,6 +36,8 @@ create table income_or_expense_category (
     name varchar(30) not null unique,
     type varchar(10) check (type in ('income', 'expense')) not null,
     color varchar(7) not null,
+    linked boolean default false,
+    active boolean default true,
     user_id bigint not null references users (id) on delete cascade
 );
 
@@ -44,6 +46,7 @@ create table income_or_expense_subcategory (
     id bigint primary key generated always as identity,
     name varchar(30) not null unique,
     type varchar(10) check (type in ('income', 'expense')) not null,
+    linked boolean default false,
     user_id bigint not null references users (id) on delete cascade,
     income_category_id bigint not null references income_or_expense_category (id) on delete cascade
 );

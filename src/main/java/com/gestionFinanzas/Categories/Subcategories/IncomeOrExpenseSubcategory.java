@@ -22,6 +22,8 @@ public class IncomeOrExpenseSubcategory {
     @Column(nullable = false, length = 10)
     private String type;  // "income" or "expense"
 
+    private Boolean linked;
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_id"))

@@ -1,6 +1,8 @@
 package com.gestionFinanzas.Troncal;
 
 import com.gestionFinanzas.Auth.AuthService;
+import com.gestionFinanzas.Categories.IncomeOrExpenseCategoryRepository;
+import com.gestionFinanzas.Categories.Subcategories.IncomeOrExpenseSubcategoryRepository;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
 import com.gestionFinanzas.Troncal.DTOs.FilterIncomeOrExpense;
 import com.gestionFinanzas.Troncal.RecurrenceDetails.RecurrenceDetailsRepository;
@@ -18,14 +20,22 @@ public class IncomeOrExpenseService {
 
     private final AuthService authService;
 
+    private final IncomeOrExpenseCategoryRepository incomeOrExpenseCategoryRepository;
+
+    private final IncomeOrExpenseSubcategoryRepository incomeOrExpenseSubcategoryRepository;
+
     public IncomeOrExpenseService(
             IncomeOrExpenseRepository incomeOrExpenseRepository,
             RecurrenceDetailsRepository recurrenceDetailsRepository,
-            AuthService authService
+            AuthService authService,
+            IncomeOrExpenseCategoryRepository incomeOrExpenseCategoryRepository,
+            IncomeOrExpenseSubcategoryRepository incomeOrExpenseSubcategoryRepository
     ) {
         this.incomeOrExpenseRepository = incomeOrExpenseRepository;
         this.authService = authService;
         this.recurrenceDetailsRepository = recurrenceDetailsRepository;
+        this.incomeOrExpenseCategoryRepository = incomeOrExpenseCategoryRepository;
+        this.incomeOrExpenseSubcategoryRepository = incomeOrExpenseSubcategoryRepository;
     }
 
     public Long saveIncomeOrExpense(IncomeOrExpense incomeOrExpense) {
@@ -41,6 +51,12 @@ public class IncomeOrExpenseService {
 
         // Asigna el usuario al objeto
         incomeOrExpense.setUser(user);
+
+        // Comprueba si la categoría sigue en uso
+        checkCategoryUsage(incomeOrExpense);
+
+        // Comprueba si la subcategoría está en uso
+        checkSubcategoryUsage(incomeOrExpense);
 
         return incomeOrExpenseRepository.save(incomeOrExpense).getId();
 
@@ -76,7 +92,35 @@ public class IncomeOrExpenseService {
 
         incomeOrExpenseRepository.deleteById(id);
 
+        // Comprueba si la categoría sigue en uso
+        checkCategoryUsage(incomeOrExpense);
+
+        // Comprueba si la subcategoría está en uso
+        checkSubcategoryUsage(incomeOrExpense);
+
+
         return messageDeletion;
+
+    }
+
+    private void checkCategoryUsage(IncomeOrExpense incomeOrExpense) {
+
+        Long countByCategory = incomeOrExpenseRepository.countByCategoryId(incomeOrExpense.getCategory().getId());
+
+        if (countByCategory == 0) {
+            incomeOrExpenseCategoryRepository.updateLinkedCategory(false, incomeOrExpense.getCategory().getId());
+        }
+
+    }
+
+    private void checkSubcategoryUsage(IncomeOrExpense incomeOrExpense) {
+
+        // Comprueba si la subcategoría está en uso
+        Long countBySubcategory = incomeOrExpenseRepository.countBySubcategoryId(incomeOrExpense.getCategory().getId());
+
+        if (countBySubcategory == 0) {
+            incomeOrExpenseSubcategoryRepository.updateLinkedSubcategory(false, incomeOrExpense.getSubcategory().getId());
+        }
 
     }
 
