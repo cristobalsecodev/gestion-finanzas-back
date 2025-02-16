@@ -56,7 +56,9 @@ public class IncomeOrExpenseController {
                 ? Sort.by(Sort.Order.desc("date"))
                 : Sort.by(Sort.Order.asc("date"));
 
-        Pageable pageable = PageRequest.of(filter.getPage(), filter.getSize(), sort);
+        Pageable pageable = filter.getAllRecords()
+                ? Pageable.unpaged()
+                : PageRequest.of(filter.getPage(), filter.getSize(), sort);
 
         Page<IncomeOrExpense> resultPage = incomeOrExpenseService.getFilteredIncomeOrExpenses(filter, pageable);
 

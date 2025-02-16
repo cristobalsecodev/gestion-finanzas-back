@@ -4,6 +4,7 @@ import com.gestionFinanzas.Auth.DTOs.ResetPasswordDto;
 import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
 import com.gestionFinanzas.Auth.DTOs.UrlTokenDto;
 import com.gestionFinanzas.Auth.DTOs.WantsResetPasswordDto;
+import com.gestionFinanzas.Rest.CurrencyExchangeAPI.MajorCurrenciesEnum;
 import com.gestionFinanzas.Shared.OneTimeUrl.OneTimeUrlService;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,6 +37,8 @@ public class AuthController {
 
     @PostMapping("/sign-up")
     public ResponseEntity<TokenResponseDto> signUp(@RequestBody User user) {
+
+        user.setFavoriteCurrency(MajorCurrenciesEnum.EUR.getCodigo());
 
         // Registramos el usuario
         return ResponseEntity.ok(authService.signUp(user));

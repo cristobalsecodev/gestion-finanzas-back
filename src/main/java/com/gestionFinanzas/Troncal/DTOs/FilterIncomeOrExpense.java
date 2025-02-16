@@ -25,4 +25,6 @@ public class FilterIncomeOrExpense extends PaginationData {
 
     private List<String> currencies;
 
+    private Boolean allRecords;
+
 }

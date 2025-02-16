@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/IncomeOrExpenseCategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/IncomeOrExpenseCategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/Subcategories/IncomeOrExpenseSubcategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Categories/Subcategories/IncomeOrExpenseSubcategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/DTOs/FilterIncomeOrExpense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/DTOs/FilterIncomeOrExpense.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
