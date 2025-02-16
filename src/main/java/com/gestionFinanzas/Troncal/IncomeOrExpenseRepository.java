@@ -37,7 +37,7 @@ public interface IncomeOrExpenseRepository extends JpaRepository<IncomeOrExpense
         "     AND (:categories IS NULL OR ioe.category.id IN :categories) " +
         "     AND (:subcategories IS NULL OR ioe.subcategory.id IN :subcategories)" +
         "     AND (:currencies IS NULL OR ioe.currency IN :currencies) " +
-        "     ORDER BY ioe.date DESC"
+        "     ORDER BY ioe.date DESC, ioe.id DESC"
     )
     Page<IncomeOrExpense> findByFilters(
             @Param("fromDate") LocalDate fromDate,

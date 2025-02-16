@@ -52,7 +52,9 @@ public class IncomeOrExpenseService {
         checkCategoryUsage(incomeOrExpense);
 
         // Comprueba si la subcategoría está en uso
-        checkSubcategoryUsage(incomeOrExpense);
+        if(incomeOrExpense.getSubcategory() != null) {
+            checkSubcategoryUsage(incomeOrExpense);
+        }
 
         return incomeOrExpenseRepository.save(incomeOrExpense).getId();
 
@@ -92,8 +94,9 @@ public class IncomeOrExpenseService {
         checkCategoryUsage(incomeOrExpense);
 
         // Comprueba si la subcategoría está en uso
-        checkSubcategoryUsage(incomeOrExpense);
-
+        if(incomeOrExpense.getSubcategory() != null) {
+            checkSubcategoryUsage(incomeOrExpense);
+        }
 
         return messageDeletion;
 
