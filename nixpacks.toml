@@ -1,0 +1,5 @@
+[build]
+provider = "java"
+
+[java]
+jdk_version = "21"
