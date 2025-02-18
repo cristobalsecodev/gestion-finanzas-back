@@ -1,7 +1,7 @@
 FROM maven:3.8-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY . .
-RUN mvn clean package
+RUN mvn clean package spring-boot:repackage
 
 FROM openjdk:21-jdk-slim
 WORKDIR /app
