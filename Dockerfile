@@ -8,4 +8,4 @@ WORKDIR /app
 COPY --from=build /app/target/gestion-finanzas-back-1.0.0.jar /app/gestion-finanzas-back-1.0.0.jar
 EXPOSE 8080
 
-CMD ["java", "-cp", "/app/gestion-finanzas-back-1.0.0.jar", "com.gestionfinanzas.GestionFinanzas"]
+CMD ["java", "-cp", "/app/gestion-finanzas-back-1.0.0.jar", "com.gestionFinanzas.GestionFinanzas"]
