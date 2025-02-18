@@ -1,10 +1,10 @@
-package com.gestionFinanzas.Rest.CurrencyExchangeAPI;
+package com.gestionFinanzas.APIs;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gestionFinanzas.Rest.CurrencyExchangeAPI.DTOs.CurrencyExchangeAPIDto;
-import com.gestionFinanzas.Rest.CurrencyExchangeAPI.DTOs.ExchangeRatioDto;
+import com.gestionFinanzas.APIs.DTOs.CurrencyExchangeAPIDto;
+import com.gestionFinanzas.APIs.DTOs.ExchangeRatioDto;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ApiException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;

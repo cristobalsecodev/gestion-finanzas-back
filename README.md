@@ -30,10 +30,6 @@ spring:
           auth: true
           starttls:
             enable: true
-polygon:
-  api:
-    key: API_KEY
-  baseUrl: https://api.polygon.io
 exchangeRate:
   api:
     key: API_KEY
@@ -42,4 +38,7 @@ security:
   jwt:
     secret-key: SECRET_KEY
     expiration-time: EXP_TIME_IN_MS
+testUser:
+  email: test@example.com
+  pass: hashed_password
 ```

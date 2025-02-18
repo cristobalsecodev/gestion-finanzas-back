@@ -1,4 +1,4 @@
-package com.gestionFinanzas.Rest.CurrencyExchangeAPI.DTOs;
+package com.gestionFinanzas.APIs.DTOs;
 
 import lombok.Data;
 

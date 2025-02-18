@@ -4,7 +4,7 @@ import com.gestionFinanzas.Auth.DTOs.ResetPasswordDto;
 import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
 import com.gestionFinanzas.Auth.DTOs.UrlTokenDto;
 import com.gestionFinanzas.Auth.DTOs.WantsResetPasswordDto;
-import com.gestionFinanzas.Rest.CurrencyExchangeAPI.MajorCurrenciesEnum;
+import com.gestionFinanzas.APIs.MajorCurrenciesEnum;
 import com.gestionFinanzas.Shared.OneTimeUrl.OneTimeUrlService;
 import com.gestionFinanzas.Usuarios.User;
 import jakarta.servlet.http.HttpServletRequest;

@@ -65,7 +65,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:8080"));
+        configuration.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:8080", "https://gestion-finanzas-front-o3s0n5uxe-cristobalsecodevs-projects.vercel.app"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
 

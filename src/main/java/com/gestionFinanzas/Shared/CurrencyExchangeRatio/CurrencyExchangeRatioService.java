@@ -1,8 +1,8 @@
 package com.gestionFinanzas.Shared.CurrencyExchangeRatio;
 
-import com.gestionFinanzas.Rest.CurrencyExchangeAPI.CurrencyExchangeAPIService;
-import com.gestionFinanzas.Rest.CurrencyExchangeAPI.DTOs.CurrencyExchangeAPIDto;
-import com.gestionFinanzas.Rest.CurrencyExchangeAPI.DTOs.ExchangeRatioDto;
+import com.gestionFinanzas.APIs.CurrencyExchangeAPIService;
+import com.gestionFinanzas.APIs.DTOs.CurrencyExchangeAPIDto;
+import com.gestionFinanzas.APIs.DTOs.ExchangeRatioDto;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
