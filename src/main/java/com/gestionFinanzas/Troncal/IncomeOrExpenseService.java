@@ -106,20 +106,16 @@ public class IncomeOrExpenseService {
 
         Long countByCategory = incomeOrExpenseRepository.countByCategoryId(incomeOrExpense.getCategory().getId());
 
-        if (countByCategory == 0) {
-            incomeOrExpenseCategoryRepository.updateLinkedCategory(false, incomeOrExpense.getCategory().getId());
-        }
+        incomeOrExpenseCategoryRepository.updateLinkedCategory(countByCategory != 0, incomeOrExpense.getCategory().getId());
 
     }
 
     private void checkSubcategoryUsage(IncomeOrExpense incomeOrExpense) {
 
         // Comprueba si la subcategoría está en uso
-        Long countBySubcategory = incomeOrExpenseRepository.countBySubcategoryId(incomeOrExpense.getCategory().getId());
+        Long countBySubcategory = incomeOrExpenseRepository.countBySubcategoryId(incomeOrExpense.getSubcategory().getId());
 
-        if (countBySubcategory == 0) {
-            incomeOrExpenseSubcategoryRepository.updateLinkedSubcategory(false, incomeOrExpense.getSubcategory().getId());
-        }
+        incomeOrExpenseSubcategoryRepository.updateLinkedSubcategory(countBySubcategory != 0, incomeOrExpense.getSubcategory().getId());
 
     }
 
