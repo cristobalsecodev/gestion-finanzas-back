@@ -125,19 +125,6 @@ public class GlobalExceptionHandling {
 
     }
 
-    @ExceptionHandler(DataAccessException.class)
-    public ProblemDetail handleIllegalArgumentException(DataAccessException exception) {
-
-        String messageForUser = "An error occurred while trying to connect with the database. Please try again later";
-
-        return buildErrorDetail(
-                HttpStatus.BAD_REQUEST,
-                messageForUser,
-                exception.getMessage()
-        );
-
-    }
-
     @ExceptionHandler(Exception.class)
     public ProblemDetail handleSecurityException(Exception exception) {
 
@@ -191,6 +178,16 @@ public class GlobalExceptionHandling {
             errorDetail = buildErrorDetail(
                     HttpStatus.FORBIDDEN,
                     "The JWT token has expired",
+                    exception.getMessage()
+            );
+
+        }
+
+        if(exception.getMessage().contains("JDBC") || exception instanceof DataAccessException) {
+
+            errorDetail = buildErrorDetail(
+                    HttpStatus.SERVICE_UNAVAILABLE,
+                    "The database is temporarily unavailable. Please try again later",
                     exception.getMessage()
             );
 
