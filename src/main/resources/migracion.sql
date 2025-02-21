@@ -63,7 +63,7 @@ create table recurrence_details (
 -- Tabla de ingresos / gastos
 create table income_or_expense (
     id bigint primary key generated always as identity,
-    date date not null,
+    transaction_date date not null,
     amount numeric(15, 2) not null,
     currency varchar(10) not null,
     exchange_rate_to_usd numeric(10, 4) not null,

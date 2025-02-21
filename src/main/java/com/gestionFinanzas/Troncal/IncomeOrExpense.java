@@ -20,8 +20,8 @@ public class IncomeOrExpense {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private LocalDate date;
+    @Column(name = "transaction_date", nullable = false)
+    private LocalDate transactionDate;
 
     @Column(nullable = false, precision = 15, scale = 2)
     private BigDecimal amount;

@@ -7,9 +7,14 @@ import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.NotFoundException;
 import com.gestionFinanzas.Troncal.DTOs.FilterIncomeOrExpense;
 import com.gestionFinanzas.Troncal.RecurrenceDetails.RecurrenceDetailsRepository;
 import com.gestionFinanzas.Usuarios.User;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class IncomeOrExpenseService {
@@ -127,17 +132,51 @@ public class IncomeOrExpenseService {
         // Obtiene el usuario
         User user = this.authService.getInfoUser();
 
-        return incomeOrExpenseRepository.findByFilters(
-                filter.getFromDate(),
-                filter.getToDate(),
-                filter.getRecurrences(),
-                filter.getType(),
-                filter.getCategories(),
-                filter.getSubcategories(),
-                filter.getCurrencies(),
-                user.getId(),
-                pageable
-        );
+        Specification<IncomeOrExpense> spec = (root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            // Predicate básico usuario
+            predicates.add(cb.equal(root.get("user").get("id"), user.getId()));
+
+            // Fechas
+            if (filter.getFromDate() != null) {
+                predicates.add(cb.greaterThanOrEqualTo(root.get("transactionDate"), filter.getFromDate()));
+            }
+
+            if (filter.getToDate() != null) {
+                predicates.add(cb.lessThanOrEqualTo(root.get("transactionDate"), filter.getToDate()));
+            }
+
+            // Resto de condiciones
+            if (filter.getRecurrences() != null) {
+                if (filter.getRecurrences()) {
+                    predicates.add(cb.isNotNull(root.get("recurrenceDetails")));
+                }
+            }
+
+            if (filter.getType() != null) {
+                predicates.add(cb.equal(root.get("type"), filter.getType()));
+            }
+
+            if (filter.getCategories() != null && !filter.getCategories().isEmpty()) {
+                predicates.add(root.get("category").get("id").in(filter.getCategories()));
+            }
+
+            if (filter.getSubcategories() != null && !filter.getSubcategories().isEmpty()) {
+                predicates.add(root.get("subcategory").get("id").in(filter.getSubcategories()));
+            }
+
+            if (filter.getCurrencies() != null && !filter.getCurrencies().isEmpty()) {
+                predicates.add(root.get("currency").in(filter.getCurrencies()));
+            }
+
+            // Ordenamiento
+            query.orderBy(cb.desc(root.get("transactionDate")), cb.desc(root.get("id")));
+
+            return cb.and(predicates.toArray(new Predicate[0]));
+        };
+
+        return incomeOrExpenseRepository.findAll(spec, pageable);
 
     }
 

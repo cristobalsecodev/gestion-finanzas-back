@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="640fe48c-4663-4642-ab9a-27e01aeb6683" name="Changes" comment="Nuevo proyecto">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/GlobalExceptionHandling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Shared/ExceptionHandler/GlobalExceptionHandling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/DTOs/FilterIncomeOrExpense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/DTOs/FilterIncomeOrExpense.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpense.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/IncomeOrExpenseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/RecurrenceDetails/RecurrenceDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gestionFinanzas/Troncal/RecurrenceDetails/RecurrenceDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/migracion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/migracion.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

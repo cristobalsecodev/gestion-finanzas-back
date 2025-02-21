@@ -2,12 +2,10 @@ package com.gestionFinanzas.Troncal.DTOs;
 
 import com.gestionFinanzas.Shared.DTOs.PaginationData;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 public class FilterIncomeOrExpense extends PaginationData {
 

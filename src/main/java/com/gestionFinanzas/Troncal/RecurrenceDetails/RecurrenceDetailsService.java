@@ -67,7 +67,7 @@ public class RecurrenceDetailsService {
 
         IncomeOrExpense newEntry = new IncomeOrExpense();
 
-        newEntry.setDate(today);
+        newEntry.setTransactionDate(today);
         newEntry.setCategory(lastEntry.getCategory());
         newEntry.setSubcategory(lastEntry.getSubcategory());
         newEntry.setAmount(lastEntry.getAmount());
@@ -83,7 +83,7 @@ public class RecurrenceDetailsService {
     private Boolean verifyDay(LocalDate today, RecurrenceDetails recurrence, IncomeOrExpense lastEntry) {
 
         // Fecha base tomando como referencia el último registro de ingreso / gasto
-        LocalDate baseDate = lastEntry.getDate();
+        LocalDate baseDate = lastEntry.getTransactionDate();
 
         // Calcula la próxima fecha según el tipo de recurrencia y su frecuencia
         LocalDate nextDate =

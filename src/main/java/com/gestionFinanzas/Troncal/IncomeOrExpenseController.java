@@ -53,8 +53,8 @@ public class IncomeOrExpenseController {
     ) {
 
         Sort sort = filter.getSortDir().equalsIgnoreCase("desc")
-                ? Sort.by(Sort.Order.desc("date"))
-                : Sort.by(Sort.Order.asc("date"));
+                ? Sort.by(Sort.Order.desc("transactionDate"))
+                : Sort.by(Sort.Order.asc("transactionDate"));
 
         Pageable pageable = filter.getAllRecords()
                 ? Pageable.unpaged()
