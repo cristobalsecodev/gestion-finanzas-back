@@ -36,6 +36,3 @@ build/
 
 ### Mac OS ###
 .DS_Store
-
-### Archivos extra ###
-src/main/resources/application.yaml
