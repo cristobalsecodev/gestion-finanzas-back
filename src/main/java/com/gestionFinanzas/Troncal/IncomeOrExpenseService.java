@@ -53,6 +53,8 @@ public class IncomeOrExpenseService {
         // Asigna el usuario al objeto
         incomeOrExpense.setUser(user);
 
+        Long id = incomeOrExpenseRepository.save(incomeOrExpense).getId();
+
         // Comprueba si la categoría sigue en uso
         checkCategoryUsage(incomeOrExpense);
 
@@ -61,7 +63,7 @@ public class IncomeOrExpenseService {
             checkSubcategoryUsage(incomeOrExpense);
         }
 
-        return incomeOrExpenseRepository.save(incomeOrExpense).getId();
+        return id;
 
     }
 
