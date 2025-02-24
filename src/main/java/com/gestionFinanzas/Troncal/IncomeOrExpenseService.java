@@ -112,7 +112,6 @@ public class IncomeOrExpenseService {
     private void checkCategoryUsage(IncomeOrExpense incomeOrExpense) {
 
         Long countByCategory = incomeOrExpenseRepository.countByCategoryId(incomeOrExpense.getCategory().getId());
-
         incomeOrExpenseCategoryRepository.updateLinkedCategory(countByCategory != 0, incomeOrExpense.getCategory().getId());
 
     }
@@ -121,7 +120,6 @@ public class IncomeOrExpenseService {
 
         // Comprueba si la subcategoría está en uso
         Long countBySubcategory = incomeOrExpenseRepository.countBySubcategoryId(incomeOrExpense.getSubcategory().getId());
-
         incomeOrExpenseSubcategoryRepository.updateLinkedSubcategory(countBySubcategory != 0, incomeOrExpense.getSubcategory().getId());
 
     }
