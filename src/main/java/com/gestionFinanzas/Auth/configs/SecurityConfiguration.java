@@ -47,6 +47,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers(
                             "/auth/**",
+                            "/currency-exchange-ratio/get-currencies",
                             "/v3/api-docs/**",
                             "/swagger-ui/**",
                             "/swagger-ui.html"
