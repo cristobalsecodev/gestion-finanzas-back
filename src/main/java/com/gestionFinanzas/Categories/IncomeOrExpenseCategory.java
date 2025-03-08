@@ -11,7 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "income_or_expense_category")
+@Table(name = "income_or_expense_category",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "unique_name_type_user",
+                        columnNames = {"name", "type", "user_id"}
+                )
+        }
+)
 @Data
 public class IncomeOrExpenseCategory {
 
@@ -19,7 +26,7 @@ public class IncomeOrExpenseCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(nullable = false, length = 30)
     private String name;
 
     @Column(nullable = false, length = 10)

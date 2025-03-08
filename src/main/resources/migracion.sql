@@ -33,22 +33,24 @@ VALUES ('Test', 'test@example.com', 'User', 'EUR', now(), null, '$2a$10$wHh/xs0u
 -- Tabla de categorías de ingresos / gastos
 create table income_or_expense_category (
     id bigint primary key generated always as identity,
-    name varchar(30) not null unique,
+    name varchar(30) not null,
     type varchar(10) check (type in ('income', 'expense')) not null,
     color varchar(7) not null,
     linked boolean default false,
     active boolean default true,
-    user_id bigint not null references users (id) on delete cascade
+    user_id bigint not null references users (id) on delete cascade,
+    UNIQUE (name, type, user_id)
 );
 
 -- Tabla de subcategorías de ingresos / gastos
 create table income_or_expense_subcategory (
     id bigint primary key generated always as identity,
-    name varchar(30) not null unique,
+    name varchar(30) not null,
     type varchar(10) check (type in ('income', 'expense')) not null,
     linked boolean default false,
     user_id bigint not null references users (id) on delete cascade,
-    income_category_id bigint not null references income_or_expense_category (id) on delete cascade
+    income_category_id bigint not null references income_or_expense_category (id) on delete cascade,
+    UNIQUE (name, type, user_id, income_category_id)
 );
 
 -- Tabla de recurrencias

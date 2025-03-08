@@ -161,7 +161,7 @@ public class AuthService {
 
         if(jwtToken == null) {
 
-            throw new TokenNotFoundException("JWT token is missing");
+            throw new TokenNotFoundException("Authentication token is missing");
 
         }
 
@@ -187,7 +187,7 @@ public class AuthService {
 
         if(wantResetInfo.getEmail().equals(testEmail)) {
 
-            throw new UnprocessableEntityException("You cannot modify the password for the test user");
+            throw new UnprocessableEntityException("You cannot modify the password of the test user");
 
         } else {
 

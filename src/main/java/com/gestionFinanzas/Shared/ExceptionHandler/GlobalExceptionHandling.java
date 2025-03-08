@@ -3,8 +3,10 @@ package com.gestionFinanzas.Shared.ExceptionHandler;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.*;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.IllegalArgumentException;
 import io.jsonwebtoken.ExpiredJwtException;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.security.authentication.AccountStatusException;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.nio.file.AccessDeniedException;
 import java.security.SignatureException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Slf4j
 @ControllerAdvice
@@ -22,12 +26,9 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(ApiException.class)
     public ProblemDetail handleApiException(ApiException exception) {
 
-        // Mensaje que se muestra en el front
-        String messageForUser = "An error occurred while communicating with an external API";
-
         return buildErrorDetail(
                 HttpStatus.valueOf(exception.getStatusCode().value()),
-                messageForUser,
+                "An error occurred while communicating with an external API",
                 exception.getMessage()
         );
 
@@ -36,13 +37,10 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(TokenNotFoundException.class)
     public ProblemDetail handleTokenNotFoundException(TokenNotFoundException exception) {
 
-        // Mensaje que se muestra en el front
-        String messageForUser = "The JWT token is missing from the request header";
-
         return buildErrorDetail(
                 HttpStatus.BAD_REQUEST,
-                messageForUser,
-                exception.getMessage()
+                exception.getMessage(),
+                "The JWT token is missing from the request header"
         );
 
     }
@@ -50,11 +48,9 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(EmailException.class)
     public ProblemDetail handleEmailException(EmailException exception) {
 
-        String messageForUser = "An error occurred while sending an email";
-
         return buildErrorDetail(
                 HttpStatus.INTERNAL_SERVER_ERROR,
-                messageForUser,
+                "An error occurred while sending an email",
                 exception.getMessage()
         );
 
@@ -63,12 +59,10 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(ResourceConflictException.class)
     public ProblemDetail handleResourceConflictException(ResourceConflictException exception) {
 
-        String messageForUser = "A conflict occurred: The requested operation could not be completed due to a resource conflict";
-
         return buildErrorDetail(
                 HttpStatus.CONFLICT,
-                messageForUser,
-                exception.getMessage()
+                exception.getMessage(),
+                "A conflict occurred: The requested operation could not be completed due to a resource conflict"
         );
 
     }
@@ -76,12 +70,10 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(NotFoundException.class)
     public ProblemDetail handleNotFoundException(NotFoundException exception) {
 
-        String messageForUser = "The requested resource could not be found";
-
         return buildErrorDetail(
                 HttpStatus.NOT_FOUND,
-                messageForUser,
-                exception.getMessage()
+                exception.getMessage(),
+                "The requested resource could not be found"
         );
 
     }
@@ -89,12 +81,10 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(IllegalArgumentException.class)
     public ProblemDetail handleIllegalArgumentException(IllegalArgumentException exception) {
 
-        String messageForUser = "Invalid argument provided: The value does not meet the required format or constraints expected by the service";
-
         return buildErrorDetail(
                 HttpStatus.BAD_REQUEST,
-                messageForUser,
-                exception.getMessage()
+                exception.getMessage(),
+                "Invalid argument provided: The value does not meet the required format or constraints expected by the service"
         );
 
     }
@@ -102,12 +92,10 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(BadRequestException.class)
     public ProblemDetail handleBadRequestException(BadRequestException exception) {
 
-        String messageForUser = "The request could not be processed due to invalid input";
-
         return buildErrorDetail(
                 HttpStatus.BAD_REQUEST,
-                messageForUser,
-                exception.getMessage()
+                exception.getMessage(),
+                "The request could not be processed due to invalid input"
         );
 
     }
@@ -115,14 +103,62 @@ public class GlobalExceptionHandling {
     @ExceptionHandler(UnprocessableEntityException.class)
     public ProblemDetail handleUnprocessableEntityException(UnprocessableEntityException exception) {
 
-        String messageForUser = "Invalid argument provided: The value does not meet the required format or constraints expected by the service";
-
         return buildErrorDetail(
                 HttpStatus.BAD_REQUEST,
-                messageForUser,
-                exception.getMessage()
+                exception.getMessage(),
+                "Invalid argument provided: The value does not meet the required format or constraints expected by the service"
         );
 
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ProblemDetail handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
+
+        if (exception.getCause() instanceof org.hibernate.exception.ConstraintViolationException constraintViolation) {
+            String constraintName = extractConstraintName(constraintViolation);
+
+            // Comprueba el tipo de restricción
+            if ("unique_name_type_user".equals(constraintName)) {
+
+                return buildErrorDetail(
+                        HttpStatus.CONFLICT,
+                        "A category with the same name and type already exists",
+                        "Duplicate categories are not allowed"
+                );
+
+            }
+
+            if("unique_name_type_user_category".equals(constraintName)) {
+
+                return buildErrorDetail(
+                        HttpStatus.CONFLICT,
+                        "A subcategory with the same name already exists in this category",
+                        "Duplicate subcategories are not allowed"
+                );
+
+            }
+        }
+
+        // Restricción genérica
+        return buildErrorDetail(
+                HttpStatus.CONFLICT,
+                "Data constraint violation",
+                exception.getMessage()
+        );
+    }
+
+    // Extrae el nombre de la restricción
+    private String extractConstraintName(org.hibernate.exception.ConstraintViolationException exception) {
+
+        // Patrón para extraer texto entre comillas españolas «»
+        Pattern pattern = Pattern.compile("«([^»]*)»");
+        Matcher matcher = pattern.matcher(exception.getMessage());
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+
+        return "";
     }
 
     @ExceptionHandler(Exception.class)

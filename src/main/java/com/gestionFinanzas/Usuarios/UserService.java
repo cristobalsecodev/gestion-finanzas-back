@@ -3,9 +3,7 @@ package com.gestionFinanzas.Usuarios;
 import com.gestionFinanzas.Auth.AuthService;
 
 import com.gestionFinanzas.Auth.DTOs.TokenResponseDto;
-import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.ResourceConflictException;
 import com.gestionFinanzas.Shared.ExceptionHandler.Exceptions.UnprocessableEntityException;
-import com.gestionFinanzas.Usuarios.DTOs.UserInfoDto;
 import org.springframework.stereotype.Service;
 
 

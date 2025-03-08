@@ -8,7 +8,14 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "income_or_expense_subcategory")
+@Table(name = "income_or_expense_subcategory",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "unique_name_type_user_category",
+                        columnNames = {"name", "type", "user_id", "income_category_id"}
+                )
+        }
+)
 @Data
 public class IncomeOrExpenseSubcategory {
 
@@ -16,7 +23,7 @@ public class IncomeOrExpenseSubcategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(nullable = false, length = 30)
     private String name;
 
     @Column(nullable = false, length = 10)

@@ -21,7 +21,7 @@ public interface IncomeOrExpenseRepository extends JpaRepository<IncomeOrExpense
     @Query("SELECT COUNT(i) FROM IncomeOrExpense i WHERE i.category.id = :categoryId")
     Long countByCategoryId(@Param("categoryId") Long categoryId);
 
-    @Query("SELECT COUNT(c) FROM IncomeOrExpense c WHERE c.subcategory.id = :subccategoryId")
-    Long countBySubcategoryId(@Param("subccategoryId") Long subccategoryId);
+    @Query("SELECT COUNT(i) FROM IncomeOrExpense i WHERE i.subcategory.id = :subcategoryId")
+    Long countBySubcategoryId(@Param("subcategoryId") Long subcategoryId);
 
 }

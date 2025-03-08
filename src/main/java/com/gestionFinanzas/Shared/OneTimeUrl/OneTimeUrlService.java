@@ -37,7 +37,7 @@ public class OneTimeUrlService {
 
         if(oneTimeUrl == null || oneTimeUrl.getUsed() || oneTimeUrl.getExpirationTime() < Instant.now().toEpochMilli()) {
 
-            throw new NotFoundException("The specified URL could not be found or is currently unavailable");
+            throw new NotFoundException("The specified URL has expired or is no longer available.");
 
         }
 
