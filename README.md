@@ -1,7 +1,7 @@
 # Gestión de Finanzas - Backend
 
 ## Descripción
-El backend de la aplicación Gestión de Finanzas está desarrollado con **Spring Boot**, proporcionando una API robusta para gestionar ingresos, gastos, categorías y subcategorías. Actualmente utiliza **Supabase** como base de datos, con planes de migración a **Railway**. Además, cuenta con integración de **Swagger** para documentación de la API y una conexión a la API de **ExchangeRate** para conversión de divisas.
+El backend de la aplicación Gestión de Finanzas está desarrollado con **Spring Boot**, proporcionando una API robusta para gestionar ingresos, gastos, categorías, subcategorías y gestión de usuarios. Actualmente utiliza **Railway** como base de datos. Además, cuenta con integración de **Swagger** para documentación de la API y una conexión a la API de **ExchangeRate** para conversión de divisas.
 
 ## Funcionalidades Principales
 - **Gestión de Ingresos y Gastos**: API para registrar y administrar transacciones financieras.
@@ -16,17 +16,14 @@ El backend de la aplicación Gestión de Finanzas está desarrollado con **Sprin
 - **Java 21** (Lenguaje de programación)
 - **Spring Boot** (Framework principal del backend)
 - **Spring Data JPA** (Manejo de persistencia de datos)
-- **PostgreSQL** (Base de datos en Supabase, con migración futura a Railway)
+- **PostgreSQL** (Base de datos en Railway)
 - **Swagger** (Generación de documentación de API)
 - **Maven** (Gestor de dependencias)
 - **JWT** (Autenticación segura con JSON Web Token)
 - **Railway** (Plataforma de despliegue)
 
 ## Configuración de la Base de Datos
-Actualmente, el backend utiliza **Supabase** como base de datos, pero está planeada su migración a **Railway**.
-
-- **Plataforma actual**: [Supabase](https://supabase.com)
-- **Futura migración**: [Railway](https://railway.app)
+- **Plataforma actual**: [Railway](https://railway.app)
 - **Archivo de migración**: `migracion.sql`
 
 ## Configuración del Archivo `application.yaml`
