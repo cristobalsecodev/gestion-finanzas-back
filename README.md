@@ -1,7 +1,7 @@
 # Gestión de Finanzas - Backend
 
 ## Descripción
-El backend de la aplicación Gestión de Finanzas está desarrollado con **Spring Boot**, proporcionando una API robusta para gestionar ingresos, gastos, categorías, subcategorías y gestión de usuarios. Actualmente utiliza **Railway** como base de datos. Además, cuenta con integración de **Swagger** para documentación de la API y una conexión a la API de **ExchangeRate** para conversión de divisas.
+El backend de la aplicación Gestión de Finanzas está desarrollado con **Spring Boot**, proporcionando una API robusta para gestionar ingresos, gastos, categorías, subcategorías y gestión de usuarios. Actualmente utiliza **Railway** como base de datos. Además, cuenta con integración de **Swagger** para documentación de la API y una conexión a la API de **ExchangeRate** para la conversión de divisas.
 
 ## Funcionalidades Principales
 - **Gestión de Ingresos y Gastos**: API para registrar y administrar transacciones financieras.
